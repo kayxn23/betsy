@@ -1,4 +1,12 @@
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/spec/' # for rspec
+  add_filter '/test/' # for minitest
+end
 ENV["RAILS_ENV"] = "test"
+
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"require "minitest/reporters"  # for Colorized output
@@ -8,6 +16,7 @@ Minitest::Reporters.use!(
   ENV,
   Minitest.backtrace_filter
 )
+
 
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
