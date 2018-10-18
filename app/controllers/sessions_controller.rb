@@ -16,11 +16,7 @@ class SessionsController < ApplicationController
         flash[:success] = "Logged in as new user #{user.name}"
 
       else
-        # Couldn't save the user for some reason. If we
-        # hit this it probably means there's a bug with the
-        # way we've configured GitHub. Our strategy will
-        # be to display error messages to make future
-        # debugging easier.
+        # Couldn't save the user
         flash[:error] = "Could not create new user account: #{user.errors.messages}"
         redirect_to root_path
         return
