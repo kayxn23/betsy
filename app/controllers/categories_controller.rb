@@ -3,5 +3,6 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    #git test
   end
 end
