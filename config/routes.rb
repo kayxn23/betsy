@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   get 'sessions/login'
   get 'sessions/destroy'
   get 'sessions/new'
-  get 'users/new'
-  get 'users/create'
+  # get 'users/new'
+  # get 'users/create'
+
+  #resources :users, only: [:]
   get 'users/show'
   get 'products/index'
   get 'products/show'
