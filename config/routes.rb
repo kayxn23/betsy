@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   # get 'users/new'
   # get 'users/create'
-
+  get "/auth/:provider/callback", to: "sessions#create"
   #resources :users, only: [:]
   get 'users/show'
   get 'products/index'
