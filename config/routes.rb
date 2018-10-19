@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # get 'sessions/login'
   # get 'sessions/destroy'
   # get 'sessions/new'
-  resources :users, only: [ :new, :create, :show]
+  resources :users, only: [ :new, :create, :show, :index]
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   # get 'products/create'
   # get 'products/edit'
   # get 'products/destroy'
-  resources :categories, only: [ :new, :create ]
+  resources :categories, only: [ :new, :create, :index ]
   # get 'categories/new'
   # get 'categories/create'
   resources :orders, only: [ :new, :create, :show ]
