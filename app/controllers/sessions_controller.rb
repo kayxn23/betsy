@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  # TODO How do we handle a merchant shopping/closing browser
+  # coming back as a user (not logged in)
   def login
     auth_hash = request.env['omniauth.auth']
 
