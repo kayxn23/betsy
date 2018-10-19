@@ -8,7 +8,7 @@
 require 'csv'
 
 
-CATEGORY_FILE = Rails.root.join('db', 'category_seeds.csv')
+CATEGORY_FILE = Rails.root.join('db', 'category_seeds_3.csv')
 puts "Loading raw category data from #{CATEGORY_FILE}"
 
 category_failures = []
@@ -29,7 +29,7 @@ puts "#{category_failures.length} category failed to save"
 
 #--------------------------------------------------------
 
-USER_FILE = Rails.root.join('db', 'user_seeds.csv')
+USER_FILE = Rails.root.join('db', 'user_seeds_3.csv')
 puts "Loading raw user data from #{USER_FILE}"
 
 user_failures = []
@@ -52,7 +52,7 @@ puts "#{user_failures.length} user failed to save"
 
 #--------------------------------------------------------
 
-ORDERS_FILE = Rails.root.join('db', 'order_seeds.csv')
+ORDERS_FILE = Rails.root.join('db', 'order_seeds_3.csv')
 puts "Loading raw order data from #{ORDERS_FILE}"
 
 order_failures = []
@@ -81,7 +81,7 @@ puts "#{order_failures.length}  order failed to save"
 
 #--------------------------------------------------------
 
-PRODUCTS_FILE = Rails.root.join('db', 'product_seeds.csv')
+PRODUCTS_FILE = Rails.root.join('db', 'product_seeds_3.csv')
 puts "Loading raw product data from #{PRODUCTS_FILE}"
 
 product_failures = []
