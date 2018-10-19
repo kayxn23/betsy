@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
     if @category.save
       flash[:success] = "#{@category.name} added!"
       redirect_to user_path
+    end 
   end
 
   def show

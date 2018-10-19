@@ -14,7 +14,7 @@ describe OrdersController do
         status: "pending"
       }
     }
-    binding.pry
+    # binding.pry
     expect {
       post orders_path, params: order_hash
     }.must_change 'Order.count', 1
