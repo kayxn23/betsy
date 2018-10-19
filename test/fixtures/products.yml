@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+graveyard:
   name: MyString
   price: 9.99
   description: MyString
   photo: MyString
   stock: 1
 
-two:
+haunted_house:
   name: MyString
   price: 9.99
   description: MyString

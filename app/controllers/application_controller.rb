@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
 
   def set_order
     #Does an order exist?
-    @order = Order.find(session[:order_id])
+    @order = Order.find_by(id: session[:order_id])
 
     #There is no order in the db
     if @order.nil?
-      if @merchant #Does the order have a merchant?
+      if is_merchant? #Does the order have a merchant?
         @order = Order.create(user_id: @merchant.id, status: "pending")
         session[:order_id] = @order.id
       else #They are checking out as a guest, there won't be a user_id relation

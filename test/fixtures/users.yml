@@ -3,25 +3,13 @@
 one:
   name: MyString
   email: MyString
-  street: MyString
-  city: MyString
-  state: MyString
-  zip: 1
-  creditcard: 1
-  ccexpiration: 2018-10-17
-  cvv: 1
-  billingzip: 1
   photo: MyString
+  uid: 67
+  provider: github
 
 two:
   name: MyString
   email: MyString
-  street: MyString
-  city: MyString
-  state: MyString
-  zip: 1
-  creditcard: 1
-  ccexpiration: 2018-10-17
-  cvv: 1
-  billingzip: 1
   photo: MyString
+  uid: 889
+  provider: github
