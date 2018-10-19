@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def set_order
     #Does an order exist?
-    @order = Order.find_by(id: session[:order_id])
+    @order = Order.find_by(id:session[:order_id])
 
     #There is no order in the db
     if @order.nil?

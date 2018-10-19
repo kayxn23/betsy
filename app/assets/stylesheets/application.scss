@@ -13,6 +13,91 @@
  */
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
-@import "bootstrap";
+
 /* Import scss content */
 @import "**/*";
+
+@import "bootstrap";
+
+
+$primary-font: 'Gudea', sans-serif;
+$primary-teal: #26A69A;
+$dark-teal: #00796B;
+$secondary-color: grey;
+$light-gray: #EEEEEE;
+$dark-gray: #424242;
+$gold: #FF5722;
+
+$default-border: 2px solid;
+
+body, h1, h2, h3, h4, h5 {
+  font-family: $primary-font
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+a, h2, h3 {
+  color: $primary-teal;
+}
+
+a:hover {
+  color: $dark-teal;
+  text-decoration: none;
+}
+
+
+
+
+//  navigation styling
+
+
+.app-header__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.app-header__nav_item {
+  margin-top: 1rem;
+}
+
+.app-header__nav_item .nav-link {
+  color: white;
+}
+
+.app-header__site-nav-container .app-header__nav_item {
+  margin-right: 2rem;
+}
+
+.app-header__user-nav-container .nav-item {
+  margin-left: 2rem;
+}
+
+.list-group-item {
+  border: none;
+}
+
+.app-header__header {
+  max-width: 100%;
+  background-color: $secondary-color;
+  margin-bottom: 0.5rem;
+  padding: 2rem 1rem 0.5rem 1rem;
+  h1 {
+    text-align: center;
+    margin: 25px auto 40px auto;
+    a {
+      color: black;
+      padding-right: 25px;
+      margin-right: 15px;
+    }
+    small {
+      color: white;
+      border-bottom: white 2px solid;
+    }
+  }
+  p {
+    margin-bottom: 5px;
+  }
+}

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def new
-
   end
 
   def create
@@ -21,8 +20,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    raise 
     return params.require(:user).permit(:name, :email, :street, :city, :state, :zip, :creditcard, :ccexpiration, :cvv, :billingzip, :photo)
-    raise
   end
 end

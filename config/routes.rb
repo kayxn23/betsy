@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'
-  # get 'products/index'
+  get '/products', to: 'products#index', as: 'products'
+  get '/products/:id', to: 'products#show', as: 'product'
+
   # get 'products/show'
   # get 'products/update'
   # get 'products/new'

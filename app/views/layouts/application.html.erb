@@ -10,6 +10,32 @@
   </head>
 
   <body>
+    <header class="app-header__header">
+    <h1>
+      <%= link_to "Thrillow", products_path %>
+      <small>find your thrill</small>
+    </h1>
+
+    <nav class="app-header__nav">
+      <ul class="nav app-header__site-nav-container">
+        <li class="nav-item app-header__nav_item">
+          <%= link_to "View All Products/aka home pg", products_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item app-header__nav_item">
+          <%# link_to "View all media", works_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item app-header__nav_item">
+          <%# link_to "Add a new work", new_work_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item app-header__nav_item">
+          <%# link_to "View all users", users_path, class: "nav-link" %>
+        </li>
+      </ul>
+
+
+    <main>
     <%= yield %>
+    </main>
+
   </body>
 </html>
