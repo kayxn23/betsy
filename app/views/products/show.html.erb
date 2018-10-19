@@ -1,2 +1,20 @@
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
+
+
+<% if @product.nil? %>
+  <h1> 404 Not found</h1>
+<% else %>
+  <h1><%=@product.name %></h1>
+  <section><%#@product.photo %></section>
+  <ul>
+    <li><%= @product.description %></li>
+    <li><%= @product.price %></li>
+    <li><%= @product.stock %></li>
+    <li><%# @product.category %> look up how to create a dropdown for category</li>
+  </ul>
+
+<!-- if signed in as merchant and this is your product then show  -->
+  <%# link_to "Edit", edit_product_path(@product.id) %>
+  <%# link_to "Delete #{@product.title}", product_path(@product.id), method: :delete %>
+<%# end %>

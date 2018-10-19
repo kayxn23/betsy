@@ -1,0 +1,37 @@
+<!-- <section class="works-form">
+  <header class="works_header">
+      <h1 class="works_title"><%# action_name %></h1>
+  </header> -->
+
+  <section class="form">
+    <% if @product.errors.any? %>
+      <ul class="errors">
+        <% @product.errors.each do |column, message| %>
+        <li>
+          <strong><%= column.capitalize %></strong> <%= message %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_with model: @product, class: "form" do |f|%>
+        <%# f.label :category %>
+        <%# f.select :category, ['album','book','movie'], class: 'form__input'%>
+
+        <%= f.label :price %>
+        <%= f.text_field :price, class: "form__input"%>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form__input"%>
+
+
+        <%= f.label :description %>
+        <%= f.text_field :description, class: "form__input"%>
+
+        <%= f.label :stock %>
+        <%= f.text_field :stock, class: "form__input" %>
+
+      <%= f.submit button_title, class: 'btn'%>
+    <% end %>
+  </section>
+</section>
