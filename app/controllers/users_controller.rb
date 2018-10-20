@@ -12,19 +12,18 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     # How is user linked to product?
-
-
   end
 
   def create
-    @user = user.new(user_params)
+    @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Merchant created!"
-      # Send to merchant's home page
-      redirect_to users_path(@user.id)
+      # We run User.create on the checkout page
+      # (Merchant creation is done via oauth login)
+      flash[:success] = "Account saved!"
+      redirect_to root_path, status: :success
     else
       # Could not save
-      flash[:danger] = "Could not create a new merchant."
+      flash[:danger] = "Could not save account"
       # Render new user form again
       render :new, status: :bad_request
     end
@@ -33,6 +32,7 @@ class UsersController < ApplicationController
   #TODO Do we need update? Are we letting merchants edit/update?
 
 # before action to find user already applied
+# Will be redirected if not a merchant
   def show
   end
 
@@ -40,18 +40,19 @@ class UsersController < ApplicationController
 
   def find_user
     # Try to find the user
-    @user = User.find_by(id: params[:id])
-
+    @user = User.find_by(id: params[:id].to_i)
+    # binding.pry
     # If user doesn't exist flash a message /render notfound page
     if @user.nil?
       flash.now[:danger] = "Cannot find the user #{params[:id]}"
-      redirect_to root_path
+      # binding.pry
+      render :notfound , status: :not_found
     end
   end
 
   def user_params
     # Do we need to add uid/provider to this?
     # I think those are optional as guest users are saved upon checkout
-    return params.require(:user).permit(:name, :email, :photo)
+    return params.require(:user).permit(:name, :email)
   end
 end
