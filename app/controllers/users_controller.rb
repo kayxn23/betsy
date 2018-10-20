@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       # We run User.create on the checkout page
       # (Merchant creation is done via oauth login)
       flash[:success] = "Account saved!"
-      redirect_to root_path, status: :success
+      redirect_to root_path
     else
       # Could not save
       flash[:danger] = "Could not save account"
