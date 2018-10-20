@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :find_merchant
   before_action :is_merchant?
   before_action :set_order
+  before_action :find_user
+
   private
 
   def find_merchant
@@ -10,6 +12,10 @@ class ApplicationController < ActionController::Base
 
   def is_merchant?
     return @merchant
+  end
+
+  def find_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def set_order
