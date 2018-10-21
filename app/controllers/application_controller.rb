@@ -2,6 +2,13 @@ class ApplicationController < ActionController::Base
   before_action :find_merchant
   before_action :is_merchant?
   before_action :set_order
+
+  # def render_404
+  #   # DPR: this will actually render a 404 page in production
+  #   raise ActionController::RoutingError.new('Not Found')
+  # end
+
+
   private
 
   def find_merchant
