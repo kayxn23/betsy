@@ -36,6 +36,9 @@ describe Order do
   end
 
   describe 'Validations' do
+    #Need to add tests here
+    #Validation that a product could not be added
+    # 
   end
 
   describe "add_product" do
