@@ -35,6 +35,13 @@ describe Product do
     end
 
     it 'can have many orders' do
+      product.orders << Order.first
+      orders = product.orders
+
+      expect(orders.length).must_be :>=, 1
+      orders.each do |order|
+        expect(order).must_be_instance_of Order
+      end
     end
   end
   describe 'Validations' do

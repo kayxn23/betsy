@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :orders
   has_many :products
+  validates :email, format: { with: /\A[\w-]+@([\w-]+\.)+[\w-]+\z/ }
+  validates :name, presence: true
 
   def self.build_from_github(auth_hash)
    new_user = User.new

@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+kay:
   name: MyString
-  email: MyString
+  email: MyString@gmail.com
   photo: MyString
   uid: 67
   provider: github
 
-two:
+dani:
   name: MyString
-  email: MyString
+  email: MyString@gmail.com
   photo: MyString
   uid: 889
   provider: github
