@@ -59,7 +59,7 @@ describe UsersController do
 
         expect(User.last.name).must_equal user_hash[:user][:name]
         expect(User.last.email).must_equal user_hash[:user][:email]
-        binding.pry
+        # binding.pry
         # For some reason photo is not coming through/is nil
         # Is in user hash but doesn't seem to carry over
         expect(User.last.photo).must_equal user_hash[:user][:photo]
