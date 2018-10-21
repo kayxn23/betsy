@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   resources :categories, only: [ :new, :create ]
   # get 'categories/new'
   # get 'categories/create'
-  resources :orders, only: [ :new, :create, :show ]
+  get '/cart', to: 'orders_items#index'
+  resources :orders_items, path: '/cart/items'
+  #resources :orders, only: [ :new, :create, :show ]
   # get 'orders/new'
   # get 'orders/create'
   # get 'orders/show'
