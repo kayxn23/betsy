@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'products#root'
 
   get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
 
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   # get 'products/destroy'
   resources :categories, only: [ :new, :create, :index ] do
     resources :products, only: [:index, :new]
-  end 
+  end
   # get 'categories/new'
   # get 'categories/create'
   resources :orders, only: [ :new, :create, :show ]
