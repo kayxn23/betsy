@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Logged in as returning user #{user.name}"
 
     else
+      #TODO Reroute to signup - Signup does this stuff
       # User doesn't match anything in the DB
       # Attempt to create a new user
       user = User.build_from_github(auth_hash)
