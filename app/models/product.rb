@@ -3,8 +3,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :orders_items
   has_many :orders, through: :orders_items
-
-
+  
   validates :name, presence: true
   validates :price, presence: true
   validates :description, presence: true

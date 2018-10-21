@@ -38,14 +38,14 @@ describe Order do
   describe 'Validations' do
     #Need to add tests here
     #Validation that a product could not be added
-    # 
+    #
   end
 
   describe "add_product" do
     let(:order) { orders(:one) }
 
     it "adds product to order" do
-      product = products(:graveyard)
+      product = products(:product2)
 
       product_params = {
         orders_item: {

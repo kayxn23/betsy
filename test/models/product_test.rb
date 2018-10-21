@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { products(:graveyard) }
+  let(:product) { products(:product1) }
 
   it "must be valid" do
     expect(product).must_be :valid?
@@ -46,7 +46,7 @@ describe Product do
   end
   describe 'Validations' do
     it 'must have name' do
-        product = products(:haunted_house)
+        product = products(:product2)
         product.name = nil
 
         valid = product.save
@@ -56,7 +56,7 @@ describe Product do
     end
 
     it 'must have price' do
-      product = products(:haunted_house)
+      product = products(:product2)
       product.price = nil
 
       valid = product.save
@@ -65,7 +65,7 @@ describe Product do
     end
 
     it 'must have description' do
-      product = products(:haunted_house)
+      product = products(:product2)
       product.description = nil
 
       valid = product.save
@@ -74,7 +74,7 @@ describe Product do
     end
 
     it 'must have photo' do
-      product = products(:haunted_house)
+      product = products(:product2)
       product.photo = nil
 
       valid = product.save
@@ -83,7 +83,7 @@ describe Product do
     end
 
     it 'must have stock' do
-      product = products(:haunted_house)
+      product = products(:product2)
       product.stock = nil
 
       valid = product.save

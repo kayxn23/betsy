@@ -1,8 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+
 kay:
   name: MyString
   email: MyString@gmail.com
+  photo: MyString
+  uid: 1031
+  provider: github
+
+user1:
+  name: user1
+  email: MyString
   photo: MyString
   uid: 67
   provider: github
