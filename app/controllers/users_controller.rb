@@ -2,16 +2,10 @@ class UsersController < ApplicationController
   # May need to add edit/update/destroy to this later
   before_action :find_user, only: [:show, :dashboard]
   before_action :require_login, only: [:dashboard]
-  # Do we want to require login for the
-  # merchant show page/index page
-  # Or does the view change based on if it's
-  # a merchant looking at own products (can edit products/add products)
-  # vs a shopper looking at a merchant's homepage (just show products, no edit/add)?
-  # I think that logic would be attached to the product
-  # show page
+
+# Might not need this as login does new oauth
   def new
     @user = User.new
-    # How is user linked to product? Via ordersitems I think
   end
 
   def create
@@ -34,6 +28,23 @@ class UsersController < ApplicationController
 # Is a page that shows all merchant's products
 # If person is merchant of that id, can edit products
   def show
+  end
+
+# Need page showing all the merchants
+  def index
+    @merchants = User.where(uid: true )
+  end
+
+  def products
+    # Find merchant id
+    # Find products linked to that merchant
+    # Show them
+    id = params[:id].to_i
+    @merchant = User.find_by(id: id)
+    @products = @merchant.products.all
+    if @merchant.nil?
+      render :notfound, status: :not_found
+    end
   end
 
   # Requires login to see merchant dashboard
