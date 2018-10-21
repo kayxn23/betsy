@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-grace:
-  name: grace
-  email: grace@gmail.com
+user1:
+  name: user1
+  email: MyString
   photo: MyString
   uid: 45646654
   provider: github
@@ -13,3 +13,10 @@ tom:
   photo: MyString
   uid: 123564684
   provider: github
+
+  grace:
+    name: grace
+    email: MyString
+    photo: MyString
+    uid: 343434234
+    provider: github

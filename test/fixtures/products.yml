@@ -1,15 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-graveyard:
-  name: MyString
+product1:
+  name: a product
   price: 9.99
   description: MyString
   photo: MyString
   stock: 1
+  user: user1
 
-haunted_house:
-  name: MyString
-  price: 9.99
+product2:
+  name: b product
+  price: 10.99
   description: MyString
   photo: MyString
-  stock: 1
+  stock: 2
+  # user_id: 2
+
+product3:
+  name: c product
+  price: 11.99
+  description: MyString
+  photo: MyString
+  stock: 3
+  # user_id: 3

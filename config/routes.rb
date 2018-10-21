@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'products#root'
 
   root "products#index"
 
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
 
   # get 'sessions/login'
   # get 'sessions/destroy'
-  resources :users, only: [ :new, :create]
+  resources :users, only: [ :new, :create, :index]
 
 # Creates route for user_products so we can link each merchant to
 # users/:user_id/products
@@ -22,7 +23,8 @@ Rails.application.routes.draw do
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'
-  resources :products
+  resources :products, except: [:destroy]
+  post '/products/:id/retire', to: "products#retire", as: "retire"
   # get '/products', to: 'products#index', as: 'products'
   # get '/products/:id', to: 'products#show', as: 'product'
 
@@ -32,7 +34,9 @@ Rails.application.routes.draw do
   # get 'products/create'
   # get 'products/edit'
   # get 'products/destroy'
-  resources :categories, only: [ :new, :create ]
+  resources :categories, only: [ :new, :create, :index ] do
+    resources :products, only: [:index, :new]
+  end
   # get 'categories/new'
   # get 'categories/create'
   resources :orders, only: [ :new, :create, :show ]
