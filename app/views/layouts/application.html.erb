@@ -10,47 +10,29 @@
   </head>
 
   <body>
-    <header class="app-header__header">
+    <header>
     <h1>
       <%= link_to "Thrillow", products_path %>
       <small>find your thrill</small>
     </h1>
 
-    <nav class="app-header__nav">
-      <ul class="nav app-header__site-nav-container">
-        <li class="nav-item app-header__nav_item">
-          <%= link_to "Shop All Products", products_path, class: "nav-link" %>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "Shop All Products", products_path, class: "" %>
         </li>
-        <li class="nav-item app-header__nav_item">
-          <%= link_to "by Category", categories_path, class: "nav-link" %>
+        <li >
+          <%= link_to "by Category", categories_path, class: "" %>
         </li>
-        <li class="nav-item app-header__nav_item">
-          <%= link_to "by Merchant", users_path, class: "nav-link" %>
+        <li>
+          <%= link_to "by Merchant", users_path, class: "" %>
         </li>
-        <li class="nav-item app-header__nav_item">
+        <li>
           <%# link_to "View all users", users_path, class: "nav-link" %>
         </li>
       </ul>
+    </nav>
 
-
-
-      <ul class="nav app-header__user-nav-container">
-        <% if @login_user %>
-
-        <li class="nav-item app-header__nav_item">
-        <%= link_to "Logged in as #{@login_user.username}", user_path(@login_user), class: "btn btn-primary" %>
-        </li>
-        <li class="nav-item app-header__nav_item">
-        <%= link_to "Log Out", logout_path, method: "delete", class: "btn btn-primary" %>
-        </li>
-
-  <% else %>
-
-        <li class="nav-item app-header__nav_item">
-        <%= link_to "Login with Github", "/auth/github", class: "btn btn-primary" %>
-        </li>
-        <% end %>
-      </ul>
 
 
     <main>
