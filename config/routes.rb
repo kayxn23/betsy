@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'
-  resources :products
+  resources :products, except: [:destroy]
+  post '/products/:id/retire', to: "products#retire", as: "retire" 
   # get '/products', to: 'products#index', as: 'products'
   # get '/products/:id', to: 'products#show', as: 'product'
 
