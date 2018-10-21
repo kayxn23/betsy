@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:success] = 'Product Created!'
 
-      redirect_to root_path
+      redirect_to product_path(@product.id)
     else
       flash.now[:danger] = 'Product not created!'
 
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   def update
     if @product && @product.update(product_params)
       redirect_to product_path(@product.id)
-    elsif @product && !product.valid? #the product exists and it was invalid inputs
+    elsif @product && !@product.valid? #the product exists and it was invalid inputs
       render :edit, status: :bad_request
     end
   end
@@ -50,9 +50,10 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find_by(id: params[:id].to_i)
+    # render_404 unless @product
 
     if @product.nil?
-      flash.now[:danger] = "Cannot find the product #{params[:name]}"
+      flash.now[:danger] = "Cannot find the product #{params[:id]}"
       render :notfound, status: :not_found
     end
   end

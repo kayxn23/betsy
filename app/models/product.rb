@@ -4,6 +4,10 @@ class Product < ApplicationRecord
   has_many :orders, through: :orders_items
   #should this has_many relationship be:
   #belongs_to :orders, through: :order_items ??
+  validates :name, uniqueness: true
+  validates :name, presence: true
+
+
 
 
 end
