@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # May need to add edit/update/destroy to this later
-  before_action :find_user, only: [:show]
-  before_action :require_login, only: [:show]
+  before_action :find_user, only: [:show, :dashboard]
+  before_action :require_login, only: [:dashboard]
   # Do we want to require login for the
   # merchant show page/index page
   # Or does the view change based on if it's
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # show page
   def new
     @user = User.new
-    # How is user linked to product? Via ordersitems I think 
+    # How is user linked to product? Via ordersitems I think
   end
 
   def create
@@ -31,9 +31,17 @@ class UsersController < ApplicationController
 
   #TODO Do we need update? Are we letting merchants edit/update?
 
-# before action to find user already applied
-# Will be redirected if not a merchant
+# Is a page that shows all merchant's products
+# If person is merchant of that id, can edit products
   def show
+  end
+
+  # Requires login to see merchant dashboard
+  # Will show products, able to add product, edit product, see orders, etc.
+  def dashboard
+    @products = @merchant.products
+    # How do we find order items for merchant? merchant.orderitems?
+
   end
 
   private

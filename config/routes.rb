@@ -4,13 +4,21 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
-
+  get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
 
   resources :orders, only: [:show, :new, :create]
 
   # get 'sessions/login'
   # get 'sessions/destroy'
-  resources :users, only: [ :new, :create, :show]
+  resources :users, only: [ :new, :create]
+
+# Creates route for user_products so we can link each merchant to
+# users/:user_id/products
+  resources :users, only: [:show] do
+    resources :products, only: [:index]
+  end
+  # TODO Added nested routes for orderitems
+
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'
