@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # May need to add edit/update/destroy to this later
   before_action :find_user, only: [:show]
+  before_action :require_login, only: [:show]
   # Do we want to require login for the
   # merchant show page/index page
   # Or does the view change based on if it's
@@ -8,10 +9,9 @@ class UsersController < ApplicationController
   # vs a shopper looking at a merchant's homepage (just show products, no edit/add)?
   # I think that logic would be attached to the product
   # show page
-  before_action :require_login, only: [:show]
   def new
     @user = User.new
-    # How is user linked to product?
+    # How is user linked to product? Via ordersitems I think 
   end
 
   def create
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   private
 
-# Do I need this or can I just use the find_merchant method? 
+# Do I need this or can I just use the find_merchant method?
   def find_user
     # Try to find the user
     @user = User.find_by(id: params[:id].to_i)
