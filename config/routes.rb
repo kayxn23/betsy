@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
-  get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
-  root "products#index" 
+  root "products#index"
+
+  get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
+  delete "/logout", to: "sessions#destroy", as: "logout"
+
+
   resources :orders, only: [:show, :new, :create]
 
-  resources :sessions, only: [ :login, :destroy, :new ]
   # get 'sessions/login'
   # get 'sessions/destroy'
-  # get 'sessions/new'
   resources :users, only: [ :new, :create, :show]
   # get 'users/new'
   # get 'users/create'

@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     return @merchant
   end
 
+  def find_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
   def set_order
     #Does an order exist?
     @order = Order.find_by(id:session[:order_id])

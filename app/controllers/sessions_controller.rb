@@ -1,8 +1,13 @@
 class SessionsController < ApplicationController
+  # TODO How do we handle a merchant shopping/closing browser
+  # coming back as a user (not logged in).
+  # Do we merge the carts or do we destroy the old cart
+
   def login
     auth_hash = request.env['omniauth.auth']
 
     user = User.find_by(uid: auth_hash[:uid], provider: 'github')
+
     if user
       # User was found in the database
       flash[:success] = "Logged in as returning user #{user.name}"
@@ -28,9 +33,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session[:user_id] = nil
+    flash[:success] = "Successfully logged out!"
+    redirect_to root_path
   end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 end
