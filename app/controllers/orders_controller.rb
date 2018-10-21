@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     # Find user
-    # If no user, User.create 
+    # If no user, User.create
    if params[:user_id]
      @user_id = params[:user_id].to_i
      user = User.find_by(id: @user_id)
@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(book_params)
+    @order = Order.new(order_params)
      if @order.save # save returns true if the database insert succeeds
        flash[:success] = 'Order Created!'
 

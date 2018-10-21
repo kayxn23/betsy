@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :orders
-  has_many :products
+  has_many :orders, dependent: :destroy
+  has_many :products, dependent: :destroy 
 
   def self.build_from_github(auth_hash)
    new_user = User.new

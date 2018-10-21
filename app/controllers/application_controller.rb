@@ -4,7 +4,23 @@ class ApplicationController < ActionController::Base
   before_action :set_order
   before_action :find_user
 
+  # def render_404
+  #   # DPR: this will actually render a 404 page in production
+  #   raise ActionController::RoutingError.new('Not Found')
+  # end
+
   private
+
+  def find_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def require_login
+    if User.find_by(id: session[:user_id], provider: 'github').nil?
+      flash[:error] = "You must be logged in to view this section"
+      redirect_to root_path
+    end
+  end
 
   def find_merchant
     @merchant = User.find_by(id: session[:user_id], provider: 'github')
@@ -33,7 +49,4 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-
-
 end
