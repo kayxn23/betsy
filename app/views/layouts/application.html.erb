@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Betsy</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Thrillow</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <header class="app-header__header">
+<body>
+  <header>
     <h1>
-      <%= link_to "Thrillow", products_path %>
-      <small>find your thrill</small>
+      <%= link_to "Thrillow", root_path %>
     </h1>
 
-    <nav class="app-header__nav">
-      <ul class="nav app-header__site-nav-container">
-        <li class="nav-item app-header__nav_item">
-          <%= link_to "View All Products/aka home pg", products_path, class: "nav-link" %>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "Shop All Homes", products_path, class: "" %>
         </li>
-        <li class="nav-item app-header__nav_item">
-          <%# link_to "View all media", works_path, class: "nav-link" %>
+        <li >
+          <%= link_to "Shop By Categories", categories_path, class: "" %>
         </li>
-        <li class="nav-item app-header__nav_item">
-          <%# link_to "Add a new work", new_work_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item app-header__nav_item">
-          <%# link_to "View all users", users_path, class: "nav-link" %>
+        <li>
+          <%= link_to "Shop By Sellers", users_path, class: "" %>
         </li>
         <li>
           <% if session[:user_id %>
@@ -38,11 +34,12 @@
           <% end %>
         </li>
       </ul>
+    </nav>
 
 
     <main>
-    <%= yield %>
+      <%= yield %>
     </main>
 
   </body>
-</html>
+  </html>

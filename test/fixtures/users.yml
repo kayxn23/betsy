@@ -1,15 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-grace:
-  name: Grace
-  email: Grace@gmail.com
-  photo: https://static.turbosquid.com/Preview/2015/01/17__07_25_15/01_render.jpg34973c9c-955c-48a8-b14f-28162062ececRes200.jpg
-  uid: 6723323
+user1:
+  name: user1
+  email: MyString
+  photo: MyString
+  uid: 45646654
   provider: github
 
-john:
-  name: John
-  email: John@hotmail.com
-  photo: https://cdn5.f-cdn.com/contestentries/895802/20628095/584189d7b4a1e_thumbCard.jpg
-  uid: 889w3232
+tom:
+  name: tom
+  email: tom@hotmail.com
+  photo: MyString
+  uid: 123564684
   provider: github
+
+  grace:
+    name: grace
+    email: MyString
+    photo: MyString
+    uid: 343434234
+    provider: github
