@@ -6,6 +6,7 @@ graveyard:
   description: MyString
   photo: MyString
   stock: 1
+  user: one
 
 haunted_house:
   name: MyString
@@ -13,3 +14,4 @@ haunted_house:
   description: MyString
   photo: MyString
   stock: 1
+  user: one
