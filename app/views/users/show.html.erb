@@ -9,3 +9,19 @@
   </p>
 
 <% end %>
+
+<section>
+  <h2>Products</h2>
+  <ul>
+    <%= @user.products.each do |product| %>
+      <li>
+        <h3><%= product.name %></h3>
+        <p><%= "Price: #{product.price}" %></p>
+        <p><%= "Description: #{product.description}" %></p>
+        <p><%= "Stock: #{product.stock}" %></p>
+        <!-- <img <%= "#{product.photo}" %> > -->
+      </li>
+
+    <% end %>
+  </ul>
+</section>
