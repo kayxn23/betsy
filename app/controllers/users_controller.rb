@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   private
 
+# Do I need this or can I just use the find_merchant method? 
   def find_user
     # Try to find the user
     @user = User.find_by(id: params[:id].to_i)
