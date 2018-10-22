@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
 
-  resources :orders, only: [:show, :new, :create]
+  # resources :orders, only: [:show, :new, :create, :index]
 
   resources :sessions, only: [ :login, :destroy, :new ]
   # get 'sessions/login'
@@ -29,11 +29,16 @@ Rails.application.routes.draw do
   end
   # get 'categories/new'
   # get 'categories/create'
-  get '/cart', to: 'orders_items#index'
-  resources :orders_items, path: '/cart/items'
-  #resources :orders, only: [ :new, :create, :show ]
-  # get 'orders/new'
-  # get 'orders/create'
-  # get 'orders/show'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :orders, only: [:show, :new, :create, :index] do
+  resources :orders_items, only: [:create, :new, :show]
+end
+ post '/products/:id/add_to_cart', to: "products#add_to_cart", as: "add_to_cart"
+
+
+  # get '/order/:id/orders_items', to: 'orders_items#index'
+  # get '/order/:id/orders_items', to: 'orders_items#new'
+  # post '/order/:id/orders_items', to: 'orders_items#create'
+
+
+
 end

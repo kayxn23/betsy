@@ -1,8 +1,11 @@
 class OrdersController < ApplicationController
+
+
+
   def new
     @order = Order.new
     # Find user
-    # If no user, User.create 
+    # If no user, User.create
    if params[:user_id]
      @user_id = params[:user_id].to_i
      user = User.find_by(id: @user_id)
@@ -14,7 +17,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(book_params)
+    @order = Order.new(order_params)
      if @order.save # save returns true if the database insert succeeds
        flash[:success] = 'Order Created!'
 
@@ -27,9 +30,16 @@ class OrdersController < ApplicationController
    end
 
   def show
+      @order = Order.find_by(id:session[:order_id])
   end
 
+    def index
+      @orders = Order.all
+    end
+
+  private
   def order_params
     return params.require(:order).permit(:status)
   end
+
 end

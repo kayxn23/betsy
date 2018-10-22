@@ -1,19 +1,10 @@
 <h1>Orders#show</h1>
 <p>Find me in app/views/orders/show.html.erb</p>
 
-#order.orders_items
-
-<h2 class="top-ten__header">
-  Order Items
-</h2>
-<ul class="list-group top-ten__list">
-    <li class="list-group-item">
-      <h4>
-        <% @orders.each do |order| %>
-            <br>
-            <p><%= order.orders_items %> </p>
-        <% end %>
-      </h4>
-    </li>
-
-</ul>
+<% if @order.products.count == 0 %>
+  <p>There's nothing in your cart!</p>
+<% end %>
+ <% @order.products.each do |product| %>
+  <%= product.name %>
+  <%= product.price %>
+<% end %>

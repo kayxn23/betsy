@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
+  before_action :set_order
   before_action :find_merchant
   before_action :is_merchant?
-  before_action :set_order
+
 
   # def render_404
   #   # DPR: this will actually render a 404 page in production
@@ -20,20 +21,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_order
-    #Does an order exist?
-    @order = Order.find_by(id:session[:order_id])
-
-    #There is no order in the db
-    if @order.nil?
-      if is_merchant? #Does the order have a merchant?
-        @order = Order.create(user_id: @merchant.id, status: "pending")
-        session[:order_id] = @order.id
-      else #They are checking out as a guest, there won't be a user_id relation
-        @order = Order.create(status: "pending")
-        session[:order_id] = @order.id
-      end
+    if is_merchant? #Does the order have a merchant?
+      @order = Order.find_by(user_id: @merchant.id)
+      session[:order_id] = @order.id
+    else #They are checking out as a guest, there won't be a user_id relation
+      @order = Order.create(status: "pending")
+      session[:order_id] = @order.id
     end
-
+    return @order
   end
 
 
