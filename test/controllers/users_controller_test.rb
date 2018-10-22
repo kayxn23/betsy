@@ -10,6 +10,13 @@ describe UsersController do
     end
   end
 
+  describe "index" do
+    it "should get index" do
+      get users_path
+      must_respond_with :success
+    end
+  end
+
 
   describe "dashboard" do
     it "should get dashboard if you are a logged in merchant/it's your dashboard" do
@@ -73,8 +80,7 @@ describe UsersController do
 
         expect(User.last.name).must_equal user_hash[:user][:name]
         expect(User.last.email).must_equal user_hash[:user][:email]
-        # For some reason photo is not coming through/is nil
-        # Is in user hash but doesn't seem to carry over
+
         expect(User.last.photo).must_equal user_hash[:user][:photo]
         expect(User.last.uid).must_equal user_hash[:user][:uid]
         expect(User.last.provider).must_equal user_hash[:user][:provider]
