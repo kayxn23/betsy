@@ -1,9 +1,11 @@
 class CategoriesController < ApplicationController
 
   def index
+    @categories = Category.all.order(:name)
   end
 
   def new
+    @category = Category.new
   end
 
   def create
@@ -11,24 +13,27 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:success] = "#{@category.name} added!"
-      redirect_to user_path
+      redirect_to root_path #change this to dashboard_path
+    else #save failed
+      flash.now[:danger] = "Category #{@category.name} not added!"
+      render :new, status: :bad_request
     end
-
-    def show
-      @category = Category.find_by(id: params[:id])
-
-      if @cateogry.nil?
-        flash.now[:danger] = "Cannot find the category #{params[:id]}"
-        render :notfound, status: :not_found
-      end
-    end
-
-    private
-
-    def category_params
-      return params.require(:category).permit(:name)
-    end
-
-
   end
+
+  def show
+    @category = Category.find_by(id: params[:id])
+
+    if @cateogry.nil?
+      flash.now[:danger] = "Cannot find the category #{params[:id]}"
+      render :notfound, status: :not_found
+    end
+  end
+
+  private
+
+  def category_params
+    return params.require(:category).permit(:name)
+  end
+
+
 end

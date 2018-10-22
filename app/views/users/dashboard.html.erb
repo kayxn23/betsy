@@ -1,0 +1,47 @@
+<% if @user.nil? %>
+  <h1>User Not Found</h1>
+<% else %>
+
+<div class="container">
+  <header>
+    <h1>Dashboard</h1>
+    <!-- Edit own info here? Are we providing user edit/update? -->
+    <h1><%= @merchant.name %></h1>
+    <p>
+      <%= @merchant.email %>
+    </p>
+  </header>
+
+  <nav>
+    <ul id = "merchant_options">
+      <li class="btn black-button">
+        <!-- Link to product page that shows merchant products with edit/add option -->
+        My Products - Should we show products here or link to a page that shows them?
+      </li>
+      <li>
+        Add Product - Link to product new
+      </li>
+      <li>
+        <!-- Link to order page that shows order items related to merchant? -->
+        Summary of Customer Product Orders - Should we show order items related to merchant here or link to a page that shows them?
+      </li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>Products</h2>
+    <ul>
+      <%= @merchant.products.each do |product| %>
+        <li>
+          <h3><%= product.name %></h3>
+          <p><%= "Price: #{product.price}" %></p>
+          <p><%= "Description: #{product.description}" %></p>
+          <p><%= "Stock: #{product.stock}" %></p>
+          <!-- <img <%= "#{product.photo}" %> > -->
+        </li>
+
+      <% end %>
+    </ul>
+  </section>
+  </div>
+<% end %>
