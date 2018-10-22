@@ -46,14 +46,16 @@ describe SessionsController do
    it "Rejects a user with invalid data" do
      # Is still being added :(
      # Arrange
-     user = users(:john)
+    user = User.new(
+        name: "bob", uid: 234324343, provider: 'github'
+       )
 
-     # Making use have invalid data
-     user.uid = nil
      # Tell OmniAuth to use this user's info when it sees
      # an auth callback from github
      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+     # binding.pry
 
+     # Making use have invalid data
      # Act - Will not change user count
        # Assert
        # Won't add a user to database
@@ -61,7 +63,8 @@ describe SessionsController do
          get auth_callback_path('github')
        }.wont_change("User.count")
 
-       # Will flash an error
+       # Will flash an error - Can't save
+       user.save
        expect(flash[:error]).must_equal "Could not create new user account: #{user.errors.messages}"
        # And redirect to root_path
        must_respond_with :redirect
