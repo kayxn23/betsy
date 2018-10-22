@@ -3,13 +3,8 @@
 <ul>
   <!-- Need help getting this to show, is not working -->
   <!-- Says merchants is not nil so why is this not working? -->
-  <!-- Says it's an active record relation instead of a collection of merchants? -->
-  <%= @merchants.class %>
-  <% @merchants.each do |merchant| %>
+  <!-- Says it's an active record relation instead of a collection of merchants? -->  <% @merchants.each do |merchant| %>
     <li>
-      <p>
-      <%="#{merchant}" %>
-      </p>
       <h3><%= link_to "#{merchant.name}", merchant_products_path(merchant.id)  %></h3>
     </li>
 
