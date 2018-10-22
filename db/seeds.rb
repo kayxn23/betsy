@@ -106,3 +106,26 @@ end
 
 puts "Added #{Product.count} product records"
 puts "#{product_failures.length} product failed to save"
+
+#--------------------------------------------------------
+
+ORDER_ITEMS_FILE = Rails.root.join('db', 'order_item_seeds.csv')
+puts "Loading raw product data from #{ORDER_ITEMS_FILE}"
+
+order_items_failures = []
+CSV.foreach(ORDER_ITEMS_FILE, :headers => true) do |row|
+  order_item = OrdersItem.new
+  order_item.order_id = row['order_id']
+  order_item.product_id = row['product_id']
+  order_item.quantity = row['quantity']
+  successful = order_item.save
+  if !successful
+    order_items_failures << order_item
+    puts "Failed to save order items: #{order_item.inspect}"
+  else
+    puts "Created order items: #{order_item.inspect}"
+  end
+end
+
+puts "Added #{OrdersItem.count} order item records"
+puts "#{order_items_failures.length} order items failed to save"

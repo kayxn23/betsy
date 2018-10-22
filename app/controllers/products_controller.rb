@@ -1,5 +1,8 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :retire]
+  before_action :require_login, except: [:index, :show, :add_to_cart]
+
   # before_action :login, except: [:edit, :new] do we want to add this?
 
   def index
@@ -21,7 +24,14 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = Product
+    # There should be a merchant to create a new product
+    # @merchant should be available via application controller
+    if @merchant
+      @product.user_id = @merchant.id
+    else
+      flash.now[:warning] = "That merchant does not exist"
+    end
   end
 
   def edit; end

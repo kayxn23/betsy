@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
     end
 #call set order are a merchant, find pending = nil. never going to next else to create one
     return @order
-#hint this message should have at least one case where we are seeing if session id is already set -
+#hint this method should have at least one case where we are seeing if session id is already set -
 #this will avoid assigning a new cart to somebody who has one
   end
 end
