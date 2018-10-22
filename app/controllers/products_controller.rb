@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :retire]
+  before_action :require_login, except: [:index, :show, :add_to_cart]
+
   # before_action :login, except: [:edit, :new] do we want to add this?
 
   def index
@@ -21,7 +23,14 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = Product
+    # There should be a merchant to create a new product
+    # @merchant should be available via application controller
+    if @merchant
+      @product.user_id = @merchant.id
+    else
+      flash.now[:warning] = "That merchant does not exist"
+    end
   end
 
   def edit; end
@@ -29,18 +38,18 @@ class ProductsController < ApplicationController
   def retire
   end
 
-  # def create
-  #   @product = Product.new(product_params)
-  #   if @product.save
-  #     flash[:success] = 'Product Created!'
-  #
-  #     redirect_to product_path(@product.id)
-  #   else
-  #     flash.now[:danger] = 'Product not created!'
-  #
-  #     render :new, status: :bad_request
-  #   end
-  # end
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      flash[:success] = 'Product Created!'
+
+      redirect_to product_path(@product.id)
+    else
+      flash.now[:danger] = 'Product not created!'
+
+      render :new, status: :bad_request
+    end
+  end
 
   def update
     if @product && @product.update(product_params)
@@ -50,8 +59,13 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def destroy
-  # end
+  def destroy
+    unless @product.nil?
+      @product.destroy
+      flash[:success] = "#{@product.name} deleted"
+      redirect_to root_path
+    end
+  end
 
   private
 
@@ -65,9 +79,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def product_params
-  #   #can i access :category_id? not unless there isa belongs_to
-  #   return params.require(:product).permit(:user_id, :name, :price, :description, :photo, :stock)
-  # end
+  def product_params
+    #can i access :category_id? not unless there isa belongs_to
+    return params.require(:product).permit(:user_id, :name, :price, :description, :photo, :stock)
+  end
 
 end
