@@ -21,13 +21,12 @@ user1:
   uid: 45646654
   provider: github
 
-  tom:
-    name: tom
-    email: tom@hotmail.com
-    photo: more_photos_of_tom
-    uid: 487984849
-    provider: github
-  =======
+tom:
+  name: tom
+  email: tom@hotmail.com
+  photo: more_photos_of_tom
+  uid: 487984849
+  provider: github
 
 dani:
   name: MyString
