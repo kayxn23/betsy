@@ -14,7 +14,10 @@
     <li><%# @product.category %> look up how to create a dropdown for category</li>
   </ul>
 <% end %>
+<td><%= button_to "Add to Cart", add_to_cart_path(@product.id), method: :add_to_cart %></td>
 
+<!-- add integer input field(text validation) for quantity + add to cart button, -->
+    <!-- capture product params pass to add_product method in orders--> -->
 <!-- if signed in as merchant and this is your product then show  -->
   <%# link_to "Edit", edit_product_path(@product.id) %>
   <%# link_to "Delete #{@product.title}", product_path(@product.id), method: :delete %>

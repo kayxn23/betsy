@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+
+
   def new
     @order = Order.new
     # Find user
@@ -27,9 +30,16 @@ class OrdersController < ApplicationController
    end
 
   def show
+      @order = Order.find_by(id:session[:order_id])
   end
 
+    def index
+      @orders = Order.all
+    end
+
+  private
   def order_params
     return params.require(:order).permit(:status)
   end
+
 end

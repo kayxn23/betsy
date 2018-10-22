@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
   get "users/:user_id/products", to: "users#products", as: "merchant_products"
 
-  resources :orders, only: [:show, :new, :create]
+  # resources :orders, only: [:show, :new, :create, :index]
 
   # get 'sessions/login'
   # get 'sessions/destroy'
@@ -33,7 +33,18 @@ Rails.application.routes.draw do
   resources :categories, only: [ :new, :create, :index ] do
     resources :products, only: [:index, :new]
   end
+  # get 'categories/new'
+  # get 'categories/create'
+  resources :orders, only: [:show, :new, :create, :index] do
+  resources :orders_items, only: [:create, :new, :show]
+end
+ post '/products/:id/add_to_cart', to: "products#add_to_cart", as: "add_to_cart"
 
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # get '/order/:id/orders_items', to: 'orders_items#index'
+  # get '/order/:id/orders_items', to: 'orders_items#new'
+  # post '/order/:id/orders_items', to: 'orders_items#create'
+
+
+
 end
