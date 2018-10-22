@@ -1,10 +1,12 @@
 <h1>Orders#show</h1>
 <p>Find me in app/views/orders/show.html.erb</p>
 
-<% if @order.products.count == 0 %>
+<!-- <% if @order.products.count == 0 %>
   <p>There's nothing in your cart!</p>
+<% end %> -->
+<% @order.orders_items.each do |orders_item| %>
+  <tr>
+
+     <td><%=  orders_item.product.id %></td>
 <% end %>
- <% @order.products.each do |product| %>
-  <%= product.name %>
-  <%= product.price %>
-<% end %>
+</tr>

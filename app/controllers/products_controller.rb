@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   def add_to_cart
     product = Product.find_by(id: params[:id])
     order = Order.find_by(id: session[:order_id])
-    @orders_item = OrdersItem.new(product_id: product.id, order_id: order.id, quantity: 1)
+    @orders_item = OrdersItem.create(product_id: product.id, order_id: order.id, quantity: 1)
     redirect_to root_path
   end
 
@@ -29,18 +29,18 @@ class ProductsController < ApplicationController
   def retire
   end
 
-  # def create
-  #   @product = Product.new(product_params)
-  #   if @product.save
-  #     flash[:success] = 'Product Created!'
-  #
-  #     redirect_to product_path(@product.id)
-  #   else
-  #     flash.now[:danger] = 'Product not created!'
-  #
-  #     render :new, status: :bad_request
-  #   end
-  # end
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      flash[:success] = 'Product Created!'
+
+      redirect_to product_path(@product.id)
+    else
+      flash.now[:danger] = 'Product not created!'
+
+      render :new, status: :bad_request
+    end
+  end
 
   def update
     if @product && @product.update(product_params)
@@ -50,8 +50,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def destroy
-  # end
+  def destroy
+  end
 
   private
 
@@ -65,9 +65,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def product_params
-  #   #can i access :category_id? not unless there isa belongs_to
-  #   return params.require(:product).permit(:user_id, :name, :price, :description, :photo, :stock)
-  # end
+  def product_params
+    #can i access :category_id? not unless there isa belongs_to
+    return params.require(:product).permit(:user_id, :name, :price, :description, :photo, :stock)
+  end
 
 end
