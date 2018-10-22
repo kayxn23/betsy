@@ -10,43 +10,44 @@
 </head>
 
 <body>
-  <header>
-    <h1>
-      <%= link_to "Thrillow", root_path %>
-    </h1>
+  <div class = "container">
+    <header>
+      <h1>
+        <%= link_to "Thrillow", root_path %>
+      </h1>
 
-    <nav>
-      <ul>
-        <li>
-          <%= link_to "Shop All Homes", products_path, class: "" %>
-        </li>
-        <li >
-          <%= link_to "Shop By Categories", categories_path, class: "" %>
-        </li>
-        <li>
-          <%= link_to "Shop By Sellers", users_path, class: "" %>
-        </li>
-        <li>
+      <nav>
+        <ul>
+          <li>
+            <%= link_to "Shop All Homes", products_path, class: "" %>
+          </li>
+          <li >
+            <%= link_to "Shop By Categories", categories_path, class: "" %>
+          </li>
+          <li>
+            <%= link_to "Shop By Sellers", users_path, class: "" %>
+          </li>
+          <li>
+            <% if session[:user_id] %>
+              <%= link_to "Log out", logout_path, method: "delete"  %>
+            <% else %>
+              <%= link_to "Login with Github", "/auth/github" %>
+            <% end %>
+
+          </li>
+          <!-- Add link for merchant to see their show page -->
+          <!-- Is redirecting back to home for some reason -->
           <% if session[:user_id] %>
-            <%= link_to "Log out", logout_path, method: "delete"  %>
-          <% else %>
-            <%= link_to "Login with Github", "/auth/github" %>
+            <%= link_to "Merchant Dashboard", dashboard_path(session[:user_id]) %>
           <% end %>
 
-        </li>
-        <!-- Add link for merchant to see their show page -->
-        <!-- Is redirecting back to home for some reason -->
-        <% if session[:user_id] %>
-          <%= link_to "Merchant Dashboard", dashboard_path(session[:user_id]) %>
-        <% end %>
+        </ul>
+      </nav>
 
-      </ul>
-    </nav>
+      <main>
+        <%= yield %>
+      </main>
+  </div>
 
-
-    <main>
-      <%= yield %>
-    </main>
-
-  </body>
-  </html>
+</body>
+</html>

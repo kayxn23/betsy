@@ -30,16 +30,18 @@ class UsersController < ApplicationController
   def show
   end
 
-# Need page showing all the merchants
+#T TODO Need page showing all the merchants
+# Write tests
   def index
     @merchants = User.where(uid: true )
   end
 
+  # TODO write method to pull all products for a merchant
   def products
     # Find merchant id
     # Find products linked to that merchant
     # Show them
-    id = params[:id].to_i
+    id = params[:user_id].to_i
     @merchant = User.find_by(id: id)
     @products = @merchant.products.all
     if @merchant.nil?
@@ -50,8 +52,21 @@ class UsersController < ApplicationController
   # Requires login to see merchant dashboard
   # Will show products, able to add product, edit product, see orders, etc.
   def dashboard
-    @products = @merchant.products
-    # How do we find order items for merchant? merchant.orderitems?
+
+    # @user = find_user
+    #Check if current user is the person for the dashboard view page
+    #
+    # if session[:user_id] != params[:id]
+    #   flash[:warning] = "You can only view your own dashboard"
+    #   redirect_to root_path, status: :bad_request
+    # else
+      @merchant = find_merchant
+      @products = @merchant.products
+    # end
+    #
+    # # How do we find order items for merchant? merchant.orderitems?
+    # orderitems.where(merchant_id == @merchant.id) ?
+    # @order_items_for_merchant = @merchant.orders_items
 
   end
 
@@ -64,7 +79,7 @@ class UsersController < ApplicationController
     # binding.pry
     # If user doesn't exist flash a message /render notfound page
     if @user.nil?
-      flash.now[:danger] = "Cannot find the user #{params[:id]}"
+      flash.now[:danger] = "Cannot find user"
       # binding.pry
       render :notfound , status: :not_found
     end

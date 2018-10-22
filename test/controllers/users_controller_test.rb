@@ -1,6 +1,7 @@
 require "test_helper"
 
 describe UsersController do
+
   describe "new" do
     it "should get new" do
       # Act
@@ -11,28 +12,42 @@ describe UsersController do
   end
 
 
-  describe "show" do
-    it "should get show" do
+  describe "dashboard" do
+    it "should get dashboard if you are a logged in merchant/it's your dashboard" do
       # Arrange
-      id = users(:grace).id
-
+      user = users(:tom)
+      id = users(:tom).id
       # Act
-      get user_path(id)
-
+      get dashboard_path(id)
       # Assert
       must_respond_with :success
     end
 
+    # it "should respond with not_found if given an invalid id" do
+    #   # Arrange
+    #   id = -1
+    #
+    #   # Act
+    #   get dashboard_path(id)
+    #
+    #   #Assert
+    #   must_respond_with :not_found
+    #   expect(flash[:danger]).must_equal "Cannot find the user -1"
+    # end
+
+
+
     it "should respond with not_found if given an invalid id" do
-      # Arrange
+      # Invalid is anything but the merchant's id
+      # Arrange - Not tom's id
       id = -1
 
       # Act
-      get user_path(id)
+      get dashboard_path(id)
 
       #Assert
       must_respond_with :not_found
-      expect(flash[:danger]).must_equal "Cannot find the user -1"
+      expect(flash[:danger]).must_equal "Cannot find user"
     end
   end
 
@@ -42,7 +57,7 @@ describe UsersController do
         user: {
           name: 'Bob',
           email: 'bob@gmail.com',
-          photo: "photo",
+          photo: 'bobsphoto'
         }
       }
     end
@@ -59,7 +74,6 @@ describe UsersController do
 
         expect(User.last.name).must_equal user_hash[:user][:name]
         expect(User.last.email).must_equal user_hash[:user][:email]
-        # binding.pry
         # For some reason photo is not coming through/is nil
         # Is in user hash but doesn't seem to carry over
         expect(User.last.photo).must_equal user_hash[:user][:photo]
