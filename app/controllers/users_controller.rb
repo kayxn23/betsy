@@ -48,9 +48,9 @@ class UsersController < ApplicationController
 
 #T TODO Need page showing all the merchants
 # Write tests
-  def index
-    @merchants = User.where(uid: true )
-  end
+  # def index
+  #   @merchants = User.where(uid: true )
+  # end
 
   def products
     # Find merchant id

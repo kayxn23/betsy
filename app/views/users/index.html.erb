@@ -8,7 +8,7 @@
   <% @merchants.each do |merchant| %>
     <li>
       <p>
-      <%="#{merchant}" %>
+      <%="#{merchant.name}" %>
       </p>
       <h3><%= link_to "#{merchant.name}", merchant_products_path(merchant.id)  %></h3>
     </li>
