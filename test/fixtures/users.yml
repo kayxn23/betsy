@@ -6,6 +6,14 @@ grace:
   uid: 343434234
   provider: github
 
+
+kay:
+  name: MyString
+  email: MyString@gmail.com
+  photo: MyString
+  uid: 1031
+  provider: github
+
 user1:
   name: user1
   email: MyString
@@ -13,9 +21,17 @@ user1:
   uid: 45646654
   provider: github
 
-tom:
-  name: tom
-  email: tom@hotmail.com
+  tom:
+    name: tom
+    email: tom@hotmail.com
+    photo: more_photos_of_tom
+    uid: 487984849
+    provider: github
+  =======
+
+dani:
+  name: MyString
+  email: MyString@gmail.com
   photo: MyString
   uid: 123564684
   provider: github

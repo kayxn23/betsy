@@ -88,6 +88,6 @@ class UsersController < ApplicationController
   def user_params
     # Do we need to add uid/provider to this?
     # I think those are optional as guest users are saved upon checkout
-    return params.require(:user).permit(:name, :email)
+    return params.require(:user).permit(:name, :email, :photo, :uid, :provider)
   end
 end

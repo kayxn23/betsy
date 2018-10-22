@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_10_19_021239) do
+ActiveRecord::Schema.define(version: 2018_10_21_213645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +40,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_021239) do
     t.date "ccexpiration"
     t.integer "cvv"
     t.integer "billingzip"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "orders_items", force: :cascade do |t|
@@ -71,10 +72,11 @@ ActiveRecord::Schema.define(version: 2018_10_19_021239) do
     t.datetime "updated_at", null: false
     t.integer "uid"
     t.string "provider"
-    # Should uid/provider be optional: true? 
+    # Should uid/provider be optional: true?
     # Do we need product_id here?
   end
 
+  add_foreign_key "orders", "users"
   add_foreign_key "orders_items", "orders"
   add_foreign_key "orders_items", "products"
   add_foreign_key "products", "users"

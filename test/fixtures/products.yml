@@ -6,7 +6,8 @@ product1:
   description: MyString
   photo: MyString
   stock: 1
-  user: user1
+  user: kay
+
 
 product2:
   name: b product
@@ -14,7 +15,9 @@ product2:
   description: MyString
   photo: MyString
   stock: 2
-  # user_id: 2
+  user: dani
+
+
 
 product3:
   name: c product
@@ -22,4 +25,4 @@ product3:
   description: MyString
   photo: MyString
   stock: 3
-  # user_id: 3
+  user: kay
