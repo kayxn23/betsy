@@ -47,9 +47,6 @@ class ApplicationController < ActionController::Base
       @order = Order.create(status: "pending")
       session[:order_id] = @order.id
     end
-<<<<<<< HEAD
     return @order
-=======
->>>>>>> c08ee13089396903bbce186e7c23e0c2518e1cd3
   end
 end
