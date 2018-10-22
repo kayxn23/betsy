@@ -1,4 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+grace:
+  name: grace
+  email: MyString
+  photo: MyString
+  uid: 343434234
+  provider: github
+
+john:
+  name: john
+  email: MyString
+  photo: johnsphoto
+  uid: 542345234
+  provider: github
+
+
+kay:
+  name: MyString
+  email: MyString@gmail.com
+  photo: MyString
+  uid: 1031
+  provider: github
 
 user1:
   name: user1
@@ -10,13 +31,13 @@ user1:
 tom:
   name: tom
   email: tom@hotmail.com
+  photo: more_photos_of_tom
+  uid: 487984849
+  provider: github
+
+dani:
+  name: MyString
+  email: MyString@gmail.com
   photo: MyString
   uid: 123564684
   provider: github
-
-  grace:
-    name: grace
-    email: MyString
-    photo: MyString
-    uid: 343434234
-    provider: github
