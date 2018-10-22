@@ -75,9 +75,16 @@ class UsersController < ApplicationController
       # @merchant = find_merchant - have this already
       #
       @products = @merchant.products
+      # For each product, search for order items
 
-      # TODO
-      # @orders = @merchant.products.order 
+      # TODO - Show summary of orders / revenue
+      # @order_itmes = []
+      @order_items = @merchant.products.each do |product|
+          # Find order items with product id
+          OrdersItem.select { |item| item.product_id == product.id }
+          # Returns array of products, one per order item 
+      end
+
     end
     #
     # # How do we find order items for merchant? merchant.orderitems?

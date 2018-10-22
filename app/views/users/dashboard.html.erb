@@ -43,5 +43,29 @@
       <% end %>
     </ul>
   </section>
+
+  <section>
+    <h2>Orders</h2>
+    <ul>
+      <% @order_items.each do |order_item| %>
+      <li>
+        <P>
+          <%= "Item: #{order_item.name}" %>
+        </P>
+      </li>
+      <li>
+        <P>
+          <%= "Price: #{order_item.price}" %>
+        </P>
+      </li>
+      <li>
+        <P>
+          <%= "Description: #{order_item.description}" %>
+        </P>
+      </li>
+
+      <% end %>
+    </ul>
+  </section>
   </div>
 <% end %>
