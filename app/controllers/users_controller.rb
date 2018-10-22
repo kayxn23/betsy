@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # May need to add edit/update/destroy to this later
-  before_action :find_user, only: [:show, :dashboard]
+  before_action :find_user, only: [:dashboard]
   before_action :require_login, only: [:dashboard]
 
 # Might not need this as login does new oauth
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def index
     # this works in rails c but not on website...help?
     @merchants = User.all.select { |user| user.uid }
-    # Even users says its nil, maybe a seed issue? 
+    # Even users says its nil, maybe a seed issue?
     @users = User.all
 
   end
@@ -71,6 +71,7 @@ class UsersController < ApplicationController
 
     # @user = find_user
     #Check if current user is the person for the dashboard view page
+    # Is this how that works? Can't test until Github is back up.
     #
     # if session[:user_id] != params[:id]
     #   flash[:warning] = "You can only view your own dashboard"

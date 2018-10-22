@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     if User.find_by(provider: 'github').nil?
-      flash[:error] = "You must be logged in to view this section"
+      flash[:danger] = "You must be logged in to view this section"
       redirect_to root_path
     end
   end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # get 'sessions/destroy'
   # Might not need new/create/show
   # Oauth does new/create, show is dashboard
-  resources :users, only: [ :new, :create, :show, :index]
+  resources :users, only: [ :new, :create, :index]
 
 # Creates route for user_products so we can link each merchant to
 # users/:user_id/products

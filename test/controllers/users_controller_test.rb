@@ -19,6 +19,20 @@ describe UsersController do
 
 
   describe "dashboard" do
+
+    it "guest users cannot access dashboard" do
+      # Setting to guest user
+      user = users(:guest)
+
+      # Setting a merchant
+      merchant = users(:dani)
+      # Attempting to access merchant 3 dashboard
+      get dashboard_path(merchant.id)
+      # Expectation - Flash message/redirect
+      expect(flash[:danger]).must_equal "You must be logged in to view this section"
+      must_redirect_to root_path
+    end
+
     it "should get dashboard if you are a logged in merchant/it's your dashboard" do
       # Arrange
       user = users(:tom)
@@ -28,19 +42,6 @@ describe UsersController do
       # Assert
       must_respond_with :success
     end
-
-    # it "should respond with not_found if given an invalid id" do
-    #   # Arrange
-    #   id = -1
-    #
-    #   # Act
-    #   get dashboard_path(id)
-    #
-    #   #Assert
-    #   must_respond_with :not_found
-    #   expect(flash[:danger]).must_equal "Cannot find the user -1"
-    # end
-
 
 
     it "should respond with not_found if given an invalid id" do

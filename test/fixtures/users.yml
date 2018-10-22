@@ -49,3 +49,8 @@ dani:
   photo: MyString
   uid: 123564684
   provider: github
+
+guest:
+  name: testguest
+  email: testguest@gmail.com
+  photo: guestphotohere
