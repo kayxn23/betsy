@@ -13,11 +13,9 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:success] = "#{@category.name} added!"
-
       redirect_to root_path #change this to dashboard_path
     else #save failed
       flash.now[:danger] = "Category #{@category.name} not added!"
-
       render :new, status: :bad_request
     end
   end

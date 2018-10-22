@@ -38,6 +38,8 @@ CSV.foreach(USER_FILE, :headers => true) do |row|
   user.name = row['name']
   user.email = row['email']
   user.photo = row['photo']
+  user.uid = row['uid']
+  user.provider = row['provider']
   successful = user.save
   if !successful
     user_failures << user
