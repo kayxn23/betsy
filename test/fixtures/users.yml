@@ -21,6 +21,14 @@ kay:
   uid: 1031
   provider: github
 
+
+kay:
+  name: MyString
+  email: MyString@gmail.com
+  photo: MyString
+  uid: 1031
+  provider: github
+
 user1:
   name: user1
   email: MyString

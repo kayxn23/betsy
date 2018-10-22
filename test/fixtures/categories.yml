@@ -1,5 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+
+haunted:
+  name: Haunted
+
+zombie:
+  name: Zombie
+
 category1:
   name: Graveyard
 

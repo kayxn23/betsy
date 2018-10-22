@@ -16,9 +16,10 @@ Rails.application.routes.draw do
 
 # Creates route for user_products so we can link each merchant to
 # users/:user_id/products
-  resources :users, only: [:show] do
-    resources :products, only: [:index]
-  end
+get "/users/:user_id/products", to: "users#products", as: "merchant_products"
+  # resources :users, only: [:show] do
+  #   resources :products, only: [:index]
+  # end
   # TODO Added nested routes for orderitems
 
   # get 'users/new'

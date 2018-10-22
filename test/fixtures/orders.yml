@@ -2,6 +2,15 @@
 
 one:
   status: MyString
+  street: 111 Yosemite
+  city: Seattle
+  state: WA
+  zip: 98122
+  creditcard: 1000
+  cvv: 111
+  billingzip: 98122
+  #products: graveyard
+  user: dani
 
 two:
   status: MyString
