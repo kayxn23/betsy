@@ -5,7 +5,7 @@ Orders#Index
 
 <h1>Orders:</h1>
 <p> Here are your orders </p>
-<% @order.each do |order| %>
+<% @orders.each do |order| %>
     <br>
     <%=link_to order, order_path(order.id) %>
 <% end %>
