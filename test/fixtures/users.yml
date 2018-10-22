@@ -6,6 +6,21 @@ grace:
   uid: 343434234
   provider: github
 
+john:
+  name: john
+  email: MyString
+  photo: johnsphoto
+  uid: 542345234
+  provider: github
+
+
+kay:
+  name: MyString
+  email: MyString@gmail.com
+  photo: MyString
+  uid: 1031
+  provider: github
+
 
 kay:
   name: MyString

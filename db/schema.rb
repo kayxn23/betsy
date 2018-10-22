@@ -72,8 +72,6 @@ ActiveRecord::Schema.define(version: 2018_10_21_213645) do
     t.datetime "updated_at", null: false
     t.integer "uid"
     t.string "provider"
-    # Should uid/provider be optional: true?
-    # Do we need product_id here?
   end
 
   add_foreign_key "orders", "users"

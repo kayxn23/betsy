@@ -1,7 +1,6 @@
 require "test_helper"
 
 describe UsersController do
-
   describe "new" do
     it "should get new" do
       # Act

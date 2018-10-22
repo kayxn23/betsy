@@ -1,1 +1,33 @@
 <h1>Merchants</h1>
+
+<% if @merchant.nil? %>
+  <h1>Merchant Not Found</h1>
+<% else %>
+  <h1><%= @merchant.name %></h1>
+  <p>
+    <%= @merchant.email %>
+  </p>
+
+<% end %>
+
+<section>
+  <h2>Products</h2>
+  <ul>
+    <% if @merchant.products.nil? %>
+      <h3><%= "This merchant has no products" %></h3>
+
+    <% else %>
+      <%= @merchant.products.each do |product| %>
+        <li>
+          <h3><%= "#{product.name}" %></h3>
+          <p><%= "Price: #{product.price}" %></p>
+          <p><%= "Description: #{product.description}" %></p>
+          <p><%= "Stock: #{product.stock}" %></p>
+          <!-- <img <%= "#{product.photo}" %> > -->
+        </li>
+
+      <% end %>
+    <% end %>
+
+  </ul>
+</section>

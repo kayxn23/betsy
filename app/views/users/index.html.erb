@@ -1,1 +1,18 @@
-<h1> users index page</h1>
+
+<h1>Merchants</h1>
+<ul>
+  <% @merchants.each do |merchant| %>
+    <li>
+      <h3><%= link_to "#{merchant.name}", merchant_products_path(merchant.id)  %></h3>
+    </li>
+
+    <% end %>
+
+</ul>
+
+  <!-- Even User.all is nil... -->
+<%# @users.select { |user| user.uid.nil? == false }.each do |merchant| %>
+  <%# "#{merchant.name}" %>
+
+
+<% end %>

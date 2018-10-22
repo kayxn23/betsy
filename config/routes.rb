@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
   root 'products#root'
 
-  root "products#index"
-
   get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
-  get "users/:user_id/products", to: "user#products", as: "merchant_products"
-  
+  get "users/:user_id/products", to: "users#products", as: "merchant_products"
+
   resources :orders, only: [:show, :new, :create]
 
   # get 'sessions/login'
   # get 'sessions/destroy'
-  resources :users, only: [ :new, :create, :index]
+  # Might not need new/create/show
+  # Oauth does new/create, show is dashboard
+  resources :users, only: [ :new, :create, :show, :index]
 
 # Creates route for user_products so we can link each merchant to
 # users/:user_id/products

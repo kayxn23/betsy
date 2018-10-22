@@ -8,6 +8,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    # this works in rails c but not on website...help?
+    @merchants = User.all.select { |user| user.uid }
+    # Even users says its nil, maybe a seed issue? 
+    @users = User.all
+
+  end
+
+
+  def products
+    # Show products for the merchant = working
+    @merchant = User.find_by(id: params[:user_id])
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -26,9 +40,10 @@ class UsersController < ApplicationController
   #TODO Do we need update? Are we letting merchants edit/update?
 
 # Is a page that shows all merchant's products
-# If person is merchant of that id, can edit products
-  def show
-  end
+# # If person is merchant of that id, can edit products
+# Instead of show i'm setting up a product page per merchant
+#   def show
+#   end
 
 #T TODO Need page showing all the merchants
 # Write tests
@@ -36,17 +51,18 @@ class UsersController < ApplicationController
     @merchants = User.where(uid: true )
   end
 
-  # TODO write method to pull all products for a merchant
   def products
     # Find merchant id
     # Find products linked to that merchant
     # Show them
     id = params[:user_id].to_i
     @merchant = User.find_by(id: id)
-    @products = @merchant.products.all
+
     if @merchant.nil?
       render :notfound, status: :not_found
     end
+    @products = @merchant.products.all
+
   end
 
   # Requires login to see merchant dashboard
@@ -86,8 +102,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    # Do we need to add uid/provider to this?
-    # I think those are optional as guest users are saved upon checkout
+
     return params.require(:user).permit(:name, :email, :photo, :uid, :provider)
   end
 end
