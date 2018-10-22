@@ -43,14 +43,7 @@ class UsersController < ApplicationController
 # Is a page that shows all merchant's products
 # # If person is merchant of that id, can edit products
 # Instead of show i'm setting up a product page per merchant
-#   def show
-#   end
 
-#T TODO Need page showing all the merchants
-# Write tests
-  # def index
-  #   @merchants = User.where(uid: true )
-  # end
 
   def products
     # Find merchant id
@@ -79,9 +72,12 @@ class UsersController < ApplicationController
       redirect_to root_path, status: :bad_request
     else
 
-      # @merchant = find_merchant
+      # @merchant = find_merchant - have this already
       #
       @products = @merchant.products
+
+      # TODO
+      # @orders = @merchant.products.order 
     end
     #
     # # How do we find order items for merchant? merchant.orderitems?
