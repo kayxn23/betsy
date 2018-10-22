@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
+  require 'pry'
   # TODO How do we handle a merchant shopping/closing browser
   # coming back as a user (not logged in).
   # Do we merge the carts or do we destroy the old cart
 
   def login
+
     auth_hash = request.env['omniauth.auth']
 
     user = User.find_by(uid: auth_hash[:uid], provider: 'github')
@@ -17,7 +19,6 @@ class SessionsController < ApplicationController
       # User doesn't match anything in the DB
       # Attempt to create a new user
       user = User.build_from_github(auth_hash)
-
       if user.save
         flash[:success] = "Logged in as new user #{user.name}"
 

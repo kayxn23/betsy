@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'pry'
   # May need to add edit/update/destroy to this later
   before_action :find_user, only: [:dashboard]
   before_action :require_login, only: [:dashboard]
@@ -68,18 +69,19 @@ class UsersController < ApplicationController
   # Requires login to see merchant dashboard
   # Will show products, able to add product, edit product, see orders, etc.
   def dashboard
-
+    # binding.pry
     # @user = find_user
     #Check if current user is the person for the dashboard view page
     # Is this how that works? Can't test until Github is back up.
-    #
-    # if session[:user_id] != params[:id]
-    #   flash[:warning] = "You can only view your own dashboard"
-    #   redirect_to root_path, status: :bad_request
-    # else
-      @merchant = find_merchant
+    if session[:user_id] != params[:id]
+      flash[:warning] = "You can only view your own dashboard"
+      redirect_to root_path, status: :bad_request
+    else
+
+      # @merchant = find_merchant
+      #
       @products = @merchant.products
-    # end
+    end
     #
     # # How do we find order items for merchant? merchant.orderitems?
     # orderitems.where(merchant_id == @merchant.id) ?

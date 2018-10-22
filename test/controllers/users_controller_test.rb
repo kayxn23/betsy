@@ -22,11 +22,13 @@ describe UsersController do
 
     it "guest users cannot access dashboard" do
       # Setting to guest user
+      # The only person that can
       user = users(:guest)
 
       # Setting a merchant
       merchant = users(:dani)
       # Attempting to access merchant 3 dashboard
+      # binding.pry
       get dashboard_path(merchant.id)
       # Expectation - Flash message/redirect
       expect(flash[:danger]).must_equal "You must be logged in to view this section"
@@ -40,6 +42,7 @@ describe UsersController do
       # Act
       get dashboard_path(id)
       # Assert
+      # Is not saving for some reason 
       must_respond_with :success
     end
 

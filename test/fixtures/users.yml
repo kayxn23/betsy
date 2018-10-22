@@ -51,6 +51,6 @@ dani:
   provider: github
 
 guest:
-  name: testguest
-  email: testguest@gmail.com
-  photo: guestphotohere
+  name: 
+  email:
+  photo:

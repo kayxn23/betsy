@@ -16,7 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    if User.find_by(provider: 'github').nil?
+    # Check if current user is logged in (has uid/provider)
+    # Would have user_id and provider and uid
+    # binding.pry
+    if !find_merchant
       flash[:danger] = "You must be logged in to view this section"
       redirect_to root_path
     end
@@ -24,9 +27,11 @@ class ApplicationController < ActionController::Base
 
   def find_merchant
     @merchant = User.find_by(id: session[:user_id], provider: 'github')
+    # What if it's nil?
   end
 
   def is_merchant?
+    # binding.pry
     return @merchant
   end
 
