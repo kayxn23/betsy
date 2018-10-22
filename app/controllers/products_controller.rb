@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :retire]
-  before_action :require_login, except: [:index, :show, :add_to_cart]
+  before_action :require_login, except: [:index, :show, :add_to_cart, :root]
 
   # before_action :login, except: [:edit, :new] do we want to add this?
 
