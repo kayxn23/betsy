@@ -38,11 +38,19 @@ describe UsersController do
     it "should get dashboard if you are a logged in merchant/it's your dashboard" do
       # Arrange
       user = users(:tom)
-      id = users(:tom).id
+      # Make fake session
+      # Tell OmniAuth to use this user's info when it sees
+     # an auth callback from github
+        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+        get auth_callback_path('github')
+
+        # Should be logged in now.. 
+
       # Act
-      get dashboard_path(id)
+      # binding.pry
+      get dashboard_path(user.id)
       # Assert
-      # Is not saving for some reason 
+      # Is not saving for some reason
       must_respond_with :success
     end
 

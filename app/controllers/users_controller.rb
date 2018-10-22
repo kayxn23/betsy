@@ -73,7 +73,8 @@ class UsersController < ApplicationController
     # @user = find_user
     #Check if current user is the person for the dashboard view page
     # Is this how that works? Can't test until Github is back up.
-    if session[:user_id] != params[:id]
+    # raise
+    if session[:user_id] != params[:id].to_i
       flash[:warning] = "You can only view your own dashboard"
       redirect_to root_path, status: :bad_request
     else
