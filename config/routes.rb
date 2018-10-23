@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy", as: "logout"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
   get "users/:user_id/products", to: "users#products", as: "merchant_products"
-
   # resources :orders, only: [:show, :new, :create, :index]
 
   # get 'sessions/login'
