@@ -41,13 +41,13 @@ class ApplicationController < ActionController::Base
 
   def current_order
     # If nil, make one
-    # Else, find and use the current one 
-    if session[:order].nil?
+    # Else, find and use the current one
+    if session[:order_id].nil?
       @current_order = Order.create(status: "pending")
-        session[:order] = @current_order
+        session[:order_id] = @current_order.id
         return @current_order
     else
-      @current_order = Order.find_by(id: session[:order]["id"])
+      @current_order = Order.find_by(id: session[:order_id])
       return @current_order
     end
   end

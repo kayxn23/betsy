@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   has_many :orders_items, dependent: :destroy
-  has_many :products, through: :orders_items, dependent: :destroy 
+  has_many :products, through: :orders_items, dependent: :destroy
+  validates_inclusion_of :status, :in => ["pending", "paid","complete", "cancelled"], presence: :true
 
   belongs_to :user, optional: true
 

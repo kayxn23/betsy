@@ -185,11 +185,11 @@ describe ProductsController do
         # Act / Assert
         # Current order is nil as there is no session
         # Do we make our own session order?
-        # binding.pry
-        @current_order.products.length.must_equal 3
-        @current_order.products.first.must_equal Product.find_by(id: 1)
-        @current_order.products.all[1].must_equal Product.find_by(id: 2)
-        @current_order.products.last.must_equal Product.find_by(id: 3)
+        current_order = Order.find(session[:order_id])
+        current_order.products.length.must_equal 3
+        current_order.products.first.must_equal product_one
+        current_order.products.all[1].must_equal product_two
+        current_order.products.last.must_equal product_three
       end
 
     # Add some products - run post add_to_cart_path(product.id)

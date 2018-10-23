@@ -100,16 +100,7 @@ describe SessionsController do
     end
    end
 
-    describe "set current_order" do
-      # it "it should get current_order" do
-      #   get current_order_path
-      #   must_respond_with :success
-      # end
 
-      # Add some products - run post add_to_cart_path(product.id)
-      
-
-    end
 
 
  end
