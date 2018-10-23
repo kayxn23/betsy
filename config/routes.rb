@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'products#root'
 
+
+
+
   get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
