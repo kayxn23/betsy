@@ -15,16 +15,12 @@
   <nav>
     <ul id = "merchant_options">
       <li class="btn black-button">
-        <!-- Link to product page that shows merchant products with edit/add option -->
-        My Products - Should we show products here or link to a page that shows them?
+        <%= link_to "Add Product", new_product_path  %>
       </li>
       <li>
-        Add Product - Link to product new
+        <%= link_to "Add Category", new_category_path  %>
       </li>
-      <li>
-        <!-- Link to order page that shows order items related to merchant? -->
-        Summary of Customer Product Orders - Should we show order items related to merchant here or link to a page that shows them?
-      </li>
+
     </ul>
   </nav>
 
@@ -33,11 +29,15 @@
     <ul>
       <%= @merchant.products.each do |product| %>
         <li>
-          <h3><%= product.name %></h3>
+          <h3><%= "#{product.name}" %></h3>
+          <%# image_tag("product.photo"), alt="#{product.name} image" %>
           <p><%= "Price: #{product.price}" %></p>
           <p><%= "Description: #{product.description}" %></p>
           <p><%= "Stock: #{product.stock}" %></p>
-          <!-- <img <%= "#{product.photo}" %> > -->
+          <%= link_to "Retire Product", retire_path(product.id), class: "btn btn-primary" %>
+          <p>
+            <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
+          </p>
         </li>
 
       <% end %>
