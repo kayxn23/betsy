@@ -55,6 +55,26 @@ describe Product do
 
     end
 
+    it 'must have a unique product name for given merchant' do
+      product1 = products(:product1)
+      product3 = products(:product3)
+      product3.name = product1.name
+
+      valid = product3.save
+      expect(valid).must_equal false
+      expect(product3.errors.messages).must_include :name
+    end
+
+    it 'different merchants can have the same product name' do
+      product1 = products(:product1)
+      product2 = products(:product2)
+      product2.name = product1.name
+
+      valid = product2.save
+      expect(valid).must_equal true
+
+    end
+
     it 'must have price' do
       product = products(:product2)
       product.price = nil
@@ -62,6 +82,17 @@ describe Product do
       valid = product.save
       expect(valid).must_equal false
       expect(product.errors.messages).must_include :price
+    end
+
+    it 'must have a number greater than 0 for price' do
+      invalid_prices = ["s", :price, "134e", nil, -1]
+      product = products(:product1)
+
+      invalid_prices.each do |invalid_price|
+        product.price = invalid_price
+        valid = product.save
+        expect(valid).must_equal false
+      end
     end
 
     it 'must have description' do

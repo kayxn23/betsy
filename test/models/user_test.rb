@@ -62,5 +62,16 @@ describe User do
         expect(user.errors.messages).must_include :email
       end
     end
+
+    it 'must have a unique email' do
+      user = users(:dani)
+      user2 = users(:kay)
+      user2.email = user.email
+
+      valid = user2.save
+      expect(valid).must_equal false
+      expect(user2.errors.messages).must_include :email
+    end
+
   end
 end
