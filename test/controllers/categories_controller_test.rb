@@ -1,5 +1,5 @@
 require "test_helper"
-
+require 'pry'
 describe CategoriesController do
   it "should get index" do
     get categories_path
@@ -55,9 +55,18 @@ describe CategoriesController do
     it "should get a category's show page" do
       id = categories(:category1).id
 
+
       get category_path(id)
 
       must_respond_with :success
+    end
+
+    it "should get a not found page when category doesn't exist" do
+      id = -2
+
+      get category_path(id)
+
+      must_respond_with :not_found
     end
   end
 

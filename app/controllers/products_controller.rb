@@ -1,6 +1,7 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :retire]
-  before_action :require_login, except: [:index, :show, :add_to_cart]
+  before_action :require_login, except: [:index, :show, :add_to_cart, :root]
 
   # before_action :login, except: [:edit, :new] do we want to add this?
 
@@ -18,7 +19,7 @@ class ProductsController < ApplicationController
   def add_to_cart
     product = Product.find_by(id: params[:id])
     order = Order.find_by(id: session[:order_id])
-    @orders_item = OrdersItem.new(product_id: product.id, order_id: order.id, quantity: 1)
+    @orders_item = OrdersItem.create(product_id: product.id, order_id: order.id, quantity: 1)
     redirect_to root_path
   end
 
@@ -60,11 +61,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    unless @product.nil?
-      @product.destroy
-      flash[:success] = "#{@product.name} deleted"
-      redirect_to root_path
-    end
   end
 
   private

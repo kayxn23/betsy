@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :is_merchant?
   before_action :find_user
 
-  # def render_404
-  #   # DPR: this will actually render a 404 page in production
-  #   raise ActionController::RoutingError.new('Not Found')
-  # end
+  def render_404
+    # DPR: this will actually render a 404 page in production
+    render :test => "404 Not Found", :status => 404
+  end
 
   private
 
@@ -40,13 +40,18 @@ class ApplicationController < ActionController::Base
   end
 
   def set_order
+    @order = Order.find_by(id:session[:order_id])
+    return @order if @order
     if is_merchant? #Does the order have a merchant?
-      @order = Order.find_by(user_id: @merchant.id)
+      @order = Order.find_by(user_id: @merchant.id, status: "pending")#to find pending orders for a merchant
       session[:order_id] = @order.id
     else #They are checking out as a guest, there won't be a user_id relation
       @order = Order.create(status: "pending")
       session[:order_id] = @order.id
     end
+#call set order are a merchant, find pending = nil. never going to next else to create one
     return @order
+#hint this method should have at least one case where we are seeing if session id is already set -
+#this will avoid assigning a new cart to somebody who has one
   end
 end
