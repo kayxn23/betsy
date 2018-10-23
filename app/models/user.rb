@@ -14,11 +14,7 @@ class User < ApplicationRecord
    new_user.name = auth_hash[:info][:name]
    new_user.email = auth_hash[:info][:email]
 
-   # binding.pry
-
    return new_user
   end
+  
 end
-
-
-# Test Comment
