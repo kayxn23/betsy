@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'products#root'
+  root 'layouts#home'
 
   get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"

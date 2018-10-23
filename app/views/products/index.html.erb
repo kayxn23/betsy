@@ -3,3 +3,26 @@
 <h1>Products#index</h1>
 <p>Find me in app/views/products/index.html.erb</p>
 <h5>loop thru all @products</h5>
+
+<div class="row">
+  <% @products.each do |product| %>
+<div class="col-md-3">
+	<figure class="card card-product">
+		<div class="img-wrap">
+			<%= image_tag(product.photo, class: "product_photo") %>
+      <%= link_to "View Product", product_path(product.id), class: "btn-overlay"%>
+			<i class="fa fa-search-plus"></i>
+		</div>
+		<figcaption class="info-wrap">
+			<a href="#" class="title"><%= product.name %></a>
+			<div class="action-wrap">
+				<a href="#" class="btn btn-primary btn-sm float-right"> Order </a>
+				<div class="price-wrap h5">
+					<span class="price-new"><%= product.price %></span>
+				</div> <!-- price-wrap.// -->
+			</div> <!-- action-wrap -->
+		</figcaption>
+	</figure> <!-- card // -->
+</div> <!-- col // -->
+<%end%>
+</div> <!-- row.// -->
