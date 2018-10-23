@@ -1,10 +1,9 @@
 require "test_helper"
-
+require 'pry'
 describe OrdersItem do
- let(:item) { ordersitems(:item1) }
+ let(:item) { orders_items(:item1) }
  it "must be valid" do
-   orderitem = OrdersItem.new
-   orderitem.valid?.must_equal true
+   item.valid?.must_equal true
  end
 
  it "must have required fields" do
@@ -16,11 +15,11 @@ describe OrdersItem do
  end
 
  describe 'Relationships' do
-   it 'belongs to user' do
-     user = order.user
+   it 'belongs to order' do
+     order = item.order
 
-     expect(user).must_be_instance_of User
-     expect(user.id).must_equal order.user_id
+     expect(order).must_be_instance_of Order
+     expect(order.id).must_equal item.order_id
    end
  end
 end
