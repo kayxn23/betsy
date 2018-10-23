@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
 
 
-
   get "/auth/:provider/callback", to: "sessions#login", as: "auth_callback"
   delete "/logout", to: "sessions#destroy", as: "logout"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
@@ -24,7 +23,7 @@ Rails.application.routes.draw do
   # end
 
   # TODO Added nested routes for orderitems
-
+  get '/sessions/current_order', to: "sessions#current_order", as: "current_order"
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'

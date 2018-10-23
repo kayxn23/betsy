@@ -1,5 +1,5 @@
 class OrdersItemsController < ApplicationController
-before_action :set_order
+before_action :current_order
 
 #add hidden field to products index each do captures price and quantity
 

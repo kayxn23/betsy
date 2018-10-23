@@ -1,7 +1,7 @@
 require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :retire]
-  before_action :require_login, except: [:index, :show, :add_to_cart]
+  before_action :require_login, except: [:index, :show, :add_to_cart, :root]
 
   # before_action :login, except: [:edit, :new] do we want to add this?
 
@@ -18,8 +18,10 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     product = Product.find_by(id: params[:id])
-    order = Order.find_by(id: session[:order_id])
-    @orders_item = OrdersItem.create(product_id: product.id, order_id: order.id, quantity: 1)
+    # order = Order.find_by(id: session[:order_id])
+    @orders_item = OrdersItem.create(product_id: product.id, order_id: @current_order.id, quantity: 1)
+    # binding.pry
+
     redirect_to root_path
   end
 
