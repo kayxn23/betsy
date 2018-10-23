@@ -23,9 +23,9 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find_by(id: params[:id])
 
-    if @cateogry.nil?
+    if @category.nil?
       flash.now[:danger] = "Cannot find the category #{params[:id]}"
-      render :notfound, status: :not_found
+      render_404
     end
   end
 

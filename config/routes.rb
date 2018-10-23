@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy", as: "logout"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
   get "users/:user_id/products", to: "users#products", as: "merchant_products"
-
   # resources :orders, only: [:show, :new, :create, :index]
 
   # get 'sessions/login'
@@ -32,7 +31,7 @@ Rails.application.routes.draw do
   # get '/products', to: 'products#index', as: 'products'
   # get '/products/:id', to: 'products#show', as: 'product'
 
-  resources :categories, only: [ :new, :create, :index ] do
+  resources :categories, only: [ :new, :create, :index , :show] do
     resources :products, only: [:index, :new]
   end
   # get 'categories/new'

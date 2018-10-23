@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :is_merchant?
   before_action :find_user
 
-  # def render_404
-  #   # DPR: this will actually render a 404 page in production
-  #   raise ActionController::RoutingError.new('Not Found')
-  # end
+  def render_404
+    # DPR: this will actually render a 404 page in production
+    render :test => "404 Not Found", :status => 404
+  end
 
   private
 
