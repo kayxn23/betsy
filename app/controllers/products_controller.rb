@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product
+    @product = Product.new
     # There should be a merchant to create a new product
     # @merchant should be available via application controller
     if @merchant
