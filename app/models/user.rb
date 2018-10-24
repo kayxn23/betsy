@@ -16,5 +16,24 @@ class User < ApplicationRecord
 
    return new_user
   end
-  
+
+  def sold_items
+    # sold items array
+    # loop through products of merchant
+    # loop through orders_items
+    # Push each item to array
+    # return the array
+    # in view, check if array is empty before trying to show things
+    @my_sold_items = []
+    # binding.pry
+    self.products.each do |product|
+      # Checking if product has order items
+      product.orders_items.each do |item|
+        # Pushing each item into my_sold_items
+        @my_sold_items << item
+      end
+    end
+    return @my_sold_items
+  end
+
 end

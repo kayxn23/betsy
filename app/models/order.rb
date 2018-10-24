@@ -41,13 +41,6 @@ class Order < ApplicationRecord
     return current_product
   end
 
-  def my_sold_items
-    # sold items array
-    # loop through products of merchant
-    # loop through orders_items
-    # Push each item to array
-    # return the array
-    # in view, check if array is empty before trying to show things
-  end
+
 
 end

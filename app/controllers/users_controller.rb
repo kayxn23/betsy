@@ -80,7 +80,7 @@ class UsersController < ApplicationController
       # TODO - Show summary of orders / revenue
       # @order_itmes = []
       # @order_items = @merchant.products.map do |product|
-        binding.pry
+        # binding.pry
       # Find order items with product id
       # OrdersItem.select { |item| item.product_id == product.id }
       # Returns array of products, one per order entry
