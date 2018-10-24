@@ -124,34 +124,42 @@ describe User do
       # order item
 
       product_one = Product.create(
-        name: "Spooky House",
+        name: "Spooky House One",
         price: 1000000,
         description: "Most spooky house ever!",
         stock: 3,
-        user_id: @merchant.id
+        user_id: @merchant.id,
+        photo: "product_one_photo"
       )
 
       product_two = Product.create(
-        name: "Spooky House",
+        name: "Spooky House Two",
         price: 1000000,
         description: "Most spooky house ever!",
         stock: 3,
-        user_id: @merchant.id
+        user_id: @merchant.id,
+        photo: "product_two_photo"
       )
 
       # Do I need to shovel order items into product?
-      product_one << OrdersItem.create(
+      product_one.orders_items << OrdersItem.create(
         order_id: orders(:one).id,
         quantity: 3
       )
 
-      product_two << OrdersItem.create(
+      product_two.orders_items << OrdersItem.create(
         order_id: orders(:one).id,
         quantity: 2
       )
 
-      binding.pry
-
+      product_one.orders_items.length.must_equal 1
+      product_one.orders_items.first.must_be_instance_of OrdersItem
+      product_one.orders_items.first.order_id.must_equal orders(:one).id
+      product_one.orders_items.first.quantity.must_equal 3
+      product_two.orders_items.length.must_equal 1
+      product_two.orders_items.first.must_be_instance_of OrdersItem
+      product_two.orders_items.first.order_id.must_equal orders(:one).id
+      product_two.orders_items.first.quantity.must_equal 2
 
 
     end
