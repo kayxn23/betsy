@@ -16,12 +16,10 @@
 
 /* Import scss content */
 @import "bootstrap";
-/* Butcherman Font from Google*/
-// @import url('https://fonts.googleapis.com/css?family=Butcherman');
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Butcherman|Creepster');
 
-@import url('https://fonts.googleapis.com/css?family=Griffy');
-
-
+// @import url('https://fonts.googleapis.com/css?family=Griffy');
 
 $primary-font: 'Gudea', sans-serif;
 $primary-teal: #26A69A;
@@ -45,10 +43,167 @@ h1, h2, h3, h4, h5 {
 }
 
 a, h2, h3 {
+  color: black;
+}
+
+a:hover {
+  color: $dark-teal;
+  text-decoration: none;
+}
+
+/*------------------------*/
+/**********************************
+Responsive navbar-brand image CSS
+- Remove navbar-brand padding for firefox bug workaround
+- add 100% height and width auto ... similar to how bootstrap img-responsive class works
+***********************************/
+
+.navbar-brand {
+  padding: 0px;
+  font-family: "Butcherman";
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
+
+section {
+  padding-top: 1em;
+}
+
+h1.logo{
+  font-family: 'Butcherman';
+}
+body, h1, h2, h3, h4, h5 {
+  font-family: $primary-font
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+a, h2, h3 {
   color: $primary-teal;
 }
 
 a:hover {
   color: $dark-teal;
   text-decoration: none;
+}
+
+.product_photo {
+  width: 100%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  line-height: 1.6;
+  font-family: Helvetica, sans-serif;
+}
+
+#wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 55vw;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 100vw;
+  min-height: 55vw;
+  overflow: hidden;
+}
+
+.layer .content-wrap {
+  position: absolute;
+  width: 100vw;
+  min-height: 55vw;
+}
+
+.layer .content-body {
+  position: absolute;
+  width: 25%;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.layer img {
+  position: absolute;
+  width: 35%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.layer h1 {
+  font-size: 2em;
+}
+
+.bottom {
+  background: #222;
+  z-index: 1;
+}
+
+.bottom .content-body {
+  right: 5%;
+}
+
+.bottom h1 {
+  color: #fdab00;
+}
+
+/* top layer */
+.top {
+  background: #eee;
+  color: #222;
+  z-index: 2;
+  width: 50vw;
+}
+
+.top .content-body {
+  left: 5%;
+  color: #222;
+}
+
+.handle {
+  position: absolute;
+  height: 100%;
+  display: block;
+  background-color: #fdab00;
+  width: 5px; /*for the bar*/
+  top: 0;
+  left: 50%;
+  z-index: 3;
+}
+
+/* skew effect */
+.skewed .handle {
+  top: 50%;
+  transform: rotate(30deg) translateY(-50%);
+  height: 200%;
+  transform-origin: top;
+}
+
+.skewed .top {
+  transform: skew(-30deg);
+  margin-left: -1000px;
+  width: calc(50vw + 1000px);
+}
+
+.skewed .top .content-wrap {
+  transform: skew(30deg);
+  margin-left: 1000px;
+}
+
+@media(max-width: 768px) {
+  body {
+    font-size: 75%;
+  }
 }
