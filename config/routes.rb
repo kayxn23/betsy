@@ -32,9 +32,8 @@ Rails.application.routes.draw do
   # get '/products', to: 'products#index', as: 'products'
   # get '/products/:id', to: 'products#show', as: 'product'
 
-  resources :categories, only: [ :new, :create, :index , :show] do
-    resources :products, only: [:index, :new]
-  end
+  resources :categories, only: [ :new, :create, :index , :show]
+  
   # get 'categories/new'
   # get 'categories/create'
   resources :orders, only: [:show, :new, :create, :index] do

@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
 
     if @category.nil?
       flash.now[:danger] = "Cannot find the category #{params[:id]}"
-      render_404
+      render :notfound, status: :not_found
     end
   end
 
