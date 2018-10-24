@@ -36,4 +36,9 @@ class User < ApplicationRecord
     return @my_sold_items
   end
 
+  # Helper method to return order items for different status types
+  def order_items_for_status(status)
+    self.sold_items.select { |item| item.order.status == status.downcase }
+  end
+
 end
