@@ -75,6 +75,7 @@ class UsersController < ApplicationController
       # @merchant = find_merchant - have this already
       #
       @products = @merchant.products
+      @order_items = @merchant.sold_items
       # For each product, search for order items
 
       # TODO - Show summary of orders / revenue
