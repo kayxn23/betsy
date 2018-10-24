@@ -10,3 +10,4 @@ street,city,state,zip,creditcard,ccexpiration,cvv,billingzip,status,user_id
 3613 Mercer Street,Wausau,WI,54403,4452,12/2021,772,45221,complete,5
 3257 Briarwood Road,Humansville,MO,65674,4453,11/2018,102,47905,paid,6
 247 Northwest Boulevard,Fort Lee,NJ,07024,4454,3/2021,871,80503,pending,6
+3434 Northwest Boulevard,Fort Lee,NJ,07024,4454,3/2021,871,80503,paid,3
