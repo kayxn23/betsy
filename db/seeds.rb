@@ -99,15 +99,17 @@ CSV.foreach(PRODUCTS_FILE, :headers => true) do |row|
   # binding.pry
   # Add some categories
   category_amount = [1,2,3,4].sample
-  # category_amount.times do
-    category_id = [1..Category.all.length].sample
+  category_amount.times do
+    category_id = (1..Category.all.length).to_a.sample
     category = Category.find_by(id: category_id)
-    # while product.categories.include?(category)
-    #   category_id = [1..Category.all.length].sample
-    #   category = Category.find_by(id: category_id)
-    # end
+    # This is making it get stuck for some reason
+    # Is not converting range into an array for each number
+    while product.categories.include?(category)
+      category_id = ( 1..Category.all.length ).to_a.sample
+      category = Category.find_by(id: category_id)
+    end
       product.categories << category
-  # end
+  end
   # binding.pry
   successful = product.save
   if !successful
