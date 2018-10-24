@@ -53,6 +53,7 @@ describe Order do
           quantity: 5
         }
       }
+      # binding.pry
 
       expect(order.products.count).must_equal 0
       order.add_product(product_params)
