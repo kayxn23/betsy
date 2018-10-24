@@ -1,5 +1,26 @@
 
-
 <h1>Products#index</h1>
 <p>Find me in app/views/products/index.html.erb</p>
 <h5>loop thru all @products</h5>
+
+<div class="row">
+  <% @products.each do |product| %>
+<div class="col-md-3">
+	<figure class="card card-product text-center">
+		<div class="img-wrap">
+			<%= link_to image_tag(product.photo, class: "product_photo"),product_path(product.id) %>
+      <h5><%= link_to product.name , product_path(product.id), class: "btn-overlay"%></h5>
+		</div>
+		<figcaption class="info-wrap">
+      <%= link_to product.user.name,  merchant_products_path(product.user.id), class: "title"%>
+			<div class="action-wrap">
+				<div class="price-wrap h5">
+					<span class="price-new">$<%=readable_price(product.price) %></span>
+				</div>
+        <a href="#" class="btn btn-primary btn-sm"> Add to Cart </a> <!-- price-wrap.// -->
+			</div> <!-- action-wrap -->
+		</figcaption>
+	</figure> <!-- card // -->
+</div> <!-- col // -->
+<%end%>
+</div> <!-- row.// -->
