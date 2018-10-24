@@ -4,45 +4,50 @@
   <title>Thrillow</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <link rel="icon" type="image/png" href="https://image.flaticon.com/icons/svg/12/12402.svg">
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.png"> -->
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
-  <div class = "container">
-    <header>
-      <h1>
-        <%= link_to "Thrillow", root_path %>
-      </h1>
-
-      <nav>
-        <ul>
-          <li>
-            <%= link_to "Shop All Homes", products_path, class: "" %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <%= link_to "Thrillow", root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to "Shop All Homes", products_path, class: "nav-link" %>
           </li>
-          <li >
-            <%= link_to "Shop By Categories", categories_path, class: "" %>
+          <li class="nav-item">
+            <%= link_to "Shop By Categories", categories_path, class: "nav-link" %>
           </li>
-          <li>
-            <%= link_to "Shop By Sellers", users_path, class: "" %>
+          <li class="nav-item">
+            <%= link_to "Shop By Sellers", users_path, class: "nav-link" %>
           </li>
-          <li>
+          <li class="nav-item">
             <% if session[:user_id] %>
-              <%= link_to "Log out", logout_path, method: "delete"  %>
-            <% else %>
-              <%= link_to "Login with Github", "/auth/github" %>
+              <%= link_to "Merchant Dashboard", dashboard_path(session[:user_id]),class:"nav-link" %>
             <% end %>
-
           </li>
-          <!-- Add link for merchant to see their show page -->
-          <!-- Is redirecting back to home for some reason -->
-          <% if session[:user_id] %>
-            <%= link_to "Merchant Dashboard", dashboard_path(session[:user_id]) %>
-          <% end %>
+          <li class="nav-item">
 
+            <% if session[:user_id] %>
+              <%= link_to "Log out", logout_path, method: "delete",class:"nav-link"  %>
+            <% else %>
+              <%= link_to "Login", "/auth/github",class:"nav-link btn btn-primary btn-capsul px-4 py-2" %>
+            <% end %>
+          </li>
         </ul>
-      </nav>
+      </div>
+    </div>
+  </nav>
 
       <main>
         <%= yield %>

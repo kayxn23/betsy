@@ -16,7 +16,8 @@
 
 /* Import scss content */
 @import "bootstrap";
-
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Butcherman|Creepster');
 
 $primary-font: 'Gudea', sans-serif;
 $primary-teal: #26A69A;
@@ -43,4 +44,21 @@ a, h2, h3 {
 a:hover {
   color: $dark-teal;
   text-decoration: none;
+}
+
+/*------------------------*/
+/**********************************
+Responsive navbar-brand image CSS
+- Remove navbar-brand padding for firefox bug workaround
+- add 100% height and width auto ... similar to how bootstrap img-responsive class works
+***********************************/
+
+.navbar-brand {
+  padding: 0px;
+  font-family: "Butcherman";
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
 }
