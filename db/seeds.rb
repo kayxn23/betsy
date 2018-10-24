@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+require 'pry'
 
 
 CATEGORY_FILE = Rails.root.join('db', 'category_seeds_3.csv')
@@ -95,6 +96,21 @@ CSV.foreach(PRODUCTS_FILE, :headers => true) do |row|
   product.photo = row['photo']
   product.stock = row['stock']
   product.user_id = row['user_id']
+  # binding.pry
+  # Add some categories
+  category_amount = [1,2,3,4].sample
+  category_amount.times do
+    category_id = (1..Category.all.length).to_a.sample
+    category = Category.find_by(id: category_id)
+    # This is making it get stuck for some reason
+    # Is not converting range into an array for each number
+    while product.categories.include?(category)
+      category_id = ( 1..Category.all.length ).to_a.sample
+      category = Category.find_by(id: category_id)
+    end
+      product.categories << category
+  end
+  # binding.pry
   successful = product.save
   if !successful
     product_failures << product
@@ -134,23 +150,23 @@ puts "#{order_items_failures.length} order items failed to save"
 
 #--------------------------------------------------------
 
-CATEGORIES_PRODUCTS_FILE = Rails.root.join('db', 'order_item_seeds.csv')
-puts "Loading raw product data from #{CATEGORIES_PRODUCTS_FILE}"
-
-cat_items_failures = []
-CSV.foreach(CATEGORIES_PRODUCTS_FILE, :headers => true) do |row|
-  category_product = CategoryProduct.new
-  order_item.order_id = row['order_id']
-  order_item.product_id = row['product_id']
-  order_item.quantity = row['quantity']
-  successful = order_item.save
-  if !successful
-    order_items_failures << order_item
-    puts "Failed to save order items: #{order_item.inspect}"
-  else
-    puts "Created order items: #{order_item.inspect}"
-  end
-end
-
-puts "Added #{OrdersItem.count} order item records"
-puts "#{order_items_failures.length} order items failed to save"
+# CATEGORIES_PRODUCTS_FILE = Rails.root.join('db', 'order_item_seeds.csv')
+# puts "Loading raw product data from #{CATEGORIES_PRODUCTS_FILE}"
+#
+# cat_items_failures = []
+# CSV.foreach(CATEGORIES_PRODUCTS_FILE, :headers => true) do |row|
+#   category_product = CategoryProduct.new
+#   order_item.order_id = row['order_id']
+#   order_item.product_id = row['product_id']
+#   order_item.quantity = row['quantity']
+#   successful = order_item.save
+#   if !successful
+#     order_items_failures << order_item
+#     puts "Failed to save order items: #{order_item.inspect}"
+#   else
+#     puts "Created order items: #{order_item.inspect}"
+#   end
+# end
+#
+# puts "Added #{OrdersItem.count} order item records"
+# puts "#{order_items_failures.length} order items failed to save"

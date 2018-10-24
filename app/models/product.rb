@@ -4,9 +4,11 @@ class Product < ApplicationRecord
   has_many :orders_items
   has_many :orders, through: :orders_items
 
+  # Merchant can only have unique products
+  validates :name, presence: true
 
-  validates :name, presence: true, uniqueness: { scope: :user_id,
-    message: "user already has a product with that name" }
+  validates_uniqueness_of :name, :scope => [:user_id]
+    # message: "user already has a product with that name" }
   validates :price, presence: true, numericality: {greater_than: 0}
 
   validates :description, presence: true
