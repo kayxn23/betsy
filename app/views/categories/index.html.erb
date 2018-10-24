@@ -2,18 +2,19 @@
 
 <section class='container'>
 <div class="row">
+
+  <%# @category_photos.each do |photo| %>
+    <% @categories.each do |category| %>
   <div class="col-md-6 col-lg-4">
     <div class="card">
-      <% @categories.each do |category| %>
-      <%= link_to category_path(category.id) do %>
-      <%= image_tag "https://cdn.images.dailystar.co.uk/dynamic/28/photos/655000/620x/Hoia-Baciu-forest-695950.jpg", alt:"Card image cap", class:"card-img-top img-fluid" %>
-      <% end %>
-      <% end %>
+      <%= link_to image_tag(category.product_photo, alt:"Card image cap", class:"card-img-top img-fluid"), category_path(category.id) %>
      <div class="card-block">
-        <h4 class="card-title">Dark Forest</h4>
+        <h4 class="card-title"><%= category.name %></h4>
       </div>
     </div>
   </div>
+  <% end %>
+
 
   <div class="col-md-6 col-lg-4">
     <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="https://i0.wp.com/www.whaleoil.co.nz/wp-content/uploads/2018/05/ghost-house.jpg?resize=630%2C354&ssl=1" />
