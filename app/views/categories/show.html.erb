@@ -1,1 +1,13 @@
-<h1> Category Show Page </h1>
+<header>
+  <h1> Category Details Page </h1>
+</header>
+
+
+<section>
+  <h2><%= @category.name %></h2>
+  <% @category.products.each do |product| %>
+  <ul>
+  <li><%= link_to "#{product.name}", category_products_path(product.id) %></li>
+  </ul>
+  <% end %>
+</section>

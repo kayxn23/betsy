@@ -16,6 +16,11 @@
 
 /* Import scss content */
 @import "bootstrap";
+/* Butcherman Font from Google*/
+// @import url('https://fonts.googleapis.com/css?family=Butcherman');
+
+@import url('https://fonts.googleapis.com/css?family=Griffy');
+
 
 
 $primary-font: 'Gudea', sans-serif;
@@ -34,6 +39,7 @@ body, h1, h2, h3, h4, h5 {
 
 h1, h2, h3, h4, h5 {
   font-weight: bold;
+  font-family: 'Griffy', cursive;
 }
 
 a, h2, h3 {

@@ -1,0 +1,59 @@
+<h1 class="display-4 text-xs-center m-y-3 text-muted" id="speakers">Categories</h1>
+
+<section class='container'>
+<div class="row">
+  <div class="col-md-6 col-lg-4">
+    <div class="card">
+      <% @categories.each do |category| %>
+      <%= link_to category_path(category.id) do %>
+      <%= image_tag "https://cdn.images.dailystar.co.uk/dynamic/28/photos/655000/620x/Hoia-Baciu-forest-695950.jpg", alt:"Card image cap", class:"card-img-top img-fluid" %>
+      <% end %>
+      <% end %>
+     <div class="card-block">
+        <h4 class="card-title">Dark Forest</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="https://i0.wp.com/www.whaleoil.co.nz/wp-content/uploads/2018/05/ghost-house.jpg?resize=630%2C354&ssl=1" />
+      <div class="card-block">
+        <h4 class="card-title">Ghost Town</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="https://c1.staticflickr.com/3/2414/32822356335_25a7c971f8_b.jpg" />
+      <div class="card-block">
+        <h4 class="card-title">Alley</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="https://shawglobalnews.files.wordpress.com/2017/11/field-of-screams-pc-heath-fletcher-sproing-creative.jpg?quality=70&strip=all&w=720" />
+      <div class="card-block">
+        <h4 class="card-title">Field</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="https://i1.wp.com/thesimscatalog.com/sims4/wp-content/uploads/2017/10/SC4-167431_PT02.jpg?fit=670%2C386&ssl=1" />
+      <div class="card-block">
+        <h4 class="card-title">Vampire</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="https://img00.deviantart.net/0cd0/i/2009/305/5/7/haunted_house_background_13_by_indigodeep.jpg" />
+      <div class="card-block">
+        <h4 class="card-title">View All Categories</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
