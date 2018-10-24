@@ -75,8 +75,19 @@ class UsersController < ApplicationController
       # @merchant = find_merchant - have this already
       #
       @products = @merchant.products
-      @order_items = @merchant.sold_items
+      if params[:status]
+        @order_items = @merchant.order_items_for_status(params[:status])
+      else
+        @order_items = @merchant.sold_items
+      end
       # For each product, search for order items
+      # Params data - assign to filter - value available in the view - ?
+      # Have filter method,
+      # Assign filter from params if it exists or user a default or all
+      # In partial, use just the filter items ?
+      # Links, get some quesries, use them as needed in controller
+      # QUERY STRING and Link to
+      @status_types = ["pending", "paid", "complete", "cancelled"]
 
       # TODO - Show summary of orders / revenue
       # @order_itmes = []

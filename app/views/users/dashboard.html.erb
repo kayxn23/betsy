@@ -17,22 +17,33 @@
       <li class="btn">
         <%= link_to "Add Category", new_category_path, class:"btn btn-primary"  %>
       </li>
+      <li class="btn">
+        <!-- Dropdown of status and all here  -->
+            <%= link_to "All Orders", dashboard_path(:status=>"all"), class:"btn btn-primary" %>
+      </li>
+
+          <% @status_types.each do |status| %>
+            <li class="btn btn-primary">
+              <%=link_to "#{status.capitalize} Orders", dashboard_path(:status=>"#{status}"), class:"btn btn-primary" %>
+            </li>
+          <!-- Make these links? link_to a path helper -->
+
+          <% end %>
     </ul>
   </nav>
 
   <section class="container">
     <h2>My Products</h2>
     <ul>
-      <%= @merchant.products.each do |product| %>
+      <% @merchant.products.each do |product| %>
         <li>
           <h3><%= "#{product.name}" %></h3>
-          <%# image_tag("product.photo"), alt="#{product.name} image" %>
           <p><%= "Price: #{product.price}" %></p>
           <p><%= "Description: #{product.description}" %></p>
           <p><%= "Stock: #{product.stock}" %></p>
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
-          <%= link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
+          <%# link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
           <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
         </li>
 
@@ -43,8 +54,8 @@
 
   <section class="container">
     <h2>Orders</h2>
-    <%= render partial: "statussummary" %> 
-    <ul>
+    <%= render partial: "statussummary" %>
+    <!-- <ul>
       <li>
         <h3><%= "Total Revenue: $" %></h3>
       </li>
@@ -104,39 +115,7 @@
       <!-- TODO Loop through order items for merchant here  -->
       <!-- Show order id, date, product, price, quantity, subtotal, order status  -->
       <!-- shipped status -->
-      <% @order_items.each do |item| %>
-        <tr>
-          <td>
-            <%= link_to "#{item.order.id}", order_path(item.order.id) %>
-          </td>
-          <td>
-            <%= item.order.updated_at %>
-          </td>
-          <td>
-            <%= link_to "#{item.product.name}", product_path(item.product.id) %>
-          </td>
-          <td>
-            <%= item.product.price %>
-          </td>
-          <td>
-            <%= item.quantity %>
-          </td>
-          <td>
-            <%= "Subtotal Here - Katherine creating this in order item?" %>
-          </td>
-          <td>
-            <%= item.order.status.capitalize %>
-          </td>
-          <td>
-            <%= "TODO SHIPPED STATUS" %>
-          </td>
-          <td>
-            <%= "TODO - Option to edit shipped status" %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-
+      <!-- <% @order_items %> -->
   </section>
   </div>
 <% end %>
