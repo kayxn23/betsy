@@ -1,16 +1,41 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  status: MyString
+  status: pending
   street: 111 Yosemite
   city: Seattle
   state: WA
   zip: 98122
   creditcard: 1000
-  cvv: 111
+  cvv: 123
   billingzip: 98122
-  #products: graveyard
-  user: dani
 
 two:
-  status: MyString
+  status: paid
+  street: 123 Sunny Lane
+  city: Seattle
+  state: WA
+  zip: 98133
+  creditcard: 1111
+  cvv: 123
+  billingzip: 98133
+
+three:
+  status: cancelled
+  street: 123 Sunny Lane
+  city: Seattle
+  state: WA
+  zip: 98133
+  creditcard: 1111
+  cvv: 123
+  billingzip: 98133
+
+four:
+  status: complete
+  street: 123 Sunny Lane
+  city: Seattle
+  state: WA
+  zip: 98133
+  creditcard: 1111
+  cvv: 123
+  billingzip: 98133

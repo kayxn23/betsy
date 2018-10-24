@@ -108,8 +108,6 @@ describe User do
       )
 
       @merchant.products << product
-
-      binding.pry
       @merchant.products.length.must_equal 1
       @merchant.products.first.must_equal product
       @merchant.sold_items.must_be_instance_of Array
@@ -118,6 +116,43 @@ describe User do
 
     it "returns my order items" do
       # Add two products to a merchant, each with orders items
+      # Product one
+      # order item
+      # order item
+      # product two
+      # order item
+      # order item
+
+      product_one = Product.create(
+        name: "Spooky House",
+        price: 1000000,
+        description: "Most spooky house ever!",
+        stock: 3,
+        user_id: @merchant.id
+      )
+
+      product_two = Product.create(
+        name: "Spooky House",
+        price: 1000000,
+        description: "Most spooky house ever!",
+        stock: 3,
+        user_id: @merchant.id
+      )
+
+      # Do I need to shovel order items into product?
+      product_one << OrdersItem.create(
+        order_id: orders(:one).id,
+        quantity: 3
+      )
+
+      product_two << OrdersItem.create(
+        order_id: orders(:one).id,
+        quantity: 2
+      )
+
+      binding.pry
+
+
 
     end
   end
