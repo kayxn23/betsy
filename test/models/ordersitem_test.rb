@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 describe OrdersItem do
  let(:item) { orders_items(:item1) }
  it "must be valid" do

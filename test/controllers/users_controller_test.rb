@@ -28,7 +28,7 @@ describe UsersController do
       # Setting a merchant
       merchant = users(:dani)
       # Attempting to access merchant 3 dashboard
-      # binding.pry
+
       get dashboard_path(merchant.id)
       # Expectation - Flash message/redirect
       expect(flash[:danger]).must_equal "You must be logged in to view this section"
@@ -44,10 +44,10 @@ describe UsersController do
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
         get auth_callback_path('github')
 
-        # Should be logged in now.. 
+        # Should be logged in now..
 
       # Act
-      # binding.pry
+
       get dashboard_path(user.id)
       # Assert
       # Is not saving for some reason
@@ -82,7 +82,7 @@ describe UsersController do
 
     it "can create a new user given valid params" do
       # Says it's redirect is a users . instead of users/, not sure why
-      # binding.pry
+
       expect {
         post users_path, params: user_hash
       }.must_change 'User.count', 1
@@ -101,7 +101,7 @@ describe UsersController do
     it "responds with an error for invalid params" do
       # Arrange
       user_hash[:user][:name] = nil
-      # binding.pry
+
       #Act/Assert
       expect {
          post users_path, params: user_hash

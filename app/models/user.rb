@@ -1,4 +1,4 @@
-require 'pry'
+
 class User < ApplicationRecord
 
   has_many :orders, dependent: :destroy
@@ -25,7 +25,6 @@ class User < ApplicationRecord
     # return the array
     # in view, check if array is empty before trying to show things
     @my_sold_items = []
-    # binding.pry
     self.products.each do |product|
       # Checking if product has order items
       product.orders_items.each do |item|
@@ -41,6 +40,6 @@ class User < ApplicationRecord
     self.sold_items.select { |item| item.order.status == status.downcase }
   end
 
-  
+
 
 end

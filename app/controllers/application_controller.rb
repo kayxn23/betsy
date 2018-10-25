@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def require_login
     # Check if current user is logged in (has uid/provider)
     # Would have user_id and provider and uid
-    # binding.pry
+    #
     if !find_merchant
       flash[:danger] = "You must be logged in to view this section"
       redirect_to root_path
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_merchant?
-    # binding.pry
+    #
     return @merchant
   end
 

@@ -91,7 +91,6 @@ describe User do
     end
     it "returns an empty array if I have no products" do
       # Merchant has no products
-      # binding.pry
       @merchant.sold_items.must_be_instance_of Array
       @merchant.sold_items.length.must_equal 0
 
