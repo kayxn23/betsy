@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  require 'pry'
   # May need to add edit/update/destroy to this later
   before_action :find_user, only: [:dashboard]
   before_action :require_login, only: [:dashboard]
@@ -62,7 +61,6 @@ class UsersController < ApplicationController
   # Requires login to see merchant dashboard
   # Will show products, able to add product, edit product, see orders, etc.
   def dashboard
-    # binding.pry
     # @user = find_user
     #Check if current user is the person for the dashboard view page
     # Is this how that works? Can't test until Github is back up.
@@ -77,7 +75,7 @@ class UsersController < ApplicationController
       @products = @merchant.products
       if params[:status] && params[:status] != "all"
         @order_items = @merchant.order_items_for_status(params[:status])
-      elsif 
+      elsif
         @order_items = @merchant.sold_items
       end
 
@@ -110,7 +108,7 @@ class UsersController < ApplicationController
       # TODO - Show summary of orders / revenue
       # @order_itmes = []
       # @order_items = @merchant.products.map do |product|
-        # binding.pry
+        #
       # Find order items with product id
       # OrdersItem.select { |item| item.product_id == product.id }
       # Returns array of products, one per order entry
@@ -133,11 +131,11 @@ class UsersController < ApplicationController
   def find_user
     # Try to find the user
     @user = User.find_by(id: params[:id].to_i)
-    # binding.pry
+    #
     # If user doesn't exist flash a message /render notfound page
     if @user.nil?
       flash.now[:danger] = "Cannot find user"
-      # binding.pry
+      #
       render :notfound , status: :not_found
     end
   end

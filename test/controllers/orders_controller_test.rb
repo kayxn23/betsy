@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 
 describe OrdersController do
   # Test new, create, and show
@@ -55,9 +54,9 @@ describe OrdersController do
 
       must_respond_with :redirect
       must_redirect_to order_path(id)
-      binding.pry
+
       new_order = Order.find_by(id: id)
-      binding.pry
+
 
       expect(new_order.status).must_equal order_hash[:order][:status]
       expect(new_order.street).must_equal order_hash[:order][:street]
@@ -174,6 +173,6 @@ describe OrdersController do
   #      expect(flash.now[:danger]).must_equal "Cannot find the order #{id}"
      # end
    # end
- end 
+ end
 end
 end

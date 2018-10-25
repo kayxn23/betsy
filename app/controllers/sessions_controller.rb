@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  require 'pry'
   # TODO How do we handle a merchant shopping/closing browser
   # coming back as a user (not logged in).
   # Do we merge the carts or do we destroy the old cart
@@ -10,7 +9,7 @@ class SessionsController < ApplicationController
 
     user = User.find_by(uid: auth_hash[:uid], provider: 'github')
 
-    # binding.pry
+    #
 
     if user
       # User was found in the database
@@ -21,13 +20,13 @@ class SessionsController < ApplicationController
       # User doesn't match anything in the DB
       # Attempt to create a new user
       user = User.build_from_github(auth_hash)
-      # binding.pry
+      #
       if user.save
         flash[:success] = "Logged in as new user #{user.name}"
 
       else
         # Couldn't save the user
-        # binding.pry
+        #
         flash[:error] = "Could not create new user account: #{user.errors.messages}"
         redirect_to root_path
         return
