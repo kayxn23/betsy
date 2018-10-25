@@ -51,20 +51,14 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    category = Category.find_by(name: product_params[:category_ids])
-    # get array of categories  -> form stuff
-    # loop thru aray of categories
-    # find the matching cateogry
-    # update the product to have that category
-    # category_params.each do |params|
-    #   category = Category.find_by(name: params[:category_name])
-    #   @product.categories << category
-    # @product.category_id = category.id
+    @product.categories
+    @product.user_id = @current_user.id
 
     if @product.save
       flash[:success] = 'Product Created!'
 
-      redirect_to product_path(@product.id)
+      redirect_to dashboard_path(@current_user.id)
+
     else
       flash.now[:danger] = 'Product not created!'
 
@@ -82,6 +76,16 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+  end
+
+##added this
+  def category
+    @category = Category.find_by(id: params[:id])
+    if @category.nil?
+      flash[:warning] = "invalid category"
+      redirect_to root_path
+    end
+    @products = Product.by_category(params[:id])
   end
 
   private
