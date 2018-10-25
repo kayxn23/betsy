@@ -13,10 +13,12 @@ class Category < ApplicationRecord
 
   def product_photo
     photos = []
-      self.products.each do |product|
-        photos << product.photo
-      end
-      return photos.sample
+    self.products.each do |product|
+      photos << product.photo
     end
+    return photos.sample
+  end
+
+
 
 end

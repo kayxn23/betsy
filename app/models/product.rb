@@ -8,11 +8,23 @@ class Product < ApplicationRecord
   validates :name, presence: true
 
   validates_uniqueness_of :name, :scope => [:user_id]
-    # message: "user already has a product with that name" }
+  # message: "user already has a product with that name" }
   validates :price, presence: true, numericality: {greater_than: 0}
 
   validates :description, presence: true
   validates :photo, presence: true
   validates :stock, presence: true
+
+
+  def self.category_list
+    categories = []
+    Product.all.each do |product|
+      product.categories.each do |category|
+        categories << category.name
+      end
+    end
+    return categories.uniq
+  end
+
 
 end

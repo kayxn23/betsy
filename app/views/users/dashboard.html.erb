@@ -23,7 +23,7 @@
   <section class="container">
     <h2>My Products</h2>
     <ul>
-      <%= @merchant.products.each do |product| %>
+      <% @merchant.products.each do |product| %>
         <li>
           <h3><%= "#{product.name}" %></h3>
           <%# image_tag("product.photo"), alt="#{product.name} image" %>

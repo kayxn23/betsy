@@ -15,21 +15,24 @@
     <% end %>
 
     <%= form_with model: @product, class: "form" do |f|%>
-        <%# f.label :category %>
-        <%# f.select :category, ['album','book','movie'], class: 'form__input'%>
+        <%= f.label :category %>
+        <%= f.radio_button :category, options_for_select(Product.category_list), class: ''%>
 
         <%= f.label :price %>
-        <%= f.text_field :price, class: "form__input"%>
+        <%= f.text_field :price, class: ""%>
 
         <%= f.label :name %>
-        <%= f.text_field :name, class: "form__input"%>
+        <%= f.text_field :name, class: ""%>
 
 
         <%= f.label :description %>
-        <%= f.text_field :description, class: "form__input"%>
+        <%= f.text_field :description, class: ""%>
 
         <%= f.label :stock %>
-        <%= f.text_field :stock, class: "form__input" %>
+        <%= f.text_field :stock, class: "" %>
+
+        <%# f.label :photo %>
+        <%# f.text_field :photo, class: "form__input" %>
 
       <%= f.submit button_title, class: 'btn'%>
     <% end %>
