@@ -47,11 +47,14 @@
     return current_item
   end
 
-  # def order_calculate_total(product_id)
-  #    self.orders_items.each do |current_item|
-  #      total_cost += current_item.calculate_total
-  #    end
-  #  end
+
+  def order_calculate_total(product_id)
+     total_cost = 0
+     self.orders_items.each do |item|
+       total_cost += item.calculate_total
+     end
+     return total_cost
+   end
 
   def items_in_cart
     # TODO: Update to return accurate quanity of all items in cart
