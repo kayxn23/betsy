@@ -50,30 +50,34 @@
           <th>
             <%= "Stock" %>
           </th>
+          <th>
+            Edit
+          </th>
         </tr>
       </thead>
       <tbody>
         <% @merchant.products.each do |product| %>
           <tr>
             <td>
-              <h3><%= "#{product.name}" %></h3>
+              <h3><%= "#{product.name.capitalize}" %></h3>
             </td>
             <td>
-              <p><%= "Price: #{product.price}" %></p>
+              <p><%= "#{product.price}" %></p>
             </td>
             <td>
-              <p><%= "Description: #{product.description}" %></p>
+              <p><%= "#{product.description}" %></p>
             </td>
             <td>
-              <p><%= "Stock: #{product.stock}" %></p>
+              <p><%= "#{product.stock}" %></p>
             </td>
-
+            <td>
+              <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
+            </td>
           </tr>
 
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
 
-          <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
 
         <% end %>
       </tbody>

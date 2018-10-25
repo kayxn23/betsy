@@ -1,7 +1,7 @@
 <h3><%= "Order Summary" %></h3>
 <!-- Total number of orders -->
 <!-- Total Revenue -->
-<table class="table">
+<table class="table id="order_summary"">
   <thead>
     <tr>
       <th>
@@ -9,6 +9,9 @@
       </th>
       <th>
         <%= "Number of Orders" %>
+      </th>
+      <th>
+        <%= "Number of Items Ordered" %>
       </th>
     </tr>
   </thead>
@@ -18,6 +21,9 @@
     </td>
     <td>
       <%= "#{@total_orders}" %>
+    </td>
+    <td>
+      <%= "#{@total_items}" %>
     </td>
   </tr>
 </table>

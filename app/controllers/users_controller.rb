@@ -73,9 +73,10 @@ class UsersController < ApplicationController
     else
 
       # @merchant = find_merchant - have this already
-      #
+      ######## SORT THESE THINGS !!!!
       @products = @merchant.products
       if params[:status]
+
         @order_items = @merchant.order_items_for_status(params[:status])
       else
         @order_items = @merchant.sold_items
@@ -95,6 +96,7 @@ class UsersController < ApplicationController
           #   order_numbers << item
           # end
           @total_orders = order_overview.length
+          @total_items = order_overview.values.sum
         end
       # For each product, search for order items
       # Params data - assign to filter - value available in the view - ?
