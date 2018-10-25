@@ -2,14 +2,19 @@
   <h1>User Not Found</h1>
 <% else %>
 
-<div class="container">
+<<<<<<< HEAD
+<div class="container id", id="dashboard_container" >
   <header>
+=======
+<div class="container">
+  <header id="dashboard_header">
+>>>>>>> merchant_dashboard_orders
     <p><%= "#{@merchant.name}'s Dashboard" %></p>
     <!-- Edit own info here? Are we providing user edit/update? -->
 
   </header>
 
-  <nav>
+  <nav id="dashboard_merchant_options">
     <ul id = "merchant_options">
       <li class="btn">
         <%= link_to "Add Product", new_product_path, class:"btn btn-primary"  %>
@@ -36,7 +41,7 @@
     <h2>My Products</h2>
 <<<<<<< HEAD
     <!-- TODO MAKE THIS A TABLE - THIS IS UGLY!!!!!!!!!!!  -->
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>
@@ -51,24 +56,29 @@
           <th>
             <%= "Stock" %>
           </th>
+          <th>
+            Edit
+          </th>
         </tr>
       </thead>
       <tbody>
         <% @merchant.products.each do |product| %>
           <tr>
             <td>
-              <h3><%= "#{product.name}" %></h3>
+              <h3><%= "#{product.name.capitalize}" %></h3>
             </td>
             <td>
-              <p><%= "Price: #{product.price}" %></p>
+              <p><%= "#{number_to_currency(product.price)}" %></p>
             </td>
             <td>
-              <p><%= "Description: #{product.description}" %></p>
+              <p><%= "#{product.description}" %></p>
             </td>
             <td>
-              <p><%= "Stock: #{product.stock}" %></p>
+              <p><%= "#{product.stock}" %></p>
             </td>
-
+            <td>
+              <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
+            </td>
           </tr>
 
 =======
@@ -83,12 +93,7 @@
 >>>>>>> retire-product-feature
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
-<<<<<<< HEAD
-          <%# link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
-=======
-          <%= link_to "Retire Product", product_retire(product.id), class: "btn btn-primary", method: :post %>
->>>>>>> order_cart_view
-          <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
+
 
         <% end %>
       </tbody>
@@ -99,7 +104,6 @@
 
 
   <section class="container">
-    <h2>Orders</h2>
     <%= render partial: "statussummary" %>
     <!-- <ul>
       <li>
