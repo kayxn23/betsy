@@ -4,7 +4,7 @@ describe OrdersItemsController do
   # it "must be a real test" do
   #   flunk "Need real tests"
   # end
-end
+
 
   it "can add new items to an order" do
     # "order_id" = $1  [["order_id", 193]]
@@ -15,3 +15,4 @@ end
 
   it "can remove new items to an order" do
   end
+end
