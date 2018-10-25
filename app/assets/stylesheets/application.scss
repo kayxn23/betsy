@@ -38,7 +38,7 @@ body, h1, h2, h3, h4, h5 {
 
 h1, h2, h3, h4, h5 {
   font-weight: bold;
-  font-family: 'Griffy', cursive;
+  font-family: 'Gudea', cursive;
 }
 
 a, h2, h3 {
@@ -74,8 +74,9 @@ section {
 h1.logo{
   font-family: 'Butcherman';
 }
+
 body, h1, h2, h3, h4, h5 {
-  font-family: $primary-font
+  font-family: $primary-font;
 }
 
 h1, h2, h3, h4, h5 {
@@ -210,6 +211,7 @@ body {
 .dashboard_container {
   margin: 2rem;
   padding: 2rem;
+}
 
 table {
   text-align: center;
