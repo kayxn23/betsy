@@ -1,7 +1,7 @@
 <h3><%= "Order Summary" %></h3>
 <!-- Total number of orders -->
 <!-- Total Revenue -->
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>
@@ -46,12 +46,13 @@
       <th>
         <%= "Order Status" %>
       </th>
-      <th>
-        <%= "Shipped Status" %>
+      <!--TODO: If we have time we'll do shipped status  -->
+      <!-- <th>
+        <%# "Shipped Status" %>
       </th>
       <th>
-        <%= "Edit Shipped Status" %>
-      </th>
+        <%# "Edit Shipped Status" %>
+      </th> -->
     </tr>
   </thead>
 
@@ -67,7 +68,7 @@
         <%= item.order.updated_at %>
       </td>
       <td>
-        <%= link_to "#{item.product.name}", product_path(item.product.id) %>
+        <%= link_to "#{item.product.name.capitalize}", product_path(item.product.id) %>
       </td>
       <td>
         <%= item.product.price %>
@@ -76,17 +77,17 @@
         <%= item.quantity %>
       </td>
       <td>
-        <%= "Subtotal Here - Katherine creating this in order item?" %>
+        <%= item.calculate_total %>
       </td>
       <td>
         <%= item.order.status.capitalize %>
       </td>
-      <td>
+      <!-- <td>
         <%= "TODO SHIPPED STATUS" %>
       </td>
       <td>
         <%= "TODO - Option to edit shipped status" %>
-      </td>
+      </td> -->
     </tr>
   <% end %>
 </table>
