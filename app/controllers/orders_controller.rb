@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+    before_action :find_order, only: [:edit,:update]
 
   #
   # def new #WRONG TO HAVE @ORDER
