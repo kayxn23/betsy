@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   has_many :orders_items, dependent: :destroy
-  has_many :products, through: :orders_items, dependent: :destroy 
+  has_many :products, through: :orders_items, dependent: :destroy
 
   belongs_to :user, optional: true
 
@@ -40,4 +40,7 @@ class Order < ApplicationRecord
 
     return current_product
   end
+
+
+
 end

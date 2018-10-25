@@ -17,33 +17,76 @@
       <li class="btn">
         <%= link_to "Add Category", new_category_path, class:"btn btn-primary"  %>
       </li>
+      <li class="btn">
+        <!-- Dropdown of status and all here  -->
+            <%= link_to "All Orders", dashboard_path(:status=>"all"), class:"btn btn-primary" %>
+      </li>
+
+          <% @status_types.each do |status| %>
+            <li class="btn btn-primary">
+              <%=link_to "#{status.capitalize} Orders", dashboard_path(:status=>"#{status}"), class:"btn btn-primary" %>
+            </li>
+          <!-- Make these links? link_to a path helper -->
+
+          <% end %>
     </ul>
   </nav>
 
   <section class="container">
     <h2>My Products</h2>
-    <ul>
-      <%= @merchant.products.each do |product| %>
-        <li>
-          <h3><%= "#{product.name}" %></h3>
-          <%# image_tag("product.photo"), alt="#{product.name} image" %>
-          <p><%= "Price: #{product.price}" %></p>
-          <p><%= "Description: #{product.description}" %></p>
-          <p><%= "Stock: #{product.stock}" %></p>
+    <!-- TODO MAKE THIS A TABLE - THIS IS UGLY!!!!!!!!!!!  -->
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <%= "Name" %>
+          </th>
+          <th>
+            <%= "Price" %>
+          </th>
+          <th>
+            <%= "Description" %>
+          </th>
+          <th>
+            <%= "Stock" %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @merchant.products.each do |product| %>
+          <tr>
+            <td>
+              <h3><%= "#{product.name}" %></h3>
+            </td>
+            <td>
+              <p><%= "Price: #{product.price}" %></p>
+            </td>
+            <td>
+              <p><%= "Description: #{product.description}" %></p>
+            </td>
+            <td>
+              <p><%= "Stock: #{product.stock}" %></p>
+            </td>
+
+          </tr>
+
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
-          <%= link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
+          <%# link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
           <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
-        </li>
 
-      <% end %>
-    </ul>
+        <% end %>
+      </tbody>
+
+    </table>
+
   </section>
 
 
   <section class="container">
     <h2>Orders</h2>
-    <ul>
+    <%= render partial: "statussummary" %>
+    <!-- <ul>
       <li>
         <h3><%= "Total Revenue: $" %></h3>
       </li>
@@ -65,6 +108,7 @@
         </li>
       </ul>
     </ul>
+
 
     <h3><%= "Order Summary" %></h3>
     <table class="table">
@@ -102,8 +146,7 @@
       <!-- TODO Loop through order items for merchant here  -->
       <!-- Show order id, date, product, price, quantity, subtotal, order status  -->
       <!-- shipped status -->
-    </table>
-
+      <!-- <% @order_items %> -->
   </section>
   </div>
 <% end %>

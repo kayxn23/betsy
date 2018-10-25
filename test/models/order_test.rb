@@ -46,16 +46,14 @@ describe Order do
 
     it "adds product to order" do
       product = products(:product2)
-      order = orders(:one)
-
 
       product_params = {
         orders_item: {
           product_id: product.id,
-          order_id: order.id,
           quantity: 5
         }
       }
+      # binding.pry
 
       expect(order.products.count).must_equal 0
       order.add_product(product_params)
