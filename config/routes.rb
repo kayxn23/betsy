@@ -33,10 +33,10 @@ Rails.application.routes.draw do
   # get '/products/:id', to: 'products#show', as: 'product'
 
   resources :categories, only: [ :new, :create, :index , :show]
-  
+
   # get 'categories/new'
   # get 'categories/create'
-  resources :orders, only: [:show, :new, :create, :index] do
+  resources :orders, only: [:show, :new, :create, :index,:edit,:update] do
   resources :orders_items, only: [:create, :new, :show]
 end
  post '/products/:id/add_to_cart', to: "products#add_to_cart", as: "add_to_cart"
