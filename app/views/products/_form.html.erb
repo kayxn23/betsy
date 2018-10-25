@@ -15,8 +15,11 @@
     <% end %>
 
     <%= form_with model: @product, class: "form" do |f|%>
-        <%= f.label :category %>
-        <%= f.radio_button :category, options_for_select(Product.category_list), class: ''%>
+
+        <% Product.category_list.each do |category_name|%>
+        <%= f.label category_name %>
+        <%= f.radio_button :category_name, category_name, class: ''%>
+        <% end %>
 
         <%= f.label :price %>
         <%= f.text_field :price, class: ""%>
