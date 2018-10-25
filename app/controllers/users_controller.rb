@@ -75,10 +75,9 @@ class UsersController < ApplicationController
       # @merchant = find_merchant - have this already
       ######## SORT THESE THINGS !!!!
       @products = @merchant.products
-      if params[:status]
-
+      if params[:status] && params[:status] != "all"
         @order_items = @merchant.order_items_for_status(params[:status])
-      else
+      elsif 
         @order_items = @merchant.sold_items
       end
 
