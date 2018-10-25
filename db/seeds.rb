@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
-require 'pry'
 
 
 CATEGORY_FILE = Rails.root.join('db', 'category_seeds_3.csv')
@@ -96,7 +95,7 @@ CSV.foreach(PRODUCTS_FILE, :headers => true) do |row|
   product.photo = row['photo']
   product.stock = row['stock']
   product.user_id = row['user_id']
-  # binding.pry
+  #
   # Add some categories
   category_amount = [1,2,3,4].sample
   category_amount.times do
@@ -110,7 +109,7 @@ CSV.foreach(PRODUCTS_FILE, :headers => true) do |row|
     end
       product.categories << category
   end
-  # binding.pry
+  #
   successful = product.save
   if !successful
     product_failures << product
