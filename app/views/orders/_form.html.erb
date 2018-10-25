@@ -1,13 +1,5 @@
 <body class="bg-light" data-gr-c-s-loaded="true">
-    <% if @order.errors.any? %>
-    <ul class="errors">
-      <% @order.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-      <% end %>
-    </ul>
-    <% end %>
+
 
     <div class="container">
       <div class="py-5 text-center">
@@ -22,7 +14,7 @@
             <span class="badge badge-secondary badge-pill">3</span>
           </h4>
           <ul class="list-group mb-3">
-            <% @order.orders_items.each do |item| %>
+            <% @current_order.orders_items.each do |item| %>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0"><%=item.product.name%></h6>
@@ -41,7 +33,7 @@
 
           <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <%= form_with model: @order, class: "needs-validation" do |f|%>
+            <%= form_with model: @current_order, class: "needs-validation" do |f|%>
               <div class="mb-3">
                 <%= f.label :name %>
                 <div class="input-group">
@@ -145,7 +137,8 @@
                 </div>
               </div>
               <hr class="mb-4">
-              <%= f.submit 'Submit Checkout', method: :patch, class: "btn btn-primary btn-lg btn-block"%>
+              <%= f.submit 'Submit Checkout', class: "btn btn-primary btn-lg btn-block"%>
+              <%= flash[:message] %>
             </form>
           </div>
         </div>

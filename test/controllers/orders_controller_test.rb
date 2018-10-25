@@ -18,7 +18,7 @@ describe OrdersController do
         }
       }
 
-    end
+
 
   #   # describe "create" do
   #   #   it "can create a new order given valid params" do
@@ -45,61 +45,62 @@ describe OrdersController do
   #   #   end
   #   # end
   #
-  #   describe "update" do
-  #     it "can update a order with valid params" do
-  #     id = orders(:one).id
-  #
-  #     expect {
-  #     patch order_path(id), params: order_hash
-  #   }.wont_change 'Order.count'
-  #
-  #     must_respond_with :redirect
-  #     must_redirect_to order_path(id)
-  #
-  #     new_order = Order.find_by(id: id)
-  #
-  #     expect(new_order.status).must_equal order_hash[:order][:status]
-  #     expect(new_order.street).must_equal order_hash[:order][:street]
-  #     expect(new_order.city).must_equal order_hash[:order][:city]
-  #     expect(new_order.state).must_equal order_hash[:order][:state]
-  #     expect(new_order.zip).must_equal order_hash[:order][:zip]
-  #     expect(new_order.creditcard).must_equal order_hash[:order][:creditcard]
-  #     expect(new_order.cvv).must_equal order_hash[:order][:cvv]
-  #     expect(new_order.billingzip).must_equal order_hash[:order][:billingzip]
-  #   end
-  #
-  #   it "gives an error if the order params are invalid" do
-  #     # Arrange
-  #     order_hash[:order][:status] = "invalid_status"
-  #     id = orders(:one).id
-  #     old_order = orders(:one)
-  #
-  #     expect {
-  #         patch order_path(id), params: order_hash
-  #       }.wont_change 'Order.count'
-  #       new_order = Order.find(id)
-  #
-  #       must_respond_with :bad_request
-  #       expect(new_order.status).must_equal new_order.status
-  #       expect(new_order.street).must_equal  new_order.street
-  #       expect(new_order.city).must_equal  new_order.city
-  #       expect(new_order.state).must_equal  new_order.state
-  #       expect(new_order.zip).must_equal  new_order.zip
-  #       expect(new_order.creditcard).must_equal  new_order.creditcard
-  #       expect(new_order.cvv).must_equal  new_order.cvv
-  #       expect(new_order.billingzip).must_equal  new_order.billingzip
-  #   end
-  #       it "gives not_found for a order that doesn't exist" do
-  #       id = -1
-  #
-  #       expect {
-  #         patch order_path(id), params: order_hash
-  #       }.wont_change 'Order.count'
-  #
-  #       must_respond_with :not_found
-  #
-  #     end
-  #   end
+    describe "update" do
+      it "can update a order with valid params" do
+      id = orders(:one).id
+
+      expect {
+      patch order_path(id), params: order_hash
+    }.wont_change 'Order.count'
+
+      must_respond_with :redirect
+      must_redirect_to order_path(id)
+      binding.pry
+      new_order = Order.find_by(id: id)
+      binding.pry
+
+      expect(new_order.status).must_equal order_hash[:order][:status]
+      expect(new_order.street).must_equal order_hash[:order][:street]
+      expect(new_order.city).must_equal order_hash[:order][:city]
+      expect(new_order.state).must_equal order_hash[:order][:state]
+      expect(new_order.zip).must_equal order_hash[:order][:zip]
+      expect(new_order.creditcard).must_equal order_hash[:order][:creditcard]
+      expect(new_order.cvv).must_equal order_hash[:order][:cvv]
+      expect(new_order.billingzip).must_equal order_hash[:order][:billingzip]
+    end
+
+    it "gives an error if the order params are invalid" do
+      # Arrange
+      order_hash[:order][:status] = "invalid_status"
+      id = orders(:one).id
+      old_order = orders(:one)
+
+      expect {
+          patch order_path(id), params: order_hash
+        }.wont_change 'Order.count'
+        new_order = Order.find(id)
+
+        must_respond_with :bad_request
+        expect(new_order.status).must_equal new_order.status
+        expect(new_order.street).must_equal  new_order.street
+        expect(new_order.city).must_equal  new_order.city
+        expect(new_order.state).must_equal  new_order.state
+        expect(new_order.zip).must_equal  new_order.zip
+        expect(new_order.creditcard).must_equal  new_order.creditcard
+        expect(new_order.cvv).must_equal  new_order.cvv
+        expect(new_order.billingzip).must_equal  new_order.billingzip
+    end
+        it "gives not_found for a order that doesn't exist" do
+        id = -1
+
+        expect {
+          patch order_path(id), params: order_hash
+        }.wont_change 'Order.count'
+
+        must_respond_with :not_found
+
+      end
+    end
   #
   #     it "should get an order's show page" do
   #       #Arrange
@@ -173,9 +174,6 @@ describe OrdersController do
   #      expect(flash.now[:danger]).must_equal "Cannot find the order #{id}"
      # end
    # end
- end
-
-
-
-
+ end 
+end
 end

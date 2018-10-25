@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    before_action :find_order, only: [:edit,:update]
+    #before_action :find_order, only: [:edit,:update]
 
   #
   # def new #WRONG TO HAVE @ORDER
@@ -40,14 +40,15 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order && @current_order.update(order_params)
+    if @current_order && @current_order.update(order_params)
+
       flash[:status] = :success
       flash[:result_text] = "Success! Order #{@current_order.id} is complete! Enjoy your unique home!"
-      redirect_to order_path(@order.id) #Redirect to order confirmation
+      redirect_to order_path(@current_order.id) #Redirect to order confirmation
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update #{@current_order.id}. Please check the forms"
-      flash.now[:messages] = @order.errors.messages
+      flash.now[:messages] = @current_order.errors.messages
       render :edit, status: :bad_request
       #patch
       #this does not have an .erb
