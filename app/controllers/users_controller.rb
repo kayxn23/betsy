@@ -80,6 +80,22 @@ class UsersController < ApplicationController
       else
         @order_items = @merchant.sold_items
       end
+
+
+        order_overview = {}
+        @order_items.each do |item|
+          # Check if item order number is already in array
+          if order_overview[item.order_id]
+            order_overview[item.order_id] += 1
+          else
+            order_overview[item.order_id] = 1
+          end
+          # if order_numbers.!include?(item.order_id)
+          #   # If not, add it
+          #   order_numbers << item
+          # end
+          @total_orders = order_overview.length
+        end
       # For each product, search for order items
       # Params data - assign to filter - value available in the view - ?
       # Have filter method,

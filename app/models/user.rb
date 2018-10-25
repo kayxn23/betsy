@@ -41,4 +41,6 @@ class User < ApplicationRecord
     self.sold_items.select { |item| item.order.status == status.downcase }
   end
 
+  
+
 end
