@@ -90,7 +90,7 @@ describe SessionsController do
        # user.destroy - don't think we destroy the user
 
        # Assert
-       # Should set session user id to nil
+       # Should set session usser id to nil
        expect(session[:user_id]).must_be_nil
        # Flash a message
        expect(flash[:success]).must_equal "Successfully logged out!"
@@ -99,4 +99,8 @@ describe SessionsController do
        must_redirect_to root_path
     end
    end
+
+
+
+
  end
