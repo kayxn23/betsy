@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
     render :test => "404 Not Found", :status => 404
   end
 
-## added 
-  def list_categories
-    @categories = Category.all
-  end
+## added
+  # def list_categories
+  #   @categories = Category.all
+  # end
 
   private
 
