@@ -34,21 +34,52 @@
 
   <section class="container">
     <h2>My Products</h2>
-    <ul>
-      <% @merchant.products.each do |product| %>
-        <li>
-          <h3><%= "#{product.name}" %></h3>
-          <p><%= "Price: #{product.price}" %></p>
-          <p><%= "Description: #{product.description}" %></p>
-          <p><%= "Stock: #{product.stock}" %></p>
+    <!-- TODO MAKE THIS A TABLE - THIS IS UGLY!!!!!!!!!!!  -->
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <%= "Name" %>
+          </th>
+          <th>
+            <%= "Price" %>
+          </th>
+          <th>
+            <%= "Description" %>
+          </th>
+          <th>
+            <%= "Stock" %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @merchant.products.each do |product| %>
+          <tr>
+            <td>
+              <h3><%= "#{product.name}" %></h3>
+            </td>
+            <td>
+              <p><%= "Price: #{product.price}" %></p>
+            </td>
+            <td>
+              <p><%= "Description: #{product.description}" %></p>
+            </td>
+            <td>
+              <p><%= "Stock: #{product.stock}" %></p>
+            </td>
+
+          </tr>
+
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
           <%# link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
           <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
-        </li>
 
-      <% end %>
-    </ul>
+        <% end %>
+      </tbody>
+
+    </table>
+
   </section>
 
 
