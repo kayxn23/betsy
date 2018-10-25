@@ -22,7 +22,12 @@ before_action :current_order
   end
 
   def update
-    #update the quantity of the orderitem
+    params[:product][:category_ids] ||= [] #if category_ids returns nil it will be set to empty array
+    if @product && @product.update(product_params)
+      redirect_to product_path(@product.id)
+    elsif @product && !@product.valid? #the product exists and it was invalid inputs
+      render :edit, status: :bad_request
+    end
   end
 
   def destroy
@@ -48,6 +53,10 @@ before_action :current_order
 
     def set_order_item
       @orders_item = OrderItems.find(params[:id])
+      if @orders_item.nil?
+        flash.now[:danger] = "Cannot find the item #{params[:id]} in the cart"
+        render :notfound
+      end
     end
 
     def order_item_params
