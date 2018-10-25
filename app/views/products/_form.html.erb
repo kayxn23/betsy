@@ -11,7 +11,9 @@
 
     <%= form_with model: @product, class: "form" do |f|%>
 
-        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name%>
+        <%# f.collection_check_boxes :category_ids, Category.all, :id, :name%>
+        <%= f.label :categories %>
+        <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
 
         <%= f.label :price %>
         <%= f.text_field :price, class: ""%>
@@ -26,8 +28,8 @@
         <%= f.label :stock %>
         <%= f.text_field :stock, class: "" %>
 
-        <%# f.label :photo %>
-        <%# f.text_field :photo, class: "form__input" %>
+        <%= f.label :photo %>
+        <%= f.text_field :photo, class: "" %>
 
       <%= f.submit button_title, class: 'btn'%>
     <% end %>
