@@ -20,7 +20,7 @@ class Product < ApplicationRecord
     categories = []
     Product.all.each do |product|
       product.categories.each do |category|
-        categories << category.name
+        categories << category
       end
     end
     return categories.uniq

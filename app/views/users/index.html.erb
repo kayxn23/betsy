@@ -1,13 +1,27 @@
+<br />
+<br />
+<br />
+<h3 class="display-4 text-xs-center m-y-3 text-muted" id="speakers">Merchants</h3>
 
-<h1>Merchants</h1>
-<ul>
-  <!-- Need help getting this to show, is not working -->
-  <!-- Says merchants is not nil so why is this not working? -->
-  <!-- Says it's an active record relation instead of a collection of merchants? -->  <% @merchants.each do |merchant| %>
-    <li>
-      <h3><%= link_to "#{merchant.name}", merchant_products_path(merchant.id)  %></h3>
-    </li>
+<section class='container'>
+<div class="row justify-content-center">
 
-    <% end %>
+    <% @merchants.each do |merchant| %>
+  <div class="col-md-6 col-lg-4">
+    <div class="card bg-dark text-white mb-3">
+      <br />
+      <br />
+      <br />
+     <div class="card-block">
+       <br />
+        <h4 class="card-title text-center"><%= link_to "#{merchant.name}", merchant_products_path(merchant.id)  %></h4>
+        <br />
+      </div>
+    </div>
+  </div>
+  <%end %>
 
-</ul>
+
+
+
+</section>

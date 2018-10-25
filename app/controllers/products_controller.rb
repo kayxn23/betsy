@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @categories = Category.all
     # There should be a merchant to create a new product
     # @merchant should be available via application controller
     if @merchant
@@ -41,6 +42,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    category = Category.find_by(name: product_params[:category_ids])
+    # get array of categories  -> form stuff
+    # loop thru aray of categories
+    # find the matching cateogry
+    # update the product to have that category
+    # category_params.each do |params|
+    #   category = Category.find_by(name: params[:category_name])
+    #   @product.categories << category
+    # @product.category_id = category.id
+
     if @product.save
       flash[:success] = 'Product Created!'
 
@@ -53,6 +64,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    params[:product][:category_ids] ||= [] #if category_ids returns nil it will be set to empty array
     if @product && @product.update(product_params)
       redirect_to product_path(@product.id)
     elsif @product && !@product.valid? #the product exists and it was invalid inputs
@@ -77,7 +89,7 @@ class ProductsController < ApplicationController
 
   def product_params
     #can i access :category_id? not unless there isa belongs_to
-    return params.require(:product).permit(:user_id, :name, :price, :description, :photo, :stock)
+    return params.require(:product).permit(:user_id, :name, :price, :description, :photo, :stock, category_ids:[])
   end
 
 end
