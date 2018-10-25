@@ -11,9 +11,6 @@
       <th>
         <%= "Number of Orders" %>
       </th>
-      <th>
-        <%= "Number of Items Ordered" %>
-      </th>
     </tr>
   </thead>
   <tr>
@@ -22,9 +19,6 @@
     </td>
     <td>
       <%= "#{@total_orders}" %>
-    </td>
-    <td>
-      <%= "#{@total_items}" %>
     </td>
   </tr>
 </table>
@@ -72,7 +66,7 @@
         <%= link_to "#{item.order.id}", order_path(item.order.id) %>
       </td>
       <td>
-        <%= item.order.updated_at %>
+        <%= format_date(item.order.updated_at) %>
       </td>
       <td>
         <%= link_to "#{item.product.name.capitalize}", product_path(item.product.id) %>
