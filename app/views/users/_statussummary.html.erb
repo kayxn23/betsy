@@ -83,7 +83,7 @@
         <%= item.quantity %>
       </td>
       <td>
-        <%= item.calculate_total %>
+        <%= number_to_currency(item.calculate_total) %>
       </td>
       <td>
         <%= item.order.status.capitalize %>
