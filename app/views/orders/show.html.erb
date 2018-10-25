@@ -4,8 +4,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h1>Shopping Cart</h1>
 
 <% if @current_order.products.count == 0 %>
   <p>There's nothing in your cart!</p>
@@ -26,11 +25,7 @@
     </li>
     <li><%= link_to "Remove Item from Cart", order_orders_item_path(@order.id, orders_item.id), :method => :delete  %></li>
 
-
-
-
-
-<% end %>
+    <% end %>
 <% end %>
 </ul>
 
@@ -46,36 +41,39 @@
 						</tr>
 					</thead>
 					<tbody>
+            <% @current_order.orders_items.each do |item| %>
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-2 hidden-xs"><%= image_tag(item.product.photo, class: "img-responsive")%></div>
 									<div class="col-sm-10">
-										<h4 class="nomargin">Product 1</h4>
-										<p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+										<h4 class="nomargin"><%= item.product.name %></h4>
+										<p><%= item.product.description %></p>
 									</div>
 								</div>
 							</td>
-							<td data-th="Price">$1.99</td>
+							<td data-th="Price">$<%= readable_price(item.product.price) %></td>
 							<td data-th="Quantity">
 								<input type="number" class="form-control text-center" value="1">
 							</td>
 							<td data-th="Subtotal" class="text-center">1.99</td>
 							<td class="actions" data-th="">
-								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-								<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                <%= link_to "Update", product_add_to_cart_path(item.product.id) , class: "btn btn-info btn-sm", method: :post%>
+                <%= link_to "Remove", order_orders_item_path(item.product.id) , class: "btn btn-danger btn-sm", method: :delete%>
+
 							</td>
 						</tr>
+            <%end%>
 					</tbody>
 					<tfoot>
 						<tr class="visible-xs">
 							<td class="text-center"><strong>Total 1.99</strong></td>
 						</tr>
 						<tr>
-							<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+							<td><%= link_to "Continue Order", products_path, class: "btn btn-warning"%></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-							<td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+              <td><%= link_to "Complete Order", edit_order_path(@current_order.id), class: "btn btn-success btn-block"%></td>
 						</tr>
 					</tfoot>
 				</table>
