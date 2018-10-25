@@ -33,18 +33,28 @@ class OrdersController < ApplicationController
 
 
   def edit
+    #will display the form the user fills out with address ect..
+    #this is the view
+    #partial called edit.erb
+    #get returns a result
   end
 
   def update
-    if @order && @order.update(order_params)
+    if @order && @current_order.update(order_params)
       flash[:status] = :success
-      flash[:result_text] = "Success! Order #{@order.id} is complete! Enjoy your unique home!"
+      flash[:result_text] = "Success! Order #{@current_order.id} is complete! Enjoy your unique home!"
       redirect_to order_path(@order.id) #Redirect to order confirmation
     else
       flash.now[:status] = :failure
-      flash.now[:result_text] = "Could not update #{@order.id}. Please check the forms"
+      flash.now[:result_text] = "Could not update #{@current_order.id}. Please check the forms"
       flash.now[:messages] = @order.errors.messages
       render :edit, status: :bad_request
+      #patch
+      #this does not have an .erb
+      #the form posts to the update method
+      #will recieve a post from edit and it will toggle the order to complete
+      #save order
+      #get the order and update it
     end
   end
 
@@ -54,22 +64,6 @@ class OrdersController < ApplicationController
 
     def index
       @orders = Order.all
-    end
-
-    def edit
-      #will display the form the user fills out with address ect..
-      #this is the view
-      #partial called edit.erb
-      #get returns a result
-    end
-
-    def update
-      #patch
-      #this does not have an .erb
-      #the form posts to the update method
-      #will recieve a post from edit and it will toggle the order to complete
-      #save order
-      #get the order and update it
     end
 
     def destroy

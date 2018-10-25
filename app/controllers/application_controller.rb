@@ -44,7 +44,9 @@ class ApplicationController < ActionController::Base
     # Else, find and use the current one
 
     #Try and find the order
-    @current_order = Order.find_by(id: session[:order_id], status: "pending") 
+    #To avoid getting a complete shopping cart add the complete
+    #at current order status will complete and it will create a new one
+    @current_order = Order.find_by(id: session[:order_id], status: "pending")
     #if the @current_order object is nil it will return true
     if @current_order.nil? #
       #create @current_order if @current_order is nil
