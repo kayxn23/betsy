@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    params[:product][:category_ids] ||= [] #if category_ids returns nil it will be set to empty array
+    # params[:product][:category_ids] ||= [] #if category_ids returns nil it will be set to empty array
     if @product && @product.update(product_params)
       redirect_to product_path(@product.id)
     elsif @product && !@product.valid? #the product exists and it was invalid inputs
@@ -78,15 +78,6 @@ class ProductsController < ApplicationController
   def destroy
   end
 
-##added this
-  def category
-    @category = Category.find_by(id: params[:id])
-    if @category.nil?
-      flash[:warning] = "invalid category"
-      redirect_to root_path
-    end
-    @products = Product.by_category(params[:id])
-  end
 
   private
 

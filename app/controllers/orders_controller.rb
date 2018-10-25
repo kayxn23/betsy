@@ -72,8 +72,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    return params.require(:order).permit(:status, :street, :city, :state, :zip,
-      :creditcard, :cvv, :billingzip, :ccexpiration, :user_id)
+    return params.require(:order).permit(:status, :street, :city, :state, :zip, :creditcard, :cvv, :billingzip, :ccexpiration, :user_id)
   end
 
   def find_order
