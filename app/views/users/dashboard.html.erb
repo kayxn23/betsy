@@ -34,6 +34,7 @@
 
   <section class="container">
     <h2>My Products</h2>
+<<<<<<< HEAD
     <!-- TODO MAKE THIS A TABLE - THIS IS UGLY!!!!!!!!!!!  -->
     <table>
       <thead>
@@ -70,6 +71,16 @@
 
           </tr>
 
+=======
+    <ul>
+      <% @merchant.products.each do |product| %>
+        <li>
+          <h3><%= "#{product.name}" %></h3>
+          <%# image_tag("product.photo"), alt="#{product.name} image" %>
+          <p><%= "Price: #{product.price}" %></p>
+          <p><%= "Description: #{product.description}" %></p>
+          <p><%= "Stock: #{product.stock}" %></p>
+>>>>>>> retire-product-feature
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
 <<<<<<< HEAD

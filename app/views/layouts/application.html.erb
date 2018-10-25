@@ -12,7 +12,8 @@
 
 </head>
 
-<body>
+<body >
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <%= link_to "Thrillow", root_path, class: "navbar-brand" %>
@@ -25,10 +26,10 @@
             <%= link_to "Shop All Homes", products_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Shop By Categories", categories_path, class: "nav-link" %>
+            <%= link_to "Categories", categories_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Shop By Sellers", users_path, class: "nav-link" %>
+            <%= link_to "Agents", users_path, class: "nav-link" %>
           </li>
           <li class = "nav-item">
             <%= link_to "Shopping Cart (#{@current_order.items_in_cart})", order_path(@current_order), class: "" %>
@@ -57,4 +58,5 @@
   </div>
 
 </body>
+
 </html>
