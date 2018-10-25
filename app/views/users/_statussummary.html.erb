@@ -17,7 +17,7 @@
   </thead>
   <tr>
     <td>
-      <%= "#{@revenue_total}" %>
+      <%= number_to_currency(@revenue_total) %>
     </td>
     <td>
       <%= "#{@total_orders}" %>
@@ -77,7 +77,7 @@
         <%= link_to "#{item.product.name.capitalize}", product_path(item.product.id) %>
       </td>
       <td>
-        <%= item.product.price %>
+        <%= number_to_currency(item.product.price) %>
       </td>
       <td>
         <%= item.quantity %>
