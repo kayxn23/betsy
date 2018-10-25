@@ -1,12 +1,32 @@
 <h1>Orders#show</h1>
 <p>Find me in app/views/orders/show.html.erb</p>
 
-<!-- <% if @order.products.count == 0 %>
+<% if @current_order.products.count == 0 %>
   <p>There's nothing in your cart!</p>
-<% end %> -->
-<% @order.orders_items.each do |orders_item| %>
-  <tr>
+<% else %>
+<ul>
+  <% @current_order.orders_items.each do |orders_item| %>
+    <li>
+      <%=  orders_item.product.name %>
+    </li>
+    <li>
+      <%=  orders_item.product.price %>
+    </li>
+    <li>
+      <%=  orders_item.quantity %>
+    </li>
+    <li>
+      <%=  orders_item.calculate_total %>
+    </li>
+    <li><%= link_to "Remove Item from Cart", order_orders_item_path(@order.id, orders_item.id), :method => :delete  %></li>
 
-     <td><%=  orders_item.product.id %></td>
+  
+
+
+
 <% end %>
-</tr>
+<% end %>
+</ul>
+/orders/:order_id/orders_items/:id(.:format)
+<!--
+        /orders/:order_id/orders_items/:id -->

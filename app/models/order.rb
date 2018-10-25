@@ -1,6 +1,8 @@
-class Order < ApplicationRecord
+ class Order < ApplicationRecord
   has_many :orders_items, dependent: :destroy
+  #if you destroy the order items associated with it
   has_many :products, through: :orders_items, dependent: :destroy
+  validates_inclusion_of :status, :in => ["pending", "paid","complete", "cancelled"], presence: :true
 
   belongs_to :user, optional: true
 
@@ -22,23 +24,38 @@ class Order < ApplicationRecord
   #     quantity: 20
   #   }
   # }
-  def add_product(product_params)
+  def add_product(product_id, quantity)
     #Find out if the current product is in the cart
-    current_product = OrdersItem.find_by(product_id: product_params[:orders_item][:product_id])
+    current_item = OrdersItem.find_by(product_id: product_id, order_id: self.id)
 
     #If current_product is in the cart then
-    if current_product
+    if current_item
       #the current_product is an instance of OrdersItem which has quantity attribute
-      current_product.quantity += product_params[:orders_item][:quantity].to_i
-      current_product.save
+      #increase the quantity then update it
+      current_item.quantity += quantity
+      current_item.save
     else
       #create a new instance of OrderItems with product params
-      current_product = OrdersItem.create(product_id: product_params[:orders_item][:product_id],
-                                          quantity: product_params[:orders_item][:quantity],
+      #this is what OrderItems was doing - if you have an orderitem you
+      #want to add it to the order
+      #when you update cart will create order item
+      current_item = OrdersItem.create(product_id: product_id,
+                                          quantity: quantity,
                                           order_id: self.id)
     end
 
-    return current_product
+    return current_item
+  end
+
+  # def order_calculate_total(product_id)
+  #    self.orders_items.each do |current_item|
+  #      total_cost += current_item.calculate_total
+  #    end
+  #  end
+
+  def items_in_cart
+    # TODO: Update to return accurate quanity of all items in cart
+    return self.orders_items.count
   end
 
 
