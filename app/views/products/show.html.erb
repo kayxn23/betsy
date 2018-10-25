@@ -14,7 +14,13 @@
     <li><%# @product.category %> look up how to create a dropdown for category</li>
   </ul>
 <% end %>
-<td><%= button_to "Add to Cart", add_to_cart_path(@product.id), method: :add_to_cart %></td>
+
+<%= form_with url: product_add_to_cart_path(@product.id) do |f|%>
+  <%= f.label :quantity %>
+  <%= f.text_field :quantity %>
+  <%= f.submit "Add to Cart" %>
+<% end %>
+
 
 <!-- add integer input field(text validation) for quantity + add to cart button, -->
     <!-- capture product params pass to add_product method in orders--> -->

@@ -17,11 +17,18 @@ class ProductsController < ApplicationController
   def show; end
 
   def add_to_cart
-    product = Product.find_by(id: params[:id])
-    # order = Order.find_by(id: session[:order_id])
-    @orders_item = OrdersItem.create(product_id: product.id, order_id: @current_order.id, quantity: 1)
-    # binding.pry
+    #calling method add_product in model that
+    quantity = 1 #if you call this method you get at least one item
+    #1 becomes the default so you have at least one order item
+    if !params[:quantity].nil? #making sure not nil
+      #quantity comes in as a string, to avoid spam comes as 0
+      #quantity - checks for positive number greater than one. if you return put
+      #-4 you would get -4 but with the .max value it get the biggest number
+      #if they don't pass in a number the default is 1
+      quantity = [params[:quantity].to_i, quantity].max
+    end
 
+    @current_order.add_product(params[:product_id], quantity)
     redirect_to root_path
   end
 

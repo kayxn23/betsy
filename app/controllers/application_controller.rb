@@ -42,14 +42,22 @@ class ApplicationController < ActionController::Base
   def current_order
     # If nil, make one
     # Else, find and use the current one
-    if session[:order_id].nil?
+
+    #Try and find the order
+    @current_order = Order.find_by(id: session[:order_id], status: "pending") 
+    #if the @current_order object is nil it will return true
+    if @current_order.nil? #
+      #create @current_order if @current_order is nil
       @current_order = Order.create(status: "pending")
-        session[:order_id] = @current_order.id
-        return @current_order
-    else
-      @current_order = Order.find_by(id: session[:order_id])
-      return @current_order
+      session[:order_id] = @current_order.id
+
+    # else #needs to move above the create nil
+    #   #write a test to show the weakness of a project
+    #   return @current_order
+    #
+      #what happens if find_by returns nil because it can?
     end
+    return @current_order
   end
 
 #   def current_order

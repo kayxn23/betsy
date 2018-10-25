@@ -12,6 +12,21 @@
     <li>
       <%=  orders_item.product.price %>
     </li>
-  <% end %>
-</ul>
+    <li>
+      <%=  orders_item.quantity %>
+    </li>
+    <li>
+      <%=  orders_item.calculate_total %>
+    </li>
+    <li><%= link_to "Remove Item from Cart", order_orders_item_path(@order.id, orders_item.id), :method => :delete  %></li>
+
+  
+
+
+
 <% end %>
+<% end %>
+</ul>
+/orders/:order_id/orders_items/:id(.:format)
+<!--
+        /orders/:order_id/orders_items/:id -->

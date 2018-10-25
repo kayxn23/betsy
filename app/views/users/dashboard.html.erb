@@ -32,7 +32,7 @@
           <p><%= "Stock: #{product.stock}" %></p>
           <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
           <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
-          <%= link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
+          <%= link_to "Retire Product", product_retire(product.id), class: "btn btn-primary", method: :post %>
           <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
         </li>
 

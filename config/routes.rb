@@ -26,8 +26,11 @@ Rails.application.routes.draw do
   # get 'users/new'
   # get 'users/create'
   # get 'users/show'
-  resources :products, except: [:destroy]
-  post '/products/:id/retire', to: "products#retire", as: "retire"
+  resources :products, except: [:destroy] do
+    post 'retire', to: "products#retire", as: "retire"
+    post 'add_to_cart', to: "products#add_to_cart", as: "add_to_cart"
+  end
+
   # get '/products', to: 'products#index', as: 'products'
   # get '/products/:id', to: 'products#show', as: 'product'
 
@@ -36,10 +39,10 @@ Rails.application.routes.draw do
   end
   # get 'categories/new'
   # get 'categories/create'
-  resources :orders, only: [:show, :new, :create, :index] do
-  resources :orders_items, only: [:create, :new, :show]
+  resources :orders, only: [:show, :new, :create, :index, :update] do
+  resources :orders_items, only: [:create, :new, :show, :destroy]
 end
- post '/products/:id/add_to_cart', to: "products#add_to_cart", as: "add_to_cart"
+
 
 
   # get '/order/:id/orders_items', to: 'orders_items#index'

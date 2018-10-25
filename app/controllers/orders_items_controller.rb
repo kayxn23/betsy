@@ -4,27 +4,35 @@ before_action :current_order
 #add hidden field to products index each do captures price and quantity
 
   def new
-      @orders_items = OrdersItem.new
+      # @orders_items = OrdersItem.new
     end
 
   def create
-    @orders_items = OrdersItem.new.add_product(params )  #add orders_items
+  #   @orders_items = OrdersItem.new.add_product(params )  #add orders_items
+  #
+  #   #Product id and quantity
+  #   #
+  #   # redirect_to orders_path
+  # if @order.save
+  #   redirect_to orders_path
+  #   else
+  #     flash[:error] = 'There was a problem addding this to your cart'
+  #     redirect_to root_path #update to fallback to last page or product show
+  #   end
+  end
 
-    #Product id and quantity
-    #
-    # redirect_to orders_path
-  if @order.save
-    redirect_to orders_path
-    else
-      flash[:error] = 'There was a problem addding this to your cart'
-      redirect_to root_path #update to fallback to last page or product show
-    end
+  def update
+    #update the quantity of the orderitem
   end
 
   def destroy
+
+    @orders_item = @current_order.orders_items.find(params[:id])
     @orders_item.destroy
-    redirect_to order_path
+    @current_order.save
+    redirect_to order_path(@current_order)
   end
+
 
   # def add_to_cart
   #   product = Product.find_by(id: params[:id])
@@ -43,7 +51,7 @@ before_action :current_order
     end
 
     def order_item_params
-      params.require(:order_item).permit(:product_id, :order_id, :quantity, :price)
+      params.require(:order_item).permit(:product_id, :order_id, :quantity)
     end
 
 end
