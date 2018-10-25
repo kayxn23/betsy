@@ -1,34 +1,13 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
 <h1>Shopping Cart</h1>
 
 <% if @current_order.products.count == 0 %>
   <p>There's nothing in your cart!</p>
 <% else %>
-<ul>
-  <% @current_order.orders_items.each do |orders_item| %>
-    <li>
-      <%=  orders_item.product.name %>
-    </li>
-    <li>
-      <%=  orders_item.product.price %>
-    </li>
-    <li>
-      <%=  orders_item.quantity %>
-    </li>
-    <li>
-      <%=  orders_item.calculate_total %>
-    </li>
-    <li><%= link_to "Remove Item from Cart", order_orders_item_path(@order.id, orders_item.id), :method => :delete  %></li>
-
-    <% end %>
-<% end %>
-    <%= link_to "Complete Order", edit_order_path(@current_order.id)%>
-</ul>
 
 <div class="container">
 	<table id="cart" class="table table-hover table-condensed">
@@ -49,34 +28,35 @@
 									<div class="col-sm-2 hidden-xs"><%= image_tag(item.product.photo, class: "img-responsive")%></div>
 									<div class="col-sm-10">
 										<h4 class="nomargin"><%= item.product.name %></h4>
-										<p><%= item.product.description %></p>
+										<p class="text-left"><%= item.product.description %></p>
 									</div>
 								</div>
 							</td>
 							<td data-th="Price">$<%= readable_price(item.product.price) %></td>
 							<td data-th="Quantity">
-								<input type="number" class="form-control text-center" value="1">
-
+                <%= form_with url:product_add_to_cart_path(item.product.id)   do |f|%>
+                 <%= f.text_field :quantity, placeholder: "#{item.quantity}", class: "form-control text-center" %>
+                 <%= f.submit "Update Cart"%>
+                <% end %>
 							</td>
-							<td data-th="Subtotal" class="text-center">1.99</td>
+							<td data-th="Subtotal" class="text-center">$<%= readable_price(item.calculate_total)%></td>
 							<td class="actions" data-th="">
-                <%= link_to "Update", product_add_to_cart_path(item.product.id) , class: "btn btn-info btn-sm", method: :post%>
-                <%= link_to "Remove", order_orders_item_path(item.product.id) , class: "btn btn-danger btn-sm", method: :delete%>
-
+                <%= link_to "Remove", order_orders_item_path(@current_order.id, item.id) , class: "btn btn-danger btn-sm", method: :delete%>
 							</td>
 						</tr>
             <%end%>
 					</tbody>
 					<tfoot>
 						<tr class="visible-xs">
-							<td class="text-center"><strong>Total 1.99</strong></td>
+							<td class="text-center"><strong><%=readable_price(@current_order.order_calculate_total)%></strong></td>
 						</tr>
 						<tr>
-							<td><%= link_to "Continue Order", products_path, class: "btn btn-warning"%></td>
+							<td class="text-left"><%= link_to "Continue Shopping", products_path, class: "btn btn-dark"%></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+							<td class="hidden-xs text-center"><strong><%=readable_price(@current_order.order_calculate_total)%></strong></td>
               <td><%= link_to "Complete Order", edit_order_path(@current_order.id), class: "btn btn-success btn-block"%></td>
 						</tr>
 					</tfoot>
 				</table>
-</div>
+      </div>
+<%end%>

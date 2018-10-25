@@ -48,7 +48,7 @@
   end
 
 
-  def order_calculate_total(product_id)
+  def order_calculate_total
      total_cost = 0
      self.orders_items.each do |item|
        total_cost += item.calculate_total
