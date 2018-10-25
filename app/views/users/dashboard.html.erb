@@ -3,13 +3,13 @@
 <% else %>
 
 <div class="container">
-  <header>
+  <header id="dashboard_header">
     <p><%= "#{@merchant.name}'s Dashboard" %></p>
     <!-- Edit own info here? Are we providing user edit/update? -->
 
   </header>
 
-  <nav>
+  <nav id="dashboard_merchant_options">
     <ul id = "merchant_options">
       <li class="btn">
         <%= link_to "Add Product", new_product_path, class:"btn btn-primary"  %>
@@ -62,7 +62,7 @@
               <h3><%= "#{product.name.capitalize}" %></h3>
             </td>
             <td>
-              <p><%= "#{product.price}" %></p>
+              <p><%= "#{number_to_currency(product.price)}" %></p>
             </td>
             <td>
               <p><%= "#{product.description}" %></p>
