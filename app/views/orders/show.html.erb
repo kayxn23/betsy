@@ -20,13 +20,9 @@
     </li>
     <li><%= link_to "Remove Item from Cart", order_orders_item_path(@order.id, orders_item.id), :method => :delete  %></li>
 
-  
-
-
+    <%= @current_order.order_calculate_total(product_path) %>
 
 <% end %>
 <% end %>
+    <%= link_to "Complete Order", edit_order_path(@current_order.id)%>
 </ul>
-/orders/:order_id/orders_items/:id(.:format)
-<!--
-        /orders/:order_id/orders_items/:id -->
