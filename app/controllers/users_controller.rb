@@ -98,6 +98,7 @@ class UsersController < ApplicationController
           @total_orders = order_overview.length
           @total_items = order_overview.values.sum
         end
+        @revenue_total = @order_items.inject(0) { |sum, item| sum + item.calculate_total }
       # For each product, search for order items
       # Params data - assign to filter - value available in the view - ?
       # Have filter method,
