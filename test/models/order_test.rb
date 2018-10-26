@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 describe Order do
   let(:order) { orders(:one) }
   it "must be valid" do
@@ -52,9 +51,32 @@ describe Order do
   end
 
   describe 'Validations' do
-    #Need to add tests here
-    #Validation that a product could not be added
-    #
+
+    it 'will not save an invalid status' do
+      invalid_statuses = ["s", :price, "134e", nil, -1]
+      order = orders(:one)
+
+      invalid_statuses.each do |invalid_status|
+        order.status = invalid_status
+        valid = order.save
+        expect(valid).must_equal false
+        expect(order.errors.messages).must_include :status
+      end
+
+      valid_statuses = ["pending", "paid","complete", "cancelled"]
+    end
+
+    it 'will save with a valid status' do
+      valid_statuses = ["pending", "paid","complete", "cancelled"]
+      order = orders(:one)
+
+      valid_statuses.each do |valid_status|
+        order.status = valid_status
+        valid = order.save
+        expect(valid).must_equal true
+      end
+    end
+
   end
 
   describe "add_product" do
@@ -74,7 +96,7 @@ describe Order do
     end
 
     it "will not add item if product is nil" do
-      
+
     end
 
     it 'Will sum up an Orders total price' do

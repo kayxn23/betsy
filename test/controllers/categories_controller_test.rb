@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 describe CategoriesController do
   it "should get index" do
     get categories_path
