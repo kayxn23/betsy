@@ -1,5 +1,5 @@
 require "test_helper"
-
+require 'pry'
 describe Product do
   let(:product) { products(:product1) }
 
@@ -35,7 +35,7 @@ describe Product do
     end
 
     it 'can have many orders' do
-      product.orders << Order.first
+
       orders = product.orders
 
       expect(orders.length).must_be :>=, 1
@@ -44,15 +44,15 @@ describe Product do
       end
     end
   end
+
   describe 'Validations' do
     it 'must have name' do
-        product = products(:product2)
-        product.name = nil
+      product = products(:product2)
+      product.name = nil
 
-        valid = product.save
-        expect(valid).must_equal false
-        expect(product.errors.messages).must_include :name
-
+      valid = product.save
+      expect(valid).must_equal false
+      expect(product.errors.messages).must_include :name
     end
 
     it 'must have a unique product name for given merchant' do
@@ -92,6 +92,7 @@ describe Product do
         product.price = invalid_price
         valid = product.save
         expect(valid).must_equal false
+        expect(product.errors.messages).must_include :price
       end
     end
 
@@ -113,16 +114,41 @@ describe Product do
       expect(product.errors.messages).must_include :photo
     end
 
-    it 'must have stock' do
+    it 'must have a valid stock' do
       product = products(:product2)
-      product.stock = nil
+      invalid_stocks = ["s", :price, "134e", nil, -1]
 
+      invalid_stocks.each do |stock|
+        product.stock = stock
+        valid = product.save
+        expect(valid).must_equal false
+        expect(product.errors.messages).must_include :stock
+      end
+    end
+
+  end
+
+  describe 'Custom Methods' do
+    it 'must create a list of unique categories' do
+      category_list = Product.category_list
+      category_list.each do |category|
+        expect(Category.all).must_include category
+      end
+    end
+
+    it 'can reduce stock when there is enough stock' do
+      stock_check = product.stock
+      product.reduce_stock(1)
+      expect(product.stock).must_equal stock_check - 1
+
+    end
+
+    it 'will not reduce stock if there is not enough' do
+      product.reduce_stock(2)
       valid = product.save
       expect(valid).must_equal false
       expect(product.errors.messages).must_include :stock
     end
-
-
 
   end
 end

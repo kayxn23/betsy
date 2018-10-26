@@ -25,15 +25,16 @@ describe CategoriesController do
 
 
     it "can create a new category given valid params" do
-      #blocking this out for now until i have Cassy's dashboard view
-
       # Act-Assert
+      @current_user = users(:user1)
+      
       expect {
         post categories_path, params: category_hash
       }.must_change 'Category.count', 1
 
       must_respond_with :redirect
-      must_redirect_to root_path #do i need to change this to dashboard_path and add user id here?
+
+      must_redirect_to dashboard_path(user.id)
 
       expect(Category.last.name).must_equal category_hash[:category][:name]
 

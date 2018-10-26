@@ -1,7 +1,7 @@
 item1:
   order: one
   product: product3
-  quantity: 2
+  quantity: 3
 
 item2:
   order: one

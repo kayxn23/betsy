@@ -225,7 +225,28 @@ table {
   padding: 5px;
 }
 
+#dashboard_heading {
+    // color: #26A59A;
+    text-align: center;
+    padding: 2rem;
+  }
 
-.content-half {
-    background-color: #b35919;
-}
+  #dashboard_container h2 {
+    // text-align: center;
+    padding: 1.5rem;
+  }
+
+  #dashboard_container #order_filter li {
+    margin: 0.5rem;
+  }
+
+  ul {
+    list-style-type: none;
+    // margin: 0;
+    padding: 0;
+  }
+
+
+  .content-half {
+      background-color: #b35919;
+  }
