@@ -63,13 +63,6 @@ describe Order do
     it "adds product to order" do
       product = products(:product1)
 
-      product_params = {
-        orders_item: {
-          product_id: product.id,
-          quantity: 5
-        }
-      }
-
       num_p = order.products.count
       order.add_product(product.id,1)
 
@@ -81,6 +74,12 @@ describe Order do
     end
 
     it "will not add item if product is nil" do
+      
+    end
+
+    it 'Will sum up an Orders total price' do
+      #Order 1 has 3 x Product 3 ($10.00) and 1 x Product 2 ($11)
+      expect(order.order_calculate_total).must_equal 10.00*3 + 11
     end
   end
 end
