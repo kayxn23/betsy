@@ -74,9 +74,6 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def destroy
-  end
-
   def confirmation
     @confirmed_order = Order.find_by(id: params[:order_id])
     @items_in_cart = @confirmed_order.orders_items

@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :require_login, only: [:new, :create]
 
   def index
     @categories = Category.all.order(:name)
@@ -13,6 +14,7 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:success] = "#{@category.name} added!"
+      binding.pry
       redirect_to dashboard_path(@current_user.id)
     else #save failed
       flash.now[:danger] = "Category #{@category.name} not added!"
