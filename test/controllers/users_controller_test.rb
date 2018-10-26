@@ -17,6 +17,22 @@ describe UsersController do
     end
   end
 
+  describe "products" do
+    it "Should show products for the merchant" do
+      user = users(:tom)
+      # Make fake session
+      # Tell OmniAuth to use this user's info when it sees
+     # an auth callback from github
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+      get auth_callback_path('github')
+      get merchant_products_path(user.id)
+      must_respond_with :success
+    end
+
+
+
+  end
+
 
   describe "dashboard" do
 
