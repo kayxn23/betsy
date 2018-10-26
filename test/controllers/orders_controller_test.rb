@@ -2,11 +2,7 @@ require "test_helper"
 
 describe OrdersController do
 
-<<<<<<< HEAD
-  describe "update" do
-=======
   describe " update" do
->>>>>>> 8f1a2016d9c72d989a1b7c4fb0cfdaebca529084
     let (:order_hash) do
       {
         order: {
@@ -195,8 +191,7 @@ describe OrdersController do
     # end
     # end
 
-<<<<<<< HEAD
-        must_respond_with :not_found
+        # must_respond_with :not_found
 
       end
     end
@@ -221,7 +216,3 @@ describe OrdersController do
       end
 
  end
-=======
-  end
->>>>>>> 8f1a2016d9c72d989a1b7c4fb0cfdaebca529084
-end
