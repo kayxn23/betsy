@@ -72,11 +72,11 @@ class UsersController < ApplicationController
 
       # @merchant = find_merchant - have this already
       ######## SORT THESE THINGS !!!!
-      @products = @merchant.products
+      @products = @merchant.products.sort_by{ |item| item.name }
       if params[:status] && params[:status] != "all"
-        @order_items = @merchant.order_items_for_status(params[:status])
+        @order_items = @merchant.order_items_for_status(params[:status]).sort_by{ |item| item.order_id }
       elsif
-        @order_items = @merchant.sold_items
+        @order_items = @merchant.sold_items.sort_by{ |item| item.order_id }
       end
 
 
