@@ -3,24 +3,6 @@ before_action :current_order
 before_action :set_order_item
 #add hidden field to products index each do captures price and quantity
 
-  def new
-      # @orders_items = OrdersItem.new
-    end
-
-  def create
-  #   @orders_items = OrdersItem.new.add_product(params )  #add orders_items
-  #
-  #   #Product id and quantity
-  #   #
-  #   # redirect_to orders_path
-  # if @order.save
-  #   redirect_to orders_path
-  #   else
-  #     flash[:error] = 'There was a problem addding this to your cart'
-  #     redirect_to root_path #update to fallback to last page or product show
-  #   end
-  end
-
   def update
     # find order item by params id
 
@@ -51,28 +33,18 @@ before_action :set_order_item
   end
 
 
-  # def add_to_cart
-  #   product = Product.find_by(id: params[:id])
-  #    order = Order.find_by(id: session[:order_id]))
-  #    @orders_item = OrderItems.new(product_id: product.id, order_id: order.id, quantity: 1)
-  #    redirect_to root_path
-  # end
+  private
 
-    def index
+  def set_order_item
+    @orders_item = OrdersItem.find(params[:id])
+    if @orders_item.nil?
+      flash.now[:danger] = "Cannot find the item #{params[:id]} in the cart"
+      render :notfound
     end
+  end
 
-    private
-
-    def set_order_item
-      @orders_item = OrdersItem.find(params[:id])
-      if @orders_item.nil?
-        flash.now[:danger] = "Cannot find the item #{params[:id]} in the cart"
-        render :notfound
-      end
-    end
-
-    def order_item_params
-      params.permit( :quantity)
-    end
+  def order_item_params
+    params.permit( :quantity)
+  end
 
 end
