@@ -144,7 +144,7 @@ describe Product do
     end
 
     it 'will not reduce stock if there is not enough' do
-      product.reduce_stock(2)
+      product.reduce_stock(5)
       valid = product.save
       expect(valid).must_equal false
       expect(product.errors.messages).must_include :stock

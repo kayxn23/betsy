@@ -5,7 +5,7 @@ product1:
   price: 9.99
   description: MyString
   photo: MyString
-  stock: 1
+  stock: 4
   user: kay
 
 

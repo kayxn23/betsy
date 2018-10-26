@@ -18,21 +18,34 @@ describe Order do
 
   describe 'Relationships' do
     it 'can belong to user' do
-      users(:user1)
-
-      user = order.user
+      user = users(:user1)
+      order.user_id = user.id
 
       expect(user).must_be_instance_of User
-      expect(user.id).must_equal order.user_id
+      expect(user.id).must_equal order.user.id
     end
 
+    it 'can not belong to user' do
+      order.user_id = nil
+
+      expect(order.user).must_be_nil
+    end
 
     it 'can have many products' do
-      order.products << products(:product1)
       products = order.products
 
       expect(products.length).must_be :>=, 1
       products.each do |product|
+        expect(product).must_be_instance_of Product
+      end
+    end
+
+    it 'can add new products through order_item' do
+      num_p = order.products.length
+
+      new_product = OrdersItem.new(order_id: order.id, product_id: products(:product1), quantity: 2)
+      expect(products.length).must_equal num_p + 1
+      order.products.each do |product|
         expect(product).must_be_instance_of Product
       end
     end
@@ -58,13 +71,13 @@ describe Order do
       }
 
       num_p = order.products.count
-      order.add_product(product_params,1)
-      binding.pry
+      order.add_product(product.id,1)
+
       expect(order.products.count).must_equal num_p + 1
-      expect(order.products.first.id).must_equal product.id
+      expect(order.products).must_include product
     end
 
-    it "increases the quantity of a product if it exists" do
+    it "increases the quantity of a product is in stock" do
     end
 
     it "will not add item if product is nil" do
