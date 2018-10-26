@@ -48,19 +48,12 @@ class OrdersController < ApplicationController
         render :edit, status: :bad_request
       else
         order.orders_items.each do |o_i|
-        o_i.product.reduce_stock(o_i.quantity)
-        o_i.product.save
+          o_i.product.reduce_stock(o_i.quantity)
+          o_i.product.save
+          if !o_i.product.save
+            redirect_to order_path(@current_order.id)
+          end
         end
-      end
-        if o_i.product.save
-          # MERGE -> once we merge change the redirect path to confirmation :)
-          # rediret_to confirmation_path(@current_order.id)
-          redirect_to order_path(@current_order.id)
-
-        # else
-        #   # binding.pry
-        #   redirect_to order_path(@current_order.id) #Redirect to order confirmation
-        # end
         order.save
       end
 
@@ -84,6 +77,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def adjust_stock(order)
+  end
+
   def order_params
     return params.require(:order).permit(:status, :street, :city, :state, :zip, :creditcard, :cvv, :billingzip, :ccexpiration, :user_id)
   end
