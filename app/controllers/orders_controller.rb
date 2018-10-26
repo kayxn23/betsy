@@ -17,27 +17,21 @@ class OrdersController < ApplicationController
   #    @order.user_id = @user_id
   #  end
   # end
-  def new
-    @order = Order.new
-    # Find user
-    # If no user, User.create
-    if params[:user_id]
-      @user_id = params[:user_id].to_i
-      user = User.find_by(id: @user_id)
-      if user.nil?
-        flash.now[:warning] = "That user doesn't exit"
-      end
-      @order.user_id = @user_id
-    end
-  end
+  # def new
+  #   @order = Order.new
+  #   # Find user
+  #   # If no user, User.create
+  #   if params[:user_id]
+  #     @user_id = params[:user_id].to_i
+  #     user = User.find_by(id: @user_id)
+  #     if user.nil?
+  #       flash.now[:warning] = "That user doesn't exit"
+  #     end
+  #     @order.user_id = @user_id
+  #   end
+  # end
 
 
-  def edit
-    #will display the form the user fills out with address ect..
-    #this is the view
-    #partial called edit.erb
-    #get returns a result
-  end
 
 
   def update
