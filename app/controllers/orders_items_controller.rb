@@ -23,6 +23,12 @@ before_action :set_order_item
 
   def update
     # find order item by params id
+
+    if order_item_params[:quantity].to_i == 0
+      @orders_item.destroy
+      flash.now[:danger] = "Removed item from your cart"
+      redirect_to order_path(@current_order.id)
+    else
      if @orders_item && @orders_item.update(order_item_params)
        flash[:success] = "The cart item #{@orders_item.product.name} has been updated"
        redirect_to order_path(@current_order.id)
@@ -34,6 +40,7 @@ before_action :set_order_item
        redirect_to order_path(@current_order.id)
      end
    end
+ end
 
   def destroy
 
