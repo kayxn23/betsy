@@ -151,4 +151,37 @@ describe Product do
     end
 
   end
+
+  describe 'Can add product to cart?' do
+    it 'returns true if stock is availble to fill order' do
+      #arrange
+      product = products(:product2)
+      quantity = product.stock - 1
+      #act
+      result = product.can_purchase?(quantity)
+      #assert
+      expect(result).must_equal true
+    end
+
+    it 'returns false if stock is unavailable to fill order' do
+      #arrange
+      product = products(:product2)
+      quantity = product.stock + 1
+      #act
+      result = product.can_purchase?(quantity)
+      #assert
+      expect(result).must_equal false
+
+    end
+    it "returns true if stock is equal to requested quantity" do
+      #arrange
+      product = products(:product2)
+      quantity = product.stock
+      #act
+      result = product.can_purchase?(quantity)
+      #assert
+      expect(result).must_equal true
+    end
+  end
+
 end
