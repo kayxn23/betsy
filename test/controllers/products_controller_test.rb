@@ -93,7 +93,6 @@ describe ProductsController do
             post products_path, params: product_hash
           }.must_change 'Product.count', 1
 
-
           must_respond_with :redirect
           must_redirect_to dashboard_path(@merchant.id)  #the last product bc this new one will be added to the end
 

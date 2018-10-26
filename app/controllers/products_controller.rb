@@ -45,9 +45,6 @@ class ProductsController < ApplicationController
 
   def edit; end
 
-  def retire
-  end
-
   def create
     @product = Product.new(product_params)
     @product.categories
