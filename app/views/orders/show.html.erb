@@ -57,7 +57,7 @@
 						<tr>
 							<td class="text-left"><%= link_to "Continue Shopping", products_path, class: "btn btn-dark"%></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong><%=readable_price(@current_order.order_calculate_total)%></strong></td>
+							<td class="hidden-xs text-center"><strong><%= (number_to_currency(@current_order.order_calculate_total))%></strong></td>
               <td><%= link_to "Complete Order", edit_order_path(@current_order.id), class: "btn btn-success btn-block"%></td>
 						</tr>
 					</tfoot>
