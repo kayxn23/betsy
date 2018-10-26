@@ -55,6 +55,7 @@ class OrdersController < ApplicationController
           end
         end
         order.save
+        raise
       end
 
       flash[:status] = :success
