@@ -16,7 +16,7 @@ describe OrdersController do
     describe "update" do
       it "can update a order with valid params" do
       id = orders(:one).id
-      binding.pry
+      # binding.pry
       expect {
       patch order_path(id), params: order_hash
     }.wont_change 'Order.count'
