@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  #before_action :find_order, only: [:edit,:update]
+  before_action :find_order, only: [:edit,:update]
 
   #
   # def new #WRONG TO HAVE @ORDER
@@ -64,6 +64,9 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id:session[:order_id])
   end
 
+  def edit
+  end
+
   def index
     @orders = Order.all
   end
@@ -91,7 +94,7 @@ class OrdersController < ApplicationController
 
     if @order.nil?
       flash.now[:danger] = "Cannot find the order #{params[:id]}"
-      render :notfound
+      render :notfound, status: :not_found
     end
   end
 
