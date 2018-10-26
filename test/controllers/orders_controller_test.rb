@@ -22,9 +22,7 @@ describe OrdersController do
 
       order = Order.all.last
       must_respond_with :redirect
-      # binding.pry
       must_redirect_to confirmation_path(order.id)
-      # binding.pry
 
       expect(order.status).must_equal "paid"
       expect(order.street).must_equal order_hash[:order][:street]

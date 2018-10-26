@@ -1,5 +1,4 @@
 require "test_helper"
-require 'pry'
 describe Order do
   let(:order) { orders(:one) }
   it "must be valid" do
@@ -74,7 +73,7 @@ describe Order do
     end
 
     it "will not add item if product is nil" do
-      
+
     end
 
     it 'Will sum up an Orders total price' do
