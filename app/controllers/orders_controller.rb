@@ -50,9 +50,9 @@ class OrdersController < ApplicationController
         order.orders_items.each do |o_i|
           o_i.product.reduce_stock(o_i.quantity)
           o_i.product.save
-          if !o_i.product.save
-            redirect_to order_path(@current_order.id)
-          end
+          # if !o_i.product.save
+          #   redirect_to order_path(@current_order.id)
+          # end
         end
         order.save
       end
@@ -80,10 +80,11 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    @items_in_cart = @current_order.orders_items
+    @confirmed_order = Order.find_by(id: params[:order_id])
+    @items_in_cart = @confirmed_order.orders_items
     @revenue_total = @items_in_cart.inject(0) { |sum, item| sum + item.calculate_total }
-    @date_placed = @current_order.updated_at
-    @order_status = @current_order.status
+    @date_placed = @confirmed_order.updated_at
+    @order_status = @confirmed_order.status
 
   end
 
