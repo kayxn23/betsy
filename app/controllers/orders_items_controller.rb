@@ -22,17 +22,16 @@ before_action :set_order_item
   end
 
   def update
-    binding.pry
     # find order item by params id
      if @orders_item && @orders_item.update(order_item_params)
        flash[:success] = "The cart item #{@orders_item.product.name} has been updated"
-       redirect_to orders_path(@current_order.id)
+       redirect_to order_path(@current_order.id)
      elsif @orders_item && !@orders_item.valid? #the order item exists and it was invalid input for quantity
        flash.now[:danger] = "Could not save the quantity to the cart"
-       redirect_to orders_path(@current_order.id)
+       redirect_to order_path(@current_order.id)
      else
        flash[:danger] = "Something went wrong"
-       redirect_to orders_path(@current_order.id)
+       redirect_to order_path(@current_order.id)
      end
    end
 
