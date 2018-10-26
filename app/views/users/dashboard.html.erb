@@ -37,96 +37,56 @@
     </ul>
   </nav>
 
-  <section class="container">
-    <h2>My Products</h2>
-    <ul>
-      <% @merchant.products.each do |product| %>
-        <li>
-          <h3><%= "#{product.name.capitalize}" %></h3>
-          <%# image_tag("product.photo"), alt="#{product.name} image" %>
-          <p><%= "Price: #{number_to_currency(product.price)}" %></p>
-          <p><%= "Description: #{product.description}" %></p>
-          <p><%= "Stock: #{product.stock}" %></p>
-          <!--TODO Not sure what retire products post route is for, should hide product if selected  -->
-          <!-- Maybe products have status of active/inactive and retire makes them inactive? -->
+<table class="table">
+  <h2>My Products</h2>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Stock
+      </th>
+      <th>
+        Edit
+      </th>
+    </tr>
+  </thead>
 
-          <%# link_to "Retire Product", retire_path(product.id), class: "btn btn-primary", method: :post %>
+  <tbody>
+    <% @merchant.products.each do |product| %>
+      <tr>
+        <td>
+          <%= link_to product.name.capitalize, product_path(product.id) %>
+        </td>
+        <td>
+          <%="#{number_to_currency(product.price)}" %>
+        </td>
+        <td>
+          <%= "#{product.description}" %>
+        </td>
+        <td>
+          <%= "#{product.stock}" %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_product_path(product.id) %>
+        </td>
+      </tr>
 
-          <%# link_to "Retire Product", product_retire(product.id), class: "btn btn-primary", method: :post %>
-          <%= link_to "Edit Product", edit_product_path(product.id), class: "btn btn-primary" %>
-
-        <% end %>
-      </tbody>
-
-    </table>
-
-  </section>
-
+    <% end %>
+  </tbody>
+</table>
 
   <section class="container">
     <h2>Orders</h2>
     <%= render partial: "statussummary" %>
-    <!-- <ul>
-      <li>
-        <h3><%= "Total Revenue: $" %></h3>
-      </li>
-      <h3>
-        <%= "View Orders by Status:" %>
-      </h3>
-      <ul id="order_status_list">
-        <li>
-          <%= "Pending - Link to order show page for paid status (user/id/orders/show/pending)" %>
-        </li>
-        <li>
-          <%= "Paid - Link to show page for paid status (user/id/orders/show/paid)" %>
-        </li>
-        <li>
-          <%= "Completed - user/id/orders/show/complete" %>
-        </li>
-        <li>
-          <%= "Cancelled - user/id/orders/show/cancelled" %>
-        </li>
-      </ul>
-    </ul>
 
-
-    <h3><%= "Order Summary" %></h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>
-            <%= "Order" %>
-          </th>
-          <th>
-            <%= "Date" %>
-          </th>
-          <th>
-            <%= "Product" %>
-          </th>
-          <th>
-            <%= "Price" %>
-          </th>
-          <th>
-            <%= "Quantity" %>
-          </th>
-          <th>
-            <%= "Subtotal" %>
-          </th>
-          <th>
-            <%= "Order Status" %>
-          </th>
-          <th>
-            <%= "Shipped Status" %>
-          </th>
-          <th>
-            <%= "Edit Shipped Status" %>
-          </th>
-        </tr>
-      </thead>
-      <!-- TODO Loop through order items for merchant here  -->
-      <!-- Show order id, date, product, price, quantity, subtotal, order status  -->
-      <!-- shipped status -->
-      <!-- <% @order_items %> -->
   </section>
   </div>
 <% end %>
