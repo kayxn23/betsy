@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     end
 
     @current_order.add_product(params[:product_id], quantity)
-    redirect_to root_path
+    redirect_to products_path
   end
 
   def new
