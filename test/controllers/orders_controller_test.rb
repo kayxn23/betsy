@@ -108,6 +108,8 @@ describe OrdersController do
       end
     end
 
+    describe "show" do
+
       it "should get an order's show page" do
         #Arrange
         id = orders(:one).id
@@ -122,9 +124,13 @@ describe OrdersController do
         id = -1
         #Act
         get order_path(id)
+        binding.pry
         #Assert
         must_respond_with :not_found
         expect(flash[:danger]).must_equal "Cannot find the order -1"
       end
+
+    end
+
 
  end

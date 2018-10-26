@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit,:update]
+  before_action :find_order, only: [:edit,:update, :show]
 
   #
   # def new #WRONG TO HAVE @ORDER
@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by(id:session[:order_id])
+
   end
 
   def edit
