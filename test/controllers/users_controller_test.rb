@@ -1,14 +1,6 @@
 require "test_helper"
 
 describe UsersController do
-  describe "new" do
-    it "should get new" do
-      # Act
-      get new_user_path
-      # Assert
-      must_respond_with :success
-    end
-  end
 
   describe "index" do
     it "should get index" do
@@ -125,7 +117,8 @@ describe UsersController do
 
        # Says the count changed :(
 
-       must_respond_with :bad_request
+       must_respond_with :redirect
+       must_redirect_to root_path
 
     end
   end

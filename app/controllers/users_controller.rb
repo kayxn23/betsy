@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:dashboard]
 
 # Might not need this as login does new oauth
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
   def index
     # this works in rails c but not on website...help?
@@ -32,8 +32,7 @@ class UsersController < ApplicationController
     else
       # Could not save
       flash[:danger] = "Could not save account"
-      # Render new user form again
-      render :new, status: :bad_request
+      redirect_to root_path
     end
   end
 
