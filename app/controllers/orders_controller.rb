@@ -50,9 +50,9 @@ class OrdersController < ApplicationController
         order.orders_items.each do |o_i|
           o_i.product.reduce_stock(o_i.quantity)
           o_i.product.save
-          # if !o_i.product.save
-          #   redirect_to order_path(@current_order.id)
-          # end
+          if !o_i.product.save
+            redirect_to order_path(@current_order.id)
+          end
         end
         order.save
         raise
