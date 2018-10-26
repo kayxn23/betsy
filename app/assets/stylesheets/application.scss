@@ -19,10 +19,9 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url('https://fonts.googleapis.com/css?family=Butcherman|Creepster');
 
-@import url('https://fonts.googleapis.com/css?family=Audiowide');
-
-$primary-font: 'Gudea', sans-serif;
-$primary-teal: #26A69A;
+$primary-font: 'Gotham', gotham, Verdana,sans-serif;
+$primary-teal: black;
+// $primary-teal: #006699;
 $dark-teal: #00796B;
 $secondary-color: grey;
 $light-gray: #EEEEEE;
@@ -31,6 +30,10 @@ $gold: #FF5722;
 
 $default-border: 2px solid;
 
+body {
+  // background: black;
+}
+
 
 body, h1, h2, h3, h4, h5 {
   font-family: $primary-font;
@@ -38,7 +41,7 @@ body, h1, h2, h3, h4, h5 {
 
 h1, h2, h3, h4, h5 {
   font-weight: bold;
-  font-family: 'Gudea', cursive;
+  font-family: $primary-font, cursive;
 }
 
 a, h2, h3 {
@@ -241,4 +244,8 @@ table {
     list-style-type: none;
     // margin: 0;
     padding: 0;
+  }
+
+  .content-half {
+      background-color: #b35919;
   }
