@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
 
       flash[:status] = :success
       flash[:result_text] = "Success! Order #{@current_order.id} is complete! Enjoy your unique home!"
-      redirect_to order_path(@current_order.id) #Redirect to order confirmation
+      redirect_to confirmation_path(@current_order.id) #Redirect to order confirmation
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update #{@current_order.id}. Please check the forms"
@@ -70,9 +70,17 @@ class OrdersController < ApplicationController
     def destroy
     end
 
+    def confirmation
+      @items_in_cart = @current_order.orders_items
+      @revenue_total = @items_in_cart.inject(0) { |sum, item| sum + item.calculate_total }
+      @date_placed = @current_order.updated_at
+      @order_status = @current_order.status
+
+    end
+
   private
   def order_params
-    return params.require(:order).permit(:status, :street, :city, :state, :zip, :creditcard, :cvv, :billingzip, :ccexpiration, :user_id)
+    return params.require(:order).permit(:status, :street, :city, :state, :zip, :creditcard, :cvv, :billingzip, :ccexpiration, :name, :email, :user_id)
   end
 
   def find_order
