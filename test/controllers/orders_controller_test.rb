@@ -21,7 +21,7 @@ describe OrdersController do
     }.must_change 'Order.count', 1
 
       must_respond_with :redirect
-      binding.pry
+      # binding.pry
       must_redirect_to confirmation_path(@current_order.id)
 
 
