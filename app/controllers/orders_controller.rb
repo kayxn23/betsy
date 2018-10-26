@@ -57,11 +57,9 @@ class OrdersController < ApplicationController
         order.save
       end
 
-      flash[:status] = :success
-      flash[:result_text] = "Success! Order #{@current_order.id} is complete! Enjoy your unique home!"
+      flash[:success] = "Order has been placed! Your ORDER CONFIRMATION ##{@current_order.id} "
       redirect_to confirmation_path(@current_order.id) #Redirect to order confirmation
     else
-      flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update #{@current_order.id}. Please check the forms"
       flash.now[:messages] = @current_order.errors.messages
       render :edit, status: :bad_request
