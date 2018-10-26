@@ -22,18 +22,6 @@
       <li class="btn">
         <%= link_to "Add Category", new_category_path, class:"btn btn-primary"  %>
       </li>
-      <li class="btn">
-        <!-- Dropdown of status and all here  -->
-            <%= link_to "All Orders", dashboard_path(:status=>"all"), class:"btn btn-primary" %>
-      </li>
-
-          <% @status_types.each do |status| %>
-            <li class="btn btn-primary">
-              <%=link_to "#{status.capitalize} Orders", dashboard_path(:status=>"#{status}"), class:"btn btn-primary" %>
-            </li>
-          <!-- Make these links? link_to a path helper -->
-
-          <% end %>
     </ul>
   </nav>
 
@@ -85,6 +73,17 @@
 
   <section class="container">
     <h2>Orders</h2>
+    <ul>
+      <li class="btn">
+        <!-- Dropdown of status and all here  -->
+            <%= link_to "All Orders", dashboard_path(:status=>"all"), class:"btn btn-primary" %>
+      </li>
+        <% @status_types.each do |status| %>
+          <li class="btn btn-primary">
+            <%=link_to "#{status.capitalize} Orders", dashboard_path(:status=>"#{status}"), class:"btn btn-primary" %>
+          </li>
+        <% end %>
+    </ul>
     <%= render partial: "statussummary" %>
 
   </section>
