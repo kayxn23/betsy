@@ -1,6 +1,6 @@
 class OrdersItemsController < ApplicationController
 before_action :current_order
-
+before_action :set_order_item
 #add hidden field to products index each do captures price and quantity
 
   def new
@@ -22,13 +22,19 @@ before_action :current_order
   end
 
   def update
-    params[:product][:category_ids] ||= [] #if category_ids returns nil it will be set to empty array
-    if @product && @product.update(product_params)
-      redirect_to product_path(@product.id)
-    elsif @product && !@product.valid? #the product exists and it was invalid inputs
-      render :edit, status: :bad_request
-    end
-  end
+    binding.pry
+    # find order item by params id
+     if @orders_item && @orders_item.update(order_item_params)
+       flash[:success] = "The cart item #{@orders_item.product.name} has been updated"
+       redirect_to orders_path(@current_order.id)
+     elsif @orders_item && !@orders_item.valid? #the order item exists and it was invalid input for quantity
+       flash.now[:danger] = "Could not save the quantity to the cart"
+       redirect_to orders_path(@current_order.id)
+     else
+       flash[:danger] = "Something went wrong"
+       redirect_to orders_path(@current_order.id)
+     end
+   end
 
   def destroy
 
@@ -52,7 +58,7 @@ before_action :current_order
     private
 
     def set_order_item
-      @orders_item = OrderItems.find(params[:id])
+      @orders_item = OrdersItem.find(params[:id])
       if @orders_item.nil?
         flash.now[:danger] = "Cannot find the item #{params[:id]} in the cart"
         render :notfound
@@ -60,7 +66,7 @@ before_action :current_order
     end
 
     def order_item_params
-      params.require(:order_item).permit(:product_id, :order_id, :quantity)
+      params.permit( :quantity)
     end
 
 end
