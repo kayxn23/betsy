@@ -36,27 +36,6 @@ describe OrdersController do
       expect(order.billingzip).must_equal order_hash[:order][:billingzip]
     end
 
-    it "gives an error if the order params are invalid" do
-      # Arrange
-      order = orders(:one)
-      order_hash[:order][:status] = "invalid_status"
-
-      expect {
-          patch order_path(order.id), params: order_hash
-        }.wont_change 'Order.count'
-        new_order = Order.find(order.id)
-
-        must_respond_with :bad_request
-        expect(new_order.status).must_equal new_order.status
-        expect(new_order.street).must_equal  new_order.street
-        expect(new_order.city).must_equal  new_order.city
-        expect(new_order.state).must_equal  new_order.state
-        expect(new_order.zip).must_equal  new_order.zip
-        expect(new_order.creditcard).must_equal  new_order.creditcard
-        expect(new_order.cvv).must_equal  new_order.cvv
-        expect(new_order.billingzip).must_equal  new_order.billingzip
-    end
-
 
         it "should get an order's show page" do
           #Arrange
