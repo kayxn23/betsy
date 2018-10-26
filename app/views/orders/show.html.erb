@@ -35,8 +35,8 @@
 							</td>
 							<td data-th="Price">$<%= readable_price(item.product.price) %></td>
 							<td data-th="Quantity">
-                <%= form_with url:product_add_to_cart_path(item.product.id)   do |f|%>
-                 <%= f.text_field :quantity, placeholder: "#{item.quantity}", class: "form-control text-center" %>
+                <%= form_with url:order_orders_item_path(@current_order.id,item.id), method: :patch   do |f|%>
+                 <%= f.text_field :quantity, value: "#{item.quantity}", class: "form-control text-center" %>
                  <%= f.submit "Update Cart"%>
                 <% end %>
 							</td>
