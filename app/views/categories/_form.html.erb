@@ -10,16 +10,19 @@
     <% end %>
 
     <ul>
-    <%= form_with model: @category, class: "form" do |f|%>
+    <div class="container">
+      <%= form_with model: @category, class: "form" do |f|%>
 
-        <%# f.collection_check_boxes :category_ids, Category.all, :id, :name%>
+          <%# f.collection_check_boxes :category_ids, Category.all, :id, :name%>
 
-        <li><%= f.label :name %> </li>
-        <li><%= f.text_field :name, class: ""%></li>
+          <li><%= f.label :name %> </li>
+          <li><%= f.text_field :name, class: ""%></li>
 
 
-      <%= f.submit button_title, class: 'btn btn-info'%>
-      <% end %>
+        <%= f.submit button_title, class: 'btn btn-info'%>
+        <% end %>
+    </div>
+
     </ul>
 
   </section>
