@@ -3,8 +3,8 @@
 product1:
   name: a product
   price: 9.99
-  description: MyString
-  photo: MyString
+  description: great product
+  photo: https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426
   stock: 4
   user: kay
 
@@ -12,8 +12,8 @@ product1:
 product2:
   name: b product
   price: 10.99
-  description: MyString
-  photo: MyString
+  description: medium product
+  photo: https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426
   stock: 2
   user: dani
 
@@ -22,7 +22,7 @@ product2:
 product3:
   name: c product
   price: 10.00
-  description: MyString
-  photo: MyString
+  description: small product
+  photo: https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426
   stock: 3
   user: kay

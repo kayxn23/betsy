@@ -170,19 +170,21 @@ describe ProductsController do
       end
     end
   end
-    describe "set current_order" do
-      it "adds products to order" do
+    describe "add_to_cart" do
+      it "adds a prodcut to an order" do
 
         # Adding some products
         # Arrange -
         product_one = products(:product1)
         product_two = products(:product2)
         product_three = products(:product3)
-        post add_to_cart_path(product_one.id)
-        post add_to_cart_path(product_two.id)
-        post add_to_cart_path(product_three.id)
+
+
 
         # Act / Assert
+        post product_add_to_cart_path(product_one.id)
+        post product_add_to_cart_path(product_two.id)
+        post product_add_to_cart_path(product_three.id)
         # Current order is nil as there is no session
         # Do we make our own session order?
         current_order = Order.find(session[:order_id])
