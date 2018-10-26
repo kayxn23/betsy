@@ -27,8 +27,16 @@ class ProductsController < ApplicationController
       quantity = [params[:quantity].to_i, quantity].max
     end
 
-    @current_order.add_product(params[:product_id], quantity)
-    redirect_to products_path
+    product = Product.find_by(id: params[:product_id].to_i)
+
+    if product.can_purchase?(params[:quantity].to_i)
+
+      @current_order.add_product(params[:product_id], quantity)
+      redirect_to products_path
+    else
+      flash[:danger] = "There is not enought stock to add that quantity to the cart!"
+      redirect_to product_path(params[:product_id])
+    end
   end
 
   def new
