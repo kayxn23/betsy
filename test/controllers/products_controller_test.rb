@@ -90,7 +90,8 @@ describe ProductsController do
 
 
           must_respond_with :redirect
-          must_redirect_to product_path(Product.last.id)  #the last product bc this new one will be added to the end
+          must_redirect_to dashboard_path(users(:tom).id)
+          # must_redirect_to product_path(Product.last.id)  #the last product bc this new one will be added to the end
 
           expect(Product.last.name).must_equal product_hash[:product][:name]
           expect(Product.last.price).must_equal product_hash[:product][:price]
