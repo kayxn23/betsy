@@ -45,14 +45,18 @@ class OrdersController < ApplicationController
       order = Order.find_by(id: @current_order.id, status: "pending")
       order.status = "paid"
       if order.orders_items.nil?
-        flash.now[:danger] = "Cannot checkout, your cart has no property"
         render :edit, status: :bad_request
       else
         order.orders_items.each do |o_i|
         o_i.product.reduce_stock(o_i.quantity)
         o_i.product.save
-      end 
-        # if o_i.product.save
+        end
+      end
+        if o_i.product.save
+          # MERGE -> once we merge change the redirect path to confirmation :)
+          # rediret_to confirmation_path(@current_order.id)
+          redirect_to order_path(@current_order.id)
+
         # else
         #   # binding.pry
         #   redirect_to order_path(@current_order.id) #Redirect to order confirmation
@@ -60,7 +64,6 @@ class OrdersController < ApplicationController
         order.save
       end
 
-      redirect_to order_path(@current_order.id)
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not update #{@current_order.id}. Please check the forms"

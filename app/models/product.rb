@@ -13,7 +13,7 @@ class Product < ApplicationRecord
 
   validates :description, presence: true
   validates :photo, presence: true
-  # validates :stock, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :stock, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
 
 
