@@ -31,4 +31,8 @@ class Product < ApplicationRecord
     self.stock = self.stock - quantity
   end
 
+  def can_purchase?(quantity)
+    stock >= quantity
+  end
+
 end
