@@ -50,7 +50,6 @@ class OrdersController < ApplicationController
         end
         order.save
       end
-
       flash[:success] = "Order has been placed! Your ORDER CONFIRMATION ##{@current_order.id} "
       redirect_to confirmation_path(@current_order.id) #Redirect to order confirmation
     else
