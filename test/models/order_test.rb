@@ -18,9 +18,10 @@ describe Order do
 
   describe 'Relationships' do
     it 'can belong to user' do
+      users(:user1)
 
       user = order.user
-      binding.pry
+
       expect(user).must_be_instance_of User
       expect(user.id).must_equal order.user_id
     end
