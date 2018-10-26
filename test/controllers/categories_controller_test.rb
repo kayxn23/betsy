@@ -32,7 +32,7 @@ describe CategoriesController do
     end
 
 
-    it "can create a new category given valid params" do
+    it "can create a new category given valid params if logged in" do
       @user = users(:tom)
       # Make fake session
       # Tell OmniAuth to use this user's info when it sees
@@ -49,6 +49,14 @@ describe CategoriesController do
       must_redirect_to dashboard_path(@user.id)
 
       expect(Category.last.name).must_equal category_hash[:category][:name]
+
+    end
+
+    it "does not allow guests to access the new category page" do
+      user = users(:guest)
+      get new_category_path
+      expect(flash[:danger]).must_equal "You must be logged in to view this section"
+      must_redirect_to root_path
 
     end
 
