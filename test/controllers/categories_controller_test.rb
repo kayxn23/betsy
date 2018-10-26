@@ -8,6 +8,14 @@ describe CategoriesController do
 
   describe "new" do
     it "can get the new category page" do
+
+      @user = users(:tom)
+      # Make fake session
+      # Tell OmniAuth to use this user's info when it sees
+      # an auth callback from github
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(@user))
+      get auth_callback_path('github')
+
       get new_category_path
 
       must_respond_with :success
@@ -25,22 +33,34 @@ describe CategoriesController do
 
 
     it "can create a new category given valid params" do
+      @user = users(:tom)
+      # Make fake session
+      # Tell OmniAuth to use this user's info when it sees
+      # an auth callback from github
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(@user))
+      get auth_callback_path('github')
+
       # Act-Assert
-      @current_user = users(:user1)
-      
       expect {
         post categories_path, params: category_hash
       }.must_change 'Category.count', 1
 
       must_respond_with :redirect
-
-      must_redirect_to dashboard_path(user.id)
+      must_redirect_to dashboard_path(@user.id)
 
       expect(Category.last.name).must_equal category_hash[:category][:name]
 
     end
 
     it "responds with an error for invalid params" do
+
+      @user = users(:tom)
+      # Make fake session
+      # Tell OmniAuth to use this user's info when it sees
+      # an auth callback from github
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(@user))
+      get auth_callback_path('github')
+
       category_hash[:category][:name] = nil
 
       expect {
