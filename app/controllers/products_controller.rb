@@ -1,3 +1,4 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :retire]
   before_action :require_login, except: [:index, :show, :add_to_cart, :root]
@@ -76,6 +77,7 @@ class ProductsController < ApplicationController
 
   def destroy
   end
+
 
 
   private

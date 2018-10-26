@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    #before_action :find_order, only: [:edit,:update]
+  #before_action :find_order, only: [:edit,:update]
 
   #
   # def new #WRONG TO HAVE @ORDER
@@ -21,14 +21,14 @@ class OrdersController < ApplicationController
     @order = Order.new
     # Find user
     # If no user, User.create
-   if params[:user_id]
-     @user_id = params[:user_id].to_i
-     user = User.find_by(id: @user_id)
-     if user.nil?
-       flash.now[:warning] = "That user doesn't exit"
-     end
-     @order.user_id = @user_id
-   end
+    if params[:user_id]
+      @user_id = params[:user_id].to_i
+      user = User.find_by(id: @user_id)
+      if user.nil?
+        flash.now[:warning] = "That user doesn't exit"
+      end
+      @order.user_id = @user_id
+    end
   end
 
 
@@ -39,8 +39,23 @@ class OrdersController < ApplicationController
     #get returns a result
   end
 
+
   def update
     if @current_order && @current_order.update(order_params)
+      order = Order.find_by(id: @current_order.id, status: "pending")
+      order.status = "paid"
+      if order.orders_items.nil?
+        render :edit, status: :bad_request
+      else
+        order.orders_items.each do |o_i|
+          o_i.product.reduce_stock(o_i.quantity)
+          o_i.product.save
+          if !o_i.product.save
+            redirect_to order_path(@current_order.id)
+          end
+        end
+        order.save
+      end
 
       flash[:status] = :success
       flash[:result_text] = "Success! Order #{@current_order.id} is complete! Enjoy your unique home!"
@@ -50,35 +65,33 @@ class OrdersController < ApplicationController
       flash.now[:result_text] = "Could not update #{@current_order.id}. Please check the forms"
       flash.now[:messages] = @current_order.errors.messages
       render :edit, status: :bad_request
-      #patch
-      #this does not have an .erb
-      #the form posts to the update method
-      #will recieve a post from edit and it will toggle the order to complete
-      #save order
-      #get the order and update it
     end
   end
 
   def show
-      @order = Order.find_by(id:session[:order_id])
+    @order = Order.find_by(id:session[:order_id])
   end
 
-    def index
-      @orders = Order.all
-    end
+  def index
+    @orders = Order.all
+  end
 
-    def destroy
-    end
+  def destroy
+  end
 
-    def confirmation
-      @items_in_cart = @current_order.orders_items
-      @revenue_total = @items_in_cart.inject(0) { |sum, item| sum + item.calculate_total }
-      @date_placed = @current_order.updated_at
-      @order_status = @current_order.status
+  def confirmation
+    @items_in_cart = @current_order.orders_items
+    @revenue_total = @items_in_cart.inject(0) { |sum, item| sum + item.calculate_total }
+    @date_placed = @current_order.updated_at
+    @order_status = @current_order.status
 
-    end
+  end
 
   private
+
+  def adjust_stock(order)
+  end
+
   def order_params
     return params.require(:order).permit(:status, :street, :city, :state, :zip, :creditcard, :cvv, :billingzip, :ccexpiration, :name, :email, :user_id)
   end
