@@ -9,7 +9,7 @@
 
   <div class="container" id="dashboard_container">
     <header>
-      <h1 id=dashboard_heading><%= "#{@merchant.name}'s Dashboard" %></h1>
+      <h1 id=dashboard_heading, class="text-muted"><%= "#{@merchant.name}'s Dashboard" %></h1>
       <!-- Edit own info here? Are we providing user edit/update? -->
 
     </header>
@@ -26,7 +26,7 @@
     </nav>
 
   <table class="table">
-    <h2>My Products</h2>
+    <h2 class="text-muted">My Products</h2>
     <thead>
       <tr>
         <th>
@@ -72,7 +72,7 @@
   </table>
 
     <section class="container">
-      <h2>Orders</h2>
+      <h2 class="text-muted">Orders</h2>
       <ul id="order_filter">
         <li class="btn">
           <!-- Dropdown of status and all here  -->
