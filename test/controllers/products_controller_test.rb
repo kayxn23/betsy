@@ -81,7 +81,12 @@ describe ProductsController do
 
       describe "create" do
         it "can create a new product given valid params" do
-
+          @merchant = users(:tom)
+          # Make fake session
+          # Tell OmniAuth to use this user's info when it sees
+         # an auth callback from github
+            OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(@merchant))
+            get auth_callback_path('github')
 
           # Act-Assert
           expect {
@@ -90,7 +95,7 @@ describe ProductsController do
 
 
           must_respond_with :redirect
-          must_redirect_to product_path(Product.last.id)  #the last product bc this new one will be added to the end
+          must_redirect_to dashboard_path(@merchant.id)  #the last product bc this new one will be added to the end
 
           expect(Product.last.name).must_equal product_hash[:product][:name]
           expect(Product.last.price).must_equal product_hash[:product][:price]
