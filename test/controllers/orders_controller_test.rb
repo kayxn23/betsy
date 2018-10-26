@@ -124,7 +124,6 @@ describe OrdersController do
         id = -1
         #Act
         get order_path(id)
-        binding.pry
         #Assert
         must_respond_with :not_found
         expect(flash[:danger]).must_equal "Cannot find the order -1"
