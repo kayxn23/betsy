@@ -1,14 +1,15 @@
 require "test_helper"
-
+require 'pry'
 describe Order do
   let(:order) { orders(:one) }
   it "must be valid" do
     order = Order.new
+    order.status = "pending"
     order.valid?.must_equal true
   end
 
   it "must have required fields" do
-    fields = [ :status,:street,:city,:state,:zip,:creditcard,:cvv,:billingzip]
+    fields = [ :status,:street,:city,:state,:zip,:creditcard,:cvv,:billingzip, :name, :email]
 
     fields.each do |field|
       expect(order).must_respond_to field
@@ -16,16 +17,17 @@ describe Order do
   end
 
   describe 'Relationships' do
-    it 'belongs to user' do
-      user = order.user
+    it 'can belong to user' do
 
+      user = order.user
+      binding.pry
       expect(user).must_be_instance_of User
       expect(user.id).must_equal order.user_id
     end
 
 
     it 'can have many products' do
-      order.products << Product.first
+      order.products << products(:product1)
       products = order.products
 
       expect(products.length).must_be :>=, 1
@@ -45,7 +47,7 @@ describe Order do
     let(:order) { orders(:one) }
 
     it "adds product to order" do
-      product = products(:product2)
+      product = products(:product1)
 
       product_params = {
         orders_item: {
@@ -54,9 +56,10 @@ describe Order do
         }
       }
 
-      expect(order.products.count).must_equal 0
-      order.add_product(product_params)
-      expect(order.products.count).must_equal 1
+      num_p = order.products.count
+      order.add_product(product_params,1)
+      binding.pry
+      expect(order.products.count).must_equal num_p + 1
       expect(order.products.first.id).must_equal product.id
     end
 

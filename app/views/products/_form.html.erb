@@ -11,28 +11,31 @@
     <% end %>
 
     <%= form_with model: @product, class: "form" do |f|%>
+    <ul>
 
         <%# f.collection_check_boxes :category_ids, Category.all, :id, :name%>
-        <%= f.label :categories %>
-        <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
+        <li><%= f.label :categories %></li>
+        <li><%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %></li>
 
-        <%= f.label :price %>
-        <%= f.text_field :price, class: ""%>
+        <li><%= f.label :price %> </li>
+        <li><%= f.text_field :price, class: ""%></li>
 
-        <%= f.label :name %>
-        <%= f.text_field :name, class: ""%>
+        <li><%= f.label :name %></li>
+        <li><%= f.text_field :name, class: ""%></li>
 
 
-        <%= f.label :description %>
-        <%= f.text_field :description, class: ""%>
+        <li><%= f.label :description %></li>
+        <li><%= f.text_field :description, class: ""%></li>
 
-        <%= f.label :stock %>
-        <%= f.text_field :stock, class: "" %>
+        <li><%= f.label :stock %></li>
+        <li><%= f.text_field :stock, class: "" %></li>
 
-        <%= f.label :photo %>
-        <%= f.text_field :photo, class: "" %>
+        <li><%= f.label :photo %></li>
+        <li><%= f.text_field :photo, class: "" %></li>
 
-      <%= f.submit button_title, class: 'btn'%>
-    <% end %>
+      <%= f.submit button_title, class: 'btn btn-info'%>
+      <% end %>
+    </ul>
+
   </section>
 </div>
