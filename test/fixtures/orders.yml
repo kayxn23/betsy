@@ -15,7 +15,7 @@ one:
 
 two:
   status: paid
-  street: 123 Sunny Lane
+  street: order 2 address
   city: Seattle
   state: WA
   zip: 98133
@@ -25,7 +25,7 @@ two:
 
 three:
   status: cancelled
-  street: 123 Sunny Lane
+  street: order 3 address
   city: Seattle
   state: WA
   zip: 98133
@@ -35,7 +35,7 @@ three:
 
 four:
   status: complete
-  street: 123 Sunny Lane
+  street: order 4 address
   city: Seattle
   state: WA
   zip: 98133

@@ -6,7 +6,7 @@ describe OrdersController do
     let (:order_hash) do
       {
         order: {
-          status: "pending", street: "123 sunny rd", city: "seattle", state: "WA", zip: 98112,
+          status: "pending", street: "884 Ada Academy", city: "seattle", state: "WA", zip: 98112,
           creditcard: 1234, cvv: 234, billingzip: 98112, ccexpiration: Date.today
         }
       }
@@ -14,28 +14,26 @@ describe OrdersController do
 
 
     describe "update" do
-      it "can update a order with valid params" do
+      it "will create a new order with the passed params if the order isn't @current_order and change order status from pending to paid" do
       order = orders(:one)
       expect {
       patch order_path(order.id), params: order_hash
     }.must_change 'Order.count', 1
 
+      order = Order.all.last
       must_respond_with :redirect
       # binding.pry
-      must_redirect_to confirmation_path(@current_order.id)
+      must_redirect_to confirmation_path(order.id)
+      # binding.pry
 
-
-      new_order = Order.find_by(id: id)
-
-
-      expect(new_order.status).must_equal order_hash[:order][:status]
-      expect(new_order.street).must_equal order_hash[:order][:street]
-      expect(new_order.city).must_equal order_hash[:order][:city]
-      expect(new_order.state).must_equal order_hash[:order][:state]
-      expect(new_order.zip).must_equal order_hash[:order][:zip]
-      expect(new_order.creditcard).must_equal order_hash[:order][:creditcard]
-      expect(new_order.cvv).must_equal order_hash[:order][:cvv]
-      expect(new_order.billingzip).must_equal order_hash[:order][:billingzip]
+      expect(order.status).must_equal "paid"
+      expect(order.street).must_equal order_hash[:order][:street]
+      expect(order.city).must_equal order_hash[:order][:city]
+      expect(order.state).must_equal order_hash[:order][:state]
+      expect(order.zip).must_equal order_hash[:order][:zip]
+      expect(order.creditcard).must_equal order_hash[:order][:creditcard]
+      expect(order.cvv).must_equal order_hash[:order][:cvv]
+      expect(order.billingzip).must_equal order_hash[:order][:billingzip]
     end
 
     it "gives an error if the order params are invalid" do
